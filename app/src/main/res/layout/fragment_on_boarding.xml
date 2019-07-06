@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <TextView
+            android:text="@string/skip"
+            android:layout_width="wrap_content"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            style="@style/Tawseel.TextView.Medium.Blue"
+            android:layout_height="wrap_content" android:id="@+id/skip" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="70dp" app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:id="@+id/login_with_email"
+              style="@style/Tawseel.TextView.Rounded.Background"
+              android:text="@string/login_with_email"
+              android:minWidth="250dp"
+              android:textAlignment="center"
+              app:layout_constraintStart_toStartOf="@+id/login_with_phone"
+              app:layout_constraintEnd_toEndOf="@+id/login_with_phone"
+              android:layout_marginBottom="16dp"
+              app:layout_constraintBottom_toTopOf="@+id/sign_up"/>
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/login_with_phone"
+              style="@style/Tawseel.TextView.Rounded.Background"
+              android:minWidth="250dp"
+              android:textAlignment="center"
+              android:text="@string/login_with_phone"
+              app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
+              app:layout_constraintEnd_toEndOf="parent"
+              android:layout_marginBottom="16dp"
+              app:layout_constraintBottom_toTopOf="@+id/login_with_email"/>
+    <TextView android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:id="@+id/sign_up"
+              android:minWidth="250dp"
+              android:textAlignment="center"
+              style="@style/Tawseel.TextView.Rounded.Background"
+              android:text="@string/signup"
+              app:layout_constraintStart_toStartOf="@+id/login_with_email"
+              app:layout_constraintEnd_toEndOf="@+id/login_with_email"
+              android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/skip"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

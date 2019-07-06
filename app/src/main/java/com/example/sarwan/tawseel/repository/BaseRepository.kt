@@ -6,7 +6,7 @@ import com.example.sarwan.tawseel.utils.Global.PREFS_NAME
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 
-class BaseRepository(private val context : Context) {
+abstract class BaseRepository(private val context : Context) {
 
     private val preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 

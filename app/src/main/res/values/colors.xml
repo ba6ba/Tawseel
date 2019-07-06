@@ -2,5 +2,10 @@
 <resources>
     <color name="colorPrimary">#05d1d6</color>
     <color name="colorPrimaryDark">#ededed</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#0155BE</color>
+    <color name="scent">#05d1d6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="darK_grey">#5C5656</color>
+    <color name="grey">#ededed</color>
 </resources>
