@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tawseel</string>
+    <string name="something_went_wrong">Something went wrong :(</string>
+    <string name="permission_denied_explanation">Permission gets denied, without location permission this app won\'t
+        able to perform best results.
+    </string>
+    <string name="permission_rationale">This permission is required to provide best weather and restaurant results based
+        on location.
+    </string>
+    <string name="settings">Settings</string>
+</resources>
