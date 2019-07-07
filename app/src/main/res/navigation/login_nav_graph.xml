@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/main_nav_graph"
+            app:startDestination="@id/actionSplash"
+>
+
+    <fragment android:id="@+id/actionSplash"
+              android:label="splash_fragment"
+              tools:layout="@layout/fragment_splash"
+              android:name="com.example.sarwan.tawseel.modules.onBoarding.SplashFragment"
+    >
+
+        <action android:id="@+id/action_splashFragment_to_OnBoardingFragment"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@+id/actionOnBoarding"
+        />
+
+        <action android:id="@+id/action_splashFragment_to_MainActivity"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@+id/actionMainActivity"
+        />
+    </fragment>
+
+    <fragment android:id="@+id/actionOnBoarding"
+              android:label="fragment_on_boarding"
+              tools:layout="@layout/fragment_on_boarding"
+              android:name="com.example.sarwan.tawseel.modules.onBoarding.OnBoardingFragment"
+    >
+
+        <action android:id="@+id/action_onBoardingFragment_to_LoginFragment"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@+id/actionLogin"
+        />
+
+        <action android:id="@+id/action_onBoardingFragment_to_SignupFragment"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@+id/actionSignup"
+        />
+
+        <action android:id="@+id/action_onBoardingFragment_to_MainActivity"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@+id/actionMainActivity"
+        />
+
+    </fragment>
+
+    <fragment android:id="@+id/actionSignup"
+              android:label="fragment_signup"
+              tools:layout="@layout/fragment_signup"
+              android:name="com.example.sarwan.tawseel.modules.onBoarding.SplashFragment"
+    >
+
+        <action android:id="@+id/action_signupFragment_to_MainActivity"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@+id/actionMainActivity"
+        />
+
+    </fragment>
+
+    <fragment android:id="@+id/actionLogin"
+              android:label="fragment_login"
+              tools:layout="@layout/fragment_login"
+              android:name="com.example.sarwan.tawseel.modules.onBoarding.LoginFragment"
+    >
+
+        <action android:id="@+id/action_LoginFragment_to_MainActivity"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@+id/actionMainActivity"
+        />
+
+    </fragment>
+
+    <activity
+            android:id="@+id/actionMainActivity"
+            android:label="activity_main"
+            tools:layout="@layout/activity_main"
+    />
+
+</navigation>

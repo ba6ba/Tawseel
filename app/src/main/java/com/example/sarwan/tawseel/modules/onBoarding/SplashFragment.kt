@@ -8,25 +8,18 @@ import android.view.ViewGroup
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.repository.BaseRepository
+import com.example.sarwan.tawseel.repository.SplashRepository
+import com.example.sarwan.tawseel.utils.navigate
 import com.google.android.gms.maps.model.LatLng
 
-class SplashFragment() : BaseFragment<SplashRepository>(R.layout.fragment_splash) {
+class SplashFragment : BaseFragment<SplashRepository>(R.layout.fragment_splash) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getRepository().isLoggedIn()
+        navigateTo(
+            getRepository().
+                navigateIf(mainResId = R.id.action_splashFragment_to_MainActivity, onBoardingResId = R.id.action_splashFragment_to_OnBoardingFragment),
+            withDelay = true)
     }
-}
-
-
-
-
-
-
-
-
-
-class SplashRepository(context : Context) : BaseRepository(context) {
-    fun isLoggedIn() = saveLocationInPrefs(LatLng(1.toDouble(), 1.toDouble()))
 }
