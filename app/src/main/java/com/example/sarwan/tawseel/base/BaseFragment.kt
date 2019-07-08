@@ -9,13 +9,11 @@ import androidx.fragment.app.Fragment
 import com.example.sarwan.tawseel.interfaces.TawseelLayout
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.Global
-import com.example.sarwan.tawseel.utils.navigate
-import com.example.sarwan.tawseel.utils.navigateToBack
-import com.google.gson.reflect.TypeToken
-import kotlin.reflect.KClass
+import com.example.sarwan.tawseel.extensions.navigate
+import com.example.sarwan.tawseel.extensions.navigateToBack
 
 
-abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : Fragment(), TawseelLayout {
+abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : Fragment(), TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T> {
 
     private lateinit var baseActivity : BaseActivity
     private var repo : T ? = null
@@ -32,11 +30,9 @@ abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : F
         return createView(inflater, container = container, layoutId = layoutId)
     }
 
-    private fun createView(inflater : LayoutInflater, layoutId : Int, container: ViewGroup?) : View? = inflater.inflate(layoutId, container, false)
-
     protected fun getBaseActivity() = baseActivity
 
-    protected fun getRepository(t : Class<T>) : T{
+    override fun getRepository(t : Class<T>) : T{
         return if (repo == null) { repo = t.newInstance() ; repo?:t.newInstance() } else repo?:t.newInstance()
     }
 
