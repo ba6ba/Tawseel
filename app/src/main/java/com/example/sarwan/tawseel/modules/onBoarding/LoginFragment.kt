@@ -6,7 +6,7 @@ import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.hint
 import com.example.sarwan.tawseel.extensions.navigateOnClick
-import com.example.sarwan.tawseel.repository.LoginRepository
+import com.example.sarwan.tawseel.repository.onBoarding.LoginRepository
 import com.example.sarwan.tawseel.utils.Global
 import kotlinx.android.synthetic.main.fragment_login.*
 

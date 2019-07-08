@@ -5,8 +5,7 @@ import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.navigateOnClick
-import com.example.sarwan.tawseel.repository.SignupRepository
-import com.example.sarwan.tawseel.utils.navigate
+import com.example.sarwan.tawseel.repository.onBoarding.SignupRepository
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
 import kotlinx.android.synthetic.main.fragment_signup.*
 

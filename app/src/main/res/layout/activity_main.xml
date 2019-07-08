@@ -19,4 +19,18 @@
             app:defaultNavHost="true"
             app:navGraph="@navigation/main_nav_graph" />
 
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            app:itemBackground="@color/colorPrimary"
+            app:itemIconTint="@drawable/bottom_navigation_color_state"
+            app:itemTextColor="@drawable/bottom_navigation_color_state"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            android:layout_gravity="bottom"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/main_navigation_menu" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/main_container"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,7 @@
-package com.example.sarwan.tawseel.repository
+package com.example.sarwan.tawseel.repository.onBoarding
 
-import android.content.Context
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.Global
 
 class LoginRepository () : BaseRepository() {

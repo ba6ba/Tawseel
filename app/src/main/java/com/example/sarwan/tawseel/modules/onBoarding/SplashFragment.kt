@@ -1,17 +1,11 @@
 package com.example.sarwan.tawseel.modules.onBoarding
 
-import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.navigateOnClick
-import com.example.sarwan.tawseel.repository.BaseRepository
-import com.example.sarwan.tawseel.repository.SplashRepository
-import com.example.sarwan.tawseel.utils.navigate
-import com.google.android.gms.maps.model.LatLng
+import com.example.sarwan.tawseel.repository.onBoarding.SplashRepository
 import kotlinx.android.synthetic.main.fragment_splash.*
 
 class SplashFragment : BaseFragment<SplashRepository>(R.layout.fragment_splash) {

@@ -22,4 +22,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="phone">Phone Number</string>
     <string name="full_name">Full Name</string>
+    <string name="stores">Stores</string>
+    <string name="orders">Orders</string>
+    <string name="notifications">Notifications</string>
+    <string name="user">User</string>
 </resources>

@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            app:startDestination="@id/actionStores"
             android:id="@+id/main_nav_graph.xml">
+
+    <fragment android:id="@+id/actionStores"
+              android:label="stores_fragment"
+              tools:layout="@layout/fragment_stores"
+              android:name="com.example.sarwan.tawseel.modules.stores.StoresFragment"
+    >
+
+        <action android:id="@+id/action_storesFragment_to_VendorFragment"
+                app:enterAnim="@android:anim/slide_in_left"
+                app:exitAnim="@android:anim/slide_out_right"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@+id/actionOnBoarding"
+        />
+
+
+    </fragment>
+
+    <fragment android:id="@+id/actionOrders"
+              android:label="orders_fragment"
+              tools:layout="@layout/fragment_orders"
+              android:name="com.example.sarwan.tawseel.modules.orders.OrdersFragment"
+    >
+
+
+    </fragment>
+
+    <fragment android:id="@+id/actionNotifications"
+              android:label="notifications_fragment"
+              tools:layout="@layout/fragment_notifications"
+              android:name="com.example.sarwan.tawseel.modules.notifications.NotificationsFragment"
+    >
+
+
+
+    </fragment>
+
+    <fragment android:id="@+id/actionUser"
+              android:label="user_fragment"
+              tools:layout="@layout/fragment_user"
+              android:name="com.example.sarwan.tawseel.modules.user.UserFragment"
+    >
+
+    </fragment>
+
 
 </navigation>

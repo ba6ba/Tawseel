@@ -1,7 +1,7 @@
-package com.example.sarwan.tawseel.repository
+package com.example.sarwan.tawseel.repository.onBoarding
 
-import android.content.Context
 import android.os.Bundle
+import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.Global
 
 class OnBoardingRepository() : BaseRepository() {

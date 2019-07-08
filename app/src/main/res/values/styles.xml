@@ -57,4 +57,12 @@
         <item name="android:textColor">@color/darK_grey</item>
     </style>
 
+    <style name="Taweel.BottomNavigation" parent="@style/Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="menu">@menu/main_navigation_menu</item>
+        <item name="itemIconTint">@drawable/bottom_navigation_color_state</item>
+        <item name="itemTextColor">@drawable/bottom_navigation_color_state</item>
+    </style>
+
 </resources>
