@@ -26,4 +26,10 @@
     <string name="orders">Orders</string>
     <string name="notifications">Notifications</string>
     <string name="user">User</string>
+    <string name="search_text">Search for Stores</string>
+    <string name="description">Description</string>
+    <string name="order">Order</string>
+    <string name="please_enter_quantity">Please enter the Quantity</string>
+    <string name="wait">Wait</string>
+    <string name="yes">Yes</string>
 </resources>

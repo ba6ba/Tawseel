@@ -6,6 +6,10 @@
     <color name="scent">#05d1d6</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="darK_grey">#5C5656</color>
+    <color name="darK_grey">#646464</color>
+    <color name="search_grey">#D6D5D5</color>
     <color name="grey">#ededed</color>
+    <color name="green">#46B84A</color>
+    <color name="red">#F44336</color>
+
 </resources>
