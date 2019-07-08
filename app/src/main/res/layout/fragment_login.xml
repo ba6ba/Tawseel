@@ -54,7 +54,6 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/email"
                     style="@style/Tawseel.EditText.Rounded.Background.Stroke"
                     android:imeOptions="actionNext"
                     android:layout_gravity="center"

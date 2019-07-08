@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import com.example.sarwan.tawseel.utils.Global
 
-class OnBoardingRepository(context: Context) : BaseRepository(context) {
+class OnBoardingRepository() : BaseRepository() {
 
     val phoneBundle = Bundle(1).apply { putInt(Global.PARAM, Global.LOGIN_WITH_PHONE) }
 

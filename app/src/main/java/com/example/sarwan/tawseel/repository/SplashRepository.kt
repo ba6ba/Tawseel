@@ -1,10 +1,20 @@
 package com.example.sarwan.tawseel.repository
 
 import android.content.Context
+import android.os.Bundle
+import com.example.sarwan.tawseel.utils.Global
 
-class SplashRepository(context : Context) : BaseRepository(context) {
+class SplashRepository() : BaseRepository() {
 
     private fun isLoggedIn() = false
 
-    fun navigateIf(mainResId : Int , onBoardingResId : Int) = if (isLoggedIn()) mainResId else onBoardingResId
+    fun navigateIf(success : () -> Unit, failure : () -> Unit) = if (isLoggedIn()) success() else failure()
+
+    val customerBundle = Bundle(1).apply { putInt(Global.PARAM, Global.CUSTOMER) }
+
+    val companyBundle = Bundle(1).apply { putInt(Global.PARAM, Global.COMPANY) }
+
+    val deliveryBundle = Bundle(1).apply { putInt(Global.PARAM, Global.DELIVERY) }
+
+
 }

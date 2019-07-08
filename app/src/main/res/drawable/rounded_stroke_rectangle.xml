@@ -9,4 +9,8 @@
             android:color="@color/scent"
     />
 
+
+    <solid
+            android:color="@color/white"
+    />
 </shape>

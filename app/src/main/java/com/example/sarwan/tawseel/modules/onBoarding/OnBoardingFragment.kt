@@ -21,11 +21,11 @@ class OnBoardingFragment : BaseFragment<OnBoardingRepository>(R.layout.fragment_
         }
 
         login_with_email?.navigateOnClick {
-            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository().emailBundle)
+            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository(OnBoardingRepository::class.java).emailBundle)
         }
 
         login_with_phone?.navigateOnClick {
-            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository().phoneBundle)
+            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository(OnBoardingRepository::class.java).phoneBundle)
         }
 
         skip?.navigateOnClick {

@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.fragment_login.*
 class LoginFragment : BaseFragment<LoginRepository>(R.layout.fragment_login) {
 
     override fun getBundleOnCreated(bundle: Bundle?) {
-        getRepository().userName(bundle?.getInt(Global.PARAM))
+        getRepository(LoginRepository::class.java).userName(bundle?.getInt(Global.PARAM))
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -22,12 +23,16 @@ class LoginFragment : BaseFragment<LoginRepository>(R.layout.fragment_login) {
     }
 
     override fun dataToViews() {
-        user_name_layout?.hint(getRepository().userNameType)
+        user_name_layout?.hint(getBaseActivity().getString(getRepository(LoginRepository::class.java).userNameType))
     }
 
     override fun viewListeners() {
         login?.navigateOnClick {
             navigateTo(R.id.action_LoginFragment_to_MainActivity)
+        }
+
+        back?.navigateOnClick {
+            navigateBack()
         }
     }
 }

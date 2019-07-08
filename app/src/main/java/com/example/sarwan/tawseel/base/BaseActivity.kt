@@ -10,10 +10,6 @@ import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseActivity : AppCompatActivity(){
 
-    override fun onBackPressed() {
-        finish()
-    }
-
     fun getRepository() = (application as Tawseel).getRepository()
 
     fun showMessage(message : String = resources.getString(R.string.something_went_wrong), length: Int = Toast.LENGTH_LONG)  =
