@@ -5,7 +5,7 @@ import com.example.sarwan.tawseel.utils.DummyData
 
 class VendorRepository() : BaseRepository() {
 
-    enum class VendorCategories { All , Food , Restaurants , Bakery }
+    enum class VendorCategories { All , New , Starters , Italian }
 
     fun getCategoriesTitle() = VendorCategories.values().toList().map { it.name }
 

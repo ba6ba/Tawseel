@@ -8,4 +8,9 @@
     <solid
             android:color="@color/colorPrimary"
     />
+
+    <size
+            android:width="@dimen/x50"
+            android:height="@dimen/x20"
+    />
 </shape>

@@ -42,8 +42,8 @@ class VendorItemFragment : BaseFragment<VendorRepository>(R.layout.fragment_vend
         recycler_view?.apply {
             layoutManager = LinearLayoutManager(getBaseActivity(), RecyclerView.VERTICAL, false)
             adapter = VendorItemAdapter(getBaseActivity(),
-                getRepository(VendorRepository::class.java).getVendorsList(),
-                this@VendorItemFragment)
+                getRepository(VendorRepository::class.java).getVendorsList(), this@VendorItemFragment)
+            swipeRefreshLayoutHelper?.stopRefreshLoader()
         }
     }
 

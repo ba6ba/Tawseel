@@ -1,5 +1,7 @@
 package com.example.sarwan.tawseel.modules.dialogs
 
+import android.app.Dialog
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import com.example.sarwan.tawseel.R

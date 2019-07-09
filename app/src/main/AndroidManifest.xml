@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".modules.MainActivity"/>
+        <activity android:name=".modules.MainActivity"
+                  android:windowSoftInputMode="stateAlwaysHidden"
+        />
     </application>
 
 </manifest>

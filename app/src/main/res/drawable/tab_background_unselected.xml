@@ -6,6 +6,11 @@
     />
 
     <solid
-            android:color="@color/darK_grey"
+            android:color="@color/search_grey"
+    />
+
+    <size
+            android:width="@dimen/x50"
+            android:height="@dimen/x20"
     />
 </shape>

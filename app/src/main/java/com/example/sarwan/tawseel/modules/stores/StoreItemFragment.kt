@@ -44,6 +44,7 @@ class StoreItemFragment : BaseFragment<StoresRepository>(R.layout.fragment_store
             adapter = StoreItemAdapter(getBaseActivity(),
                 getRepository(StoresRepository::class.java).getStoreList(),
                 this@StoreItemFragment)
+            swipeRefreshLayoutHelper?.stopRefreshLoader()
         }
     }
 

@@ -25,7 +25,10 @@ class VendorFragment : BaseFragment<VendorRepository>(R.layout.fragment_vendors)
 
     override fun dataToViews() {
         attachViewPager()
-        tab_layout?.setupWithViewPager(view_pager,true)
+        tab_layout?.apply {
+            setupWithViewPager(view_pager,true)
+            setTabsMargin(startMargin = 30, rightMargin = 30)
+        }
     }
 
     private fun attachViewPager() {

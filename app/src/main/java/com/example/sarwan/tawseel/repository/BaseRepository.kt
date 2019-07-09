@@ -12,6 +12,8 @@ open class BaseRepository() {
 
     private var context: Context ? = null
 
+    protected var itemsInCart : Int = 0
+
     private val preferences = context?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     private val gson : Gson = Gson()
 

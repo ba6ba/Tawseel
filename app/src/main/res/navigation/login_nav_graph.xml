@@ -24,7 +24,7 @@
                 app:exitAnim="@android:anim/slide_out_right"
                 app:popEnterAnim="@android:anim/fade_in"
                 app:popExitAnim="@android:anim/fade_out"
-                app:destination="@+id/actionMainActivity"
+                app:destination="@id/actionMainActivity"
         />
     </fragment>
 
@@ -55,7 +55,7 @@
                 app:exitAnim="@android:anim/slide_out_right"
                 app:popEnterAnim="@android:anim/fade_in"
                 app:popExitAnim="@android:anim/fade_out"
-                app:destination="@+id/actionMainActivity"
+                app:destination="@id/actionMainActivity"
         />
 
     </fragment>
@@ -71,7 +71,7 @@
                 app:exitAnim="@android:anim/slide_out_right"
                 app:popEnterAnim="@android:anim/fade_in"
                 app:popExitAnim="@android:anim/fade_out"
-                app:destination="@+id/actionMainActivity"
+                app:destination="@id/actionMainActivity"
         />
 
     </fragment>
@@ -87,7 +87,7 @@
                 app:exitAnim="@android:anim/slide_out_right"
                 app:popEnterAnim="@android:anim/fade_in"
                 app:popExitAnim="@android:anim/fade_out"
-                app:destination="@+id/actionMainActivity"
+                app:destination="@id/actionMainActivity"
         />
 
     </fragment>

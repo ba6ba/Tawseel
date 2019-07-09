@@ -15,6 +15,7 @@
             android:textSize="@dimen/t24"
             android:paddingStart="@dimen/x36"
             android:paddingEnd="@dimen/x36"
+            android:layout_marginBottom="@dimen/x60"
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp"

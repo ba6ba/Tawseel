@@ -45,6 +45,6 @@ class ItemDetailsFragment : BaseFragment<ItemDetailsRepository>(R.layout.fragmen
     }
 
     override fun getBundleOnCreated(bundle: Bundle?) {
-        getRepository(ItemDetailsRepository::class.java).fromBundle(Global.PARAM)
+        getRepository(ItemDetailsRepository::class.java).fromBundle(bundle?.getSerializable(Global.PARAM))
     }
 }
