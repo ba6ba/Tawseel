@@ -21,9 +21,17 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".modules.MainActivity"
+        <activity android:name=".modules.CustomerActivity"
                   android:windowSoftInputMode="stateAlwaysHidden"
         />
+
+        <activity android:name=".modules.driver.DriverActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
+
+        <activity android:name=".modules.business.BusinessActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            />
     </application>
 
 </manifest>

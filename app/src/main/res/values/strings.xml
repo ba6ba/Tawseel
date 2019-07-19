@@ -28,8 +28,23 @@
     <string name="user">User</string>
     <string name="search_text">Search for Stores</string>
     <string name="description">Description</string>
-    <string name="order">Order</string>
     <string name="please_enter_quantity">Please enter the Quantity</string>
     <string name="wait">Wait</string>
     <string name="yes">Yes</string>
+    <string name="verify_otp">Verify OTP</string>
+    <string name="enter_six_digit_otp">Enter 6 digit OTP sent to your mobile number</string>
+    <string name="change">Change</string>
+    <string name="resend_code_desc">DIdn\'t recevied the code?</string>
+    <string name="resend">Resend</string>
+    <string name="verify">Verify</string>
+    <string name="order">Order</string>
+    <string name="searching">Searching</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password_">Forgot Password ?</string>
+    <string name="reset">Reset</string>
+    <string name="order_confirmed">Order Confirmed</string>
+    <string name="accept">Accept</string>
+    <string name="new_order">New Order</string>
+    <string name="home">Home</string>
+    <string name="remaining_time">Remaining Time :</string>
 </resources>

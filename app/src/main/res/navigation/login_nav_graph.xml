@@ -24,7 +24,7 @@
                 app:exitAnim="@android:anim/slide_out_right"
                 app:popEnterAnim="@android:anim/fade_in"
                 app:popExitAnim="@android:anim/fade_out"
-                app:destination="@id/actionMainActivity"
+                app:destination="@id/actionCustomerActivity"
         />
     </fragment>
 
@@ -55,7 +55,7 @@
                 app:exitAnim="@android:anim/slide_out_right"
                 app:popEnterAnim="@android:anim/fade_in"
                 app:popExitAnim="@android:anim/fade_out"
-                app:destination="@id/actionMainActivity"
+                app:destination="@id/actionCustomerActivity"
         />
 
     </fragment>
@@ -66,14 +66,29 @@
               android:name="com.example.sarwan.tawseel.modules.onBoarding.SignupFragment"
     >
 
-        <action android:id="@+id/action_signupFragment_to_MainActivity"
-                app:enterAnim="@android:anim/slide_in_left"
-                app:exitAnim="@android:anim/slide_out_right"
-                app:popEnterAnim="@android:anim/fade_in"
-                app:popExitAnim="@android:anim/fade_out"
-                app:destination="@id/actionMainActivity"
-        />
+        <action android:id="@+id/action_to_CustomerActivity"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionCustomerActivity"
+            />
 
+        <action android:id="@+id/action_to_DriverActivity"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionDriverActivity"
+            />
+
+        <action android:id="@+id/action_to_BusinessActivity"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionBusinessActivity"
+            />
     </fragment>
 
     <fragment android:id="@+id/actionLogin"
@@ -82,21 +97,84 @@
               android:name="com.example.sarwan.tawseel.modules.onBoarding.LoginFragment"
     >
 
-        <action android:id="@+id/action_LoginFragment_to_MainActivity"
-                app:enterAnim="@android:anim/slide_in_left"
-                app:exitAnim="@android:anim/slide_out_right"
-                app:popEnterAnim="@android:anim/fade_in"
-                app:popExitAnim="@android:anim/fade_out"
-                app:destination="@id/actionMainActivity"
-        />
+        <action android:id="@+id/action_LoginFragment_to_ForgotPasswordFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionForgotPassword"
+            />
+
+        <action android:id="@+id/action_to_CustomerActivity"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionCustomerActivity"
+            />
+
+        <action android:id="@+id/action_to_DriverActivity"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionDriverActivity"
+            />
+
+        <action android:id="@+id/action_to_BusinessActivity"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionBusinessActivity"
+            />
+
+    </fragment>
+
+    <fragment android:id="@+id/actionForgotPassword"
+        android:label="fragment_forgot_Password"
+        tools:layout="@layout/fragment_forgot_password"
+        android:name="com.example.sarwan.tawseel.modules.onBoarding.ForgotPasswordFragment"
+        >
+
+        <action android:id="@+id/action_ForgotPassword_to_LoginFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionLogin"
+            />
+
+        <action android:id="@+id/action_ForgotPassword_to_SignupFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionSignup"
+            />
 
     </fragment>
 
     <activity
-            android:id="@+id/actionMainActivity"
-            android:label="activity_main"
-            tools:layout="@layout/activity_main"
-            android:name="com.example.sarwan.tawseel.modules.MainActivity"
+            android:id="@+id/actionCustomerActivity"
+            android:label="activity_customer"
+            tools:layout="@layout/activity_customer"
+            android:name="com.example.sarwan.tawseel.modules.CustomerActivity"
     />
+
+    <activity
+        android:id="@+id/actionBusinessActivity"
+        android:label="activity_business"
+        tools:layout="@layout/activity_business"
+        android:name="com.example.sarwan.tawseel.modules.business.BusinessActivity"
+        />
+
+    <activity
+        android:id="@+id/actionDriverActivity"
+        android:label="activity_driver"
+        tools:layout="@layout/activity_driver"
+        android:name="com.example.sarwan.tawseel.modules.driver.DriverActivity"
+        />
+
 
 </navigation>

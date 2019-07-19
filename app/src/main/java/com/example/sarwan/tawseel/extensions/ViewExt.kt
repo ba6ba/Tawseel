@@ -12,3 +12,8 @@ fun View.navigateOnItemClick(position : Int, listener : (Int) -> Unit) {
 }
 
 fun View.visible(boolean: Boolean) { visibility = if (boolean) View.VISIBLE else View.GONE }
+
+fun View.toggleVisibility(viewToBeHide : View) {
+    visibility = View.VISIBLE
+    viewToBeHide.visibility = View.GONE
+}

@@ -1,4 +1,4 @@
-package com.example.sarwan.tawseel.repository.main
+package com.example.sarwan.tawseel.repository.customer
 
 import com.example.sarwan.tawseel.entities.DummyData
 import com.example.sarwan.tawseel.repository.BaseRepository

@@ -5,13 +5,13 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_customer.*
 
-class MainActivity : BaseActivity() {
+class CustomerActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_customer)
         setupMainNavigation()
     }
 

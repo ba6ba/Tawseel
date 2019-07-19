@@ -1,6 +1,7 @@
 package com.example.sarwan.tawseel.repository
 
 import android.content.Context
+import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.utils.Global
 import com.example.sarwan.tawseel.utils.Global.PREFS_NAME
 import com.google.android.gms.maps.model.LatLng
@@ -14,6 +15,8 @@ open class BaseRepository() {
 
     protected var itemsInCart : Int = 0
 
+    var profile : Profile ? = null
+
     private val preferences = context?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     private val gson : Gson = Gson()
 
@@ -25,5 +28,28 @@ open class BaseRepository() {
                 success(this)
             }?:failure("No LatLng found in shared preferences")
         }
+    }
+
+    fun getActivityId(): Int {
+        return when(profile){
+            Profile.CUSTOMER->{
+                R.id.action_to_CustomerActivity
+            }
+            Profile.DRIVER->{
+                R.id.action_to_DriverActivity
+            }
+            Profile.BUSINESS->{
+                R.id.action_to_BusinessActivity
+            }
+            else ->{
+                R.id.action_to_CustomerActivity
+            }
+        }
+    }
+
+    enum class Profile {
+        CUSTOMER,
+        DRIVER,
+        BUSINESS
     }
 }

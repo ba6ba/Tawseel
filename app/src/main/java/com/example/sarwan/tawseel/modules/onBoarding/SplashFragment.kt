@@ -5,6 +5,7 @@ import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.navigateOnClick
+import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.repository.onBoarding.SplashRepository
 import kotlinx.android.synthetic.main.fragment_splash.*
 
@@ -21,15 +22,18 @@ class SplashFragment : BaseFragment<SplashRepository>(R.layout.fragment_splash) 
 
     private fun checkForClickAction() {
         customer?.navigateOnClick {
-            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(SplashRepository::class.java).customerBundle)
+            getBaseActivity().getRepository().profile = BaseRepository.Profile.CUSTOMER
+            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(SplashRepository::class.java).getCustomerBundle())
         }
 
         company?.navigateOnClick {
-            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(SplashRepository::class.java).companyBundle)
+            getBaseActivity().getRepository().profile = BaseRepository.Profile.BUSINESS
+            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(SplashRepository::class.java).getCompanyBundle())
         }
 
         delivery?.navigateOnClick {
-            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(SplashRepository::class.java).deliveryBundle)
+            getBaseActivity().getRepository().profile = BaseRepository.Profile.DRIVER
+            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(SplashRepository::class.java).getDriverBundle())
         }
     }
 }

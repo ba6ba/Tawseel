@@ -10,11 +10,21 @@ class SplashRepository() : BaseRepository() {
 
     fun navigateIf(success : () -> Unit, failure : () -> Unit) = if (isLoggedIn()) success() else failure()
 
-    val customerBundle = Bundle(1).apply { putInt(Global.PARAM, Global.CUSTOMER) }
+    private var customerBundle = Bundle(1).apply { putInt(Global.PARAM, Global.CUSTOMER) }
 
-    val companyBundle = Bundle(1).apply { putInt(Global.PARAM, Global.COMPANY) }
+    private var businessBundle = Bundle(1).apply { putInt(Global.PARAM, Global.COMPANY) }
 
-    val deliveryBundle = Bundle(1).apply { putInt(Global.PARAM, Global.DELIVERY) }
+    private var driverBundle = Bundle(1).apply { putInt(Global.PARAM, Global.DELIVERY) }
 
+    fun getCustomerBundle(): Bundle {
+        return customerBundle
+    }
 
+    fun getCompanyBundle(): Bundle {
+        return businessBundle
+    }
+
+    fun getDriverBundle(): Bundle {
+        return driverBundle
+    }
 }

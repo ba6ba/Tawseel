@@ -3,6 +3,7 @@ package com.example.sarwan.tawseel.base
 import android.app.Dialog
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.extensions.navigate
+import com.example.sarwan.tawseel.extensions.navigateToBack
 import com.example.sarwan.tawseel.interfaces.DialogInteraction
 import com.example.sarwan.tawseel.interfaces.TawseelLayout
 import com.example.sarwan.tawseel.repository.BaseRepository
+import com.example.sarwan.tawseel.utils.Global
 
 abstract class BaseDialog <T : BaseRepository>( private val layoutId: Int) : DialogFragment() ,
     TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T>{
@@ -88,10 +92,17 @@ abstract class BaseDialog <T : BaseRepository>( private val layoutId: Int) : Dia
 
     private fun isDismissListenerInstance(): Boolean {
         return try {
-            fragmentManager?.fragments?.get(0) is DialogInteraction
+            fragmentManager?.fragments?.get(0)?.childFragmentManager?.fragments?.get(0) is DialogInteraction
+
         }catch (e : Exception){
             fragmentManager?.fragments?.get(0)?.childFragmentManager?.fragments?.get(0) is DialogInteraction
         }
     }
+
+    protected fun navigateTo(resId : Int , bundle : Bundle ? = null ,withDelay : Boolean = false) {
+        if (!withDelay) navigate(resId, bundle) else Handler().postDelayed({ navigateTo(resId, bundle, withDelay = false)}, Global.SPLASH_DELAY)
+    }
+
+    protected fun navigateBack() = navigateToBack()
 
 }

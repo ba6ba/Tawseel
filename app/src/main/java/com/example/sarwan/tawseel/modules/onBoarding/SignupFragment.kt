@@ -5,10 +5,18 @@ import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.navigateOnClick
+import com.example.sarwan.tawseel.extensions.show
+import com.example.sarwan.tawseel.interfaces.DialogInteraction
 import com.example.sarwan.tawseel.repository.onBoarding.SignupRepository
 import kotlinx.android.synthetic.main.fragment_signup.*
 
-class SignupFragment : BaseFragment<SignupRepository>(R.layout.fragment_signup) {
+class SignupFragment : BaseFragment<SignupRepository>(R.layout.fragment_signup), DialogInteraction {
+
+    override fun dismissCallBack(result: Boolean) {
+        if (result){
+            navigateTo(getBaseActivity().getRepository().getActivityId())
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()
@@ -16,7 +24,9 @@ class SignupFragment : BaseFragment<SignupRepository>(R.layout.fragment_signup) 
 
     override fun viewListeners() {
         signup?.navigateOnClick {
-            navigateTo(R.id.action_signupFragment_to_MainActivity)
+            show(VerifyOTPDialog.newInstance().apply {
+                dismissListener(this@SignupFragment)
+            })
         }
 
         back?.navigateOnClick {

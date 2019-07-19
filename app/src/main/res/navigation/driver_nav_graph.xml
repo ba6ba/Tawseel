@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/driver_nav_graph.xml"
+    app:startDestination="@id/driverHomeFragment">
+
+    <fragment
+        android:id="@+id/driverHomeFragment"
+        android:name="com.example.sarwan.tawseel.modules.driver.DriverHomeFragment"
+        android:label="DriverHomeFragment">
+
+        <action
+            app:destination="@id/driverNewOrderFragment"
+            android:id="@+id/driverHomeFragment_to_driverNewOrderFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/driverNewOrderFragment"
+        android:name="com.example.sarwan.tawseel.modules.driver.DriverNewOrderFragment"
+        android:label="DriverNewOrderFragment" />
+
+</navigation>

@@ -49,9 +49,22 @@
               tools:layout="@layout/fragment_orders"
               android:name="com.example.sarwan.tawseel.modules.orders.OrdersFragment"
     >
-
+        <action android:id="@+id/action_ordersFragment_to_RatingFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"
+            app:destination="@id/actionRating"
+            />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/actionRating"
+        android:name="com.example.sarwan.tawseel.modules.rating.RatingFragment"
+        tools:layout="@layout/fragment_rating"
+        android:label="item_details"
+        />
 
     <fragment android:id="@+id/actionNotifications"
               android:label="notifications_fragment"

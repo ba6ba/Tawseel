@@ -1,13 +1,11 @@
 package com.example.sarwan.tawseel.modules.dialogs
 
-import android.app.Dialog
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseDialog
 import com.example.sarwan.tawseel.extensions.navigateOnClick
-import com.example.sarwan.tawseel.repository.main.ConfirmationRepository
+import com.example.sarwan.tawseel.repository.customer.ConfirmationRepository
 import kotlinx.android.synthetic.main.dialog_confirmation.*
 
 class ConfirmationDialog : BaseDialog<ConfirmationRepository>(R.layout.dialog_confirmation) {

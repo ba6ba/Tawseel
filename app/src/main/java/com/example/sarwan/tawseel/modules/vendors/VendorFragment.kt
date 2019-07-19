@@ -6,7 +6,7 @@ import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.entities.DummyData
 import com.example.sarwan.tawseel.interfaces.FragmentInteraction
-import com.example.sarwan.tawseel.repository.main.VendorRepository
+import com.example.sarwan.tawseel.repository.customer.VendorRepository
 import com.example.sarwan.tawseel.utils.Global
 import kotlinx.android.synthetic.main.tab_layout_with_viewpager.*
 

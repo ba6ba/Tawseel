@@ -60,6 +60,20 @@
         <item name="android:minWidth">@dimen/x80</item>
     </style>
 
+    <style name="Tawseel.Stroke.Background.Button" parent="Tawseel.TextView">
+        <item name="android:background">@drawable/background_with_grey_stroke_round_corners</item>
+        <item name="android:text">@string/back</item>
+        <item name="android:textSize">@dimen/t16</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/darK_grey</item>
+        <item name="android:paddingStart">@dimen/x30</item>
+        <item name="android:paddingEnd">@dimen/x30</item>
+        <item name="android:paddingTop">@dimen/x6</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingBottom">@dimen/x6</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
     <style name="Tawseel.TextView.Medium.Blue" parent="Tawseel.TextView">
         <item name="android:textSize">@dimen/t16</item>
         <item name="android:textColor">@color/scent</item>
@@ -72,7 +86,7 @@
 
     <style name="Tawseel.TextView.Medium.Grey" parent="Tawseel.TextView">
         <item name="android:textSize">@dimen/t16</item>
-        <item name="android:textColor">@color/grey</item>
+        <item name="android:textColor">@color/darK_grey</item>
     </style>
 
 
@@ -98,4 +112,5 @@
     </style>
 
     <string name="no">No</string>
+    <string name="back">Back</string>
 </resources>

@@ -28,11 +28,15 @@ class LoginFragment : BaseFragment<LoginRepository>(R.layout.fragment_login) {
 
     override fun viewListeners() {
         login?.navigateOnClick {
-            navigateTo(R.id.action_LoginFragment_to_MainActivity)
+            navigateTo(getBaseActivity().getRepository().getActivityId())
         }
 
         back?.navigateOnClick {
             navigateBack()
+        }
+
+        forget_password?.navigateOnClick {
+            navigateTo(R.id.action_LoginFragment_to_ForgotPasswordFragment)
         }
     }
 }

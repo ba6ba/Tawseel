@@ -6,9 +6,7 @@ import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.actionOnClick
 import com.example.sarwan.tawseel.extensions.applyText
-import com.example.sarwan.tawseel.repository.main.CartRepository
-import com.example.sarwan.tawseel.repository.main.NotificationsRepostiory
-import com.example.sarwan.tawseel.repository.main.VendorRepository
+import com.example.sarwan.tawseel.repository.customer.CartRepository
 import kotlinx.android.synthetic.main.fragment_cart.*
 
 class CartFragment : BaseFragment<CartRepository>(R.layout.fragment_cart) {

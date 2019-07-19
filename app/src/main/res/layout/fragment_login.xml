@@ -14,29 +14,44 @@
                                                        android:layout_marginBottom="8dp"
                                                        app:layout_constraintBottom_toBottomOf="parent">
 
+        <TextView
+            android:id="@+id/forget_password"
+            style="@style/Tawseel.TextView.Medium.Blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/forgot_password_"
+            android:textSize="@dimen/t14"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_layout" />
+
         <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="false"
-                app:passwordToggleEnabled="true"
-                app:errorEnabled="true"
-                app:passwordToggleTint="@color/scent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:id="@+id/password_layout"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/user_name_layout">
+            android:id="@+id/password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:errorEnabled="true"
+            app:hintAnimationEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_name_layout"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/scent">
 
             <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/password"
-                    style="@style/Tawseel.EditText.Rounded.Background.Stroke"
-                    android:imeOptions="actionDone"
-                    android:layout_gravity="center"
-                    android:minHeight="@dimen/x50"
-                    android:inputType="textPassword"
-            />
+                style="@style/Tawseel.EditText.Rounded.Background.Stroke"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:hint="@string/password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:minHeight="@dimen/x50" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
