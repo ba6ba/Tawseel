@@ -2,7 +2,7 @@ package com.example.sarwan.tawseel.repository.onBoarding
 
 import android.os.Bundle
 import com.example.sarwan.tawseel.repository.BaseRepository
-import com.example.sarwan.tawseel.utils.Global
+import com.example.sarwan.tawseel.utils.GlobalData
 
 class SplashRepository() : BaseRepository() {
 
@@ -10,11 +10,11 @@ class SplashRepository() : BaseRepository() {
 
     fun navigateIf(success : () -> Unit, failure : () -> Unit) = if (isLoggedIn()) success() else failure()
 
-    private var customerBundle = Bundle(1).apply { putInt(Global.PARAM, Global.CUSTOMER) }
+    private var customerBundle = Bundle(1).apply { putInt(GlobalData.PARAM, GlobalData.CUSTOMER) }
 
-    private var businessBundle = Bundle(1).apply { putInt(Global.PARAM, Global.COMPANY) }
+    private var businessBundle = Bundle(1).apply { putInt(GlobalData.PARAM, GlobalData.COMPANY) }
 
-    private var driverBundle = Bundle(1).apply { putInt(Global.PARAM, Global.DELIVERY) }
+    private var driverBundle = Bundle(1).apply { putInt(GlobalData.PARAM, GlobalData.DELIVERY) }
 
     fun getCustomerBundle(): Bundle {
         return customerBundle

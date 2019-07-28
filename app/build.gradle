@@ -48,6 +48,7 @@ dependencies {
     implementation Libraries.retrofit
     implementation Libraries.retrofitGsonConverter
     implementation Libraries.httpLoggingInterceptor
+    implementation ThirdPartyLibraries.ratingBar
     testImplementation TestLibraries.mockk
     testImplementation TestLibraries.archCoreTest
     testImplementation TestLibraries.coroutine

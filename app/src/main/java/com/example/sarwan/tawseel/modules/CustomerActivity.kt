@@ -2,6 +2,7 @@ package com.example.sarwan.tawseel.modules
 
 import android.os.Bundle
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseActivity
@@ -16,7 +17,7 @@ class CustomerActivity : BaseActivity() {
     }
 
     private fun setupMainNavigation() {
-        bottomNavigation.setupWithNavController(findNavController(this, R.id.main_container))
+        bottomNavigation.setupWithNavController(findNavController(R.id.main_container))
     }
 
 }

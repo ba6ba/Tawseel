@@ -20,14 +20,9 @@ class DriverHomeFragment : BaseFragment<HomeRepository>(R.layout.fragment_home_d
             getRepository(HomeRepository::class.java).getOrderLiveData().postValue(b)
         }
 
-        back?.navigateOnClick {
-            navigateBack()
-        }
-
         getRepository(HomeRepository::class.java).getOrderLiveData().observe(this, Observer {
             canReceiveOrders(it)
         })
-
     }
 
     private fun canReceiveOrders(canReceive: Boolean?) {

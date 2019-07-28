@@ -6,4 +6,5 @@ interface TawseelLayout {
     fun viewListeners(){}
     fun dataToViews(){}
     fun initViews(view : View?= null) {}
+    fun setObservers() {}
 }

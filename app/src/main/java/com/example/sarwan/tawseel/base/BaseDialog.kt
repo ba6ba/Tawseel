@@ -16,7 +16,7 @@ import com.example.sarwan.tawseel.extensions.navigateToBack
 import com.example.sarwan.tawseel.interfaces.DialogInteraction
 import com.example.sarwan.tawseel.interfaces.TawseelLayout
 import com.example.sarwan.tawseel.repository.BaseRepository
-import com.example.sarwan.tawseel.utils.Global
+import com.example.sarwan.tawseel.utils.GlobalData
 
 abstract class BaseDialog <T : BaseRepository>( private val layoutId: Int) : DialogFragment() ,
     TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T>{
@@ -100,7 +100,7 @@ abstract class BaseDialog <T : BaseRepository>( private val layoutId: Int) : Dia
     }
 
     protected fun navigateTo(resId : Int , bundle : Bundle ? = null ,withDelay : Boolean = false) {
-        if (!withDelay) navigate(resId, bundle) else Handler().postDelayed({ navigateTo(resId, bundle, withDelay = false)}, Global.SPLASH_DELAY)
+        if (!withDelay) navigate(resId, bundle) else Handler().postDelayed({ navigateTo(resId, bundle, withDelay = false)}, GlobalData.SPLASH_DELAY)
     }
 
     protected fun navigateBack() = navigateToBack()

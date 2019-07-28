@@ -9,7 +9,7 @@ object Releases {
 
 object AndroidVersions{
     val compileSdk = 29
-    val minSdk = 23
+    val minSdk = 20
     val targetSdk = 29
 }
 
@@ -46,6 +46,7 @@ object Versions {
     val fresco = "2.0.0"
     val googlePlay = "15.0.1"
     val googleMaps = "15.0.1"
+    val ratingBar = "1.4.3"
 }
 
 object Libraries {
@@ -108,4 +109,7 @@ object TestLibraries {
     val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     // DATA BINDING
     val databinding = "androidx.databinding:databinding-compiler:${Versions.databinding}"
+}
+object ThirdPartyLibraries{
+    val ratingBar = "com.github.ome450901:SimpleRatingBar:${Versions.ratingBar}"
 }

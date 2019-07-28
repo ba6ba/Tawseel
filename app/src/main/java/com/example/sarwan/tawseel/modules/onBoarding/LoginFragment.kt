@@ -7,13 +7,13 @@ import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.hint
 import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.repository.onBoarding.LoginRepository
-import com.example.sarwan.tawseel.utils.Global
+import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment<LoginRepository>(R.layout.fragment_login) {
 
-    override fun getBundleOnCreated(bundle: Bundle?) {
-        getRepository(LoginRepository::class.java).userName(bundle?.getInt(Global.PARAM))
+    override fun bundleOnCreated(bundle: Bundle?) {
+        getRepository(LoginRepository::class.java).userName(bundle?.getInt(GlobalData.PARAM))
 
     }
 

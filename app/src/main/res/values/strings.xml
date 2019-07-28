@@ -47,4 +47,16 @@
     <string name="new_order">New Order</string>
     <string name="home">Home</string>
     <string name="remaining_time">Remaining Time :</string>
+    <string name="business_name">Business Name</string>
+    <string name="business_description">Business Description</string>
+    <string name="edit">Edit</string>
+    <string name="done">Done</string>
+    <string name="order_status">Order Status</string>
+    <string name="total_bill_heading">Total Bill :</string>
+    <string name="your_bill_heading">Your Bill :</string>
+    <string name="cash">CASH</string>
+    <string name="history">History</string>
+    <string name="cart">Cart</string>
+    <string name="tracking">Tracking</string>
+    <string name="logout">Logout</string>
 </resources>

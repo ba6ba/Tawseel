@@ -10,7 +10,7 @@ import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.helper.SwipeRefreshLayoutHelper
 import com.example.sarwan.tawseel.interfaces.FragmentInteraction
 import com.example.sarwan.tawseel.repository.customer.StoresRepository
-import com.example.sarwan.tawseel.utils.Global
+import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
 class StoreItemFragment : BaseFragment<StoresRepository>(R.layout.fragment_stores_items), SwipeRefreshLayout.OnRefreshListener, (Int) -> Unit {
@@ -52,7 +52,7 @@ class StoreItemFragment : BaseFragment<StoresRepository>(R.layout.fragment_store
         @JvmStatic
         fun newInstance(item : Int) = StoreItemFragment().apply {
             arguments  = Bundle(1).apply {
-                putInt(Global.PARAM, item)
+                putInt(GlobalData.PARAM, item)
             }
         }
     }

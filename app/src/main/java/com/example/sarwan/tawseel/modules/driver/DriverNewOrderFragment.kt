@@ -21,10 +21,6 @@ class DriverNewOrderFragment : BaseFragment<DriverNewOrderRepository>(R.layout.f
     }
 
     override fun viewListeners() {
-        back?.navigateOnClick {
-            navigateBack()
-        }
-
         accept?.navigateOnClick {
             navigateBack()
         }

@@ -1,8 +1,11 @@
 package com.example.sarwan.tawseel.base
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sarwan.tawseel.R
 import com.google.android.gms.maps.model.LatLng
@@ -24,5 +27,18 @@ abstract class BaseActivity : AppCompatActivity(){
         Snackbar.make(findViewById(android.R.id.content), getString(mainTextStringId), length)
             .setAction(getString(actionStringId), listener).show()
     }
+
+    fun getStringFromValues(resId: Int) = getString(resId)
+
+    fun getColorFromValues(resId: Int) = getColor(resId)
+
+    fun getDimensionFromResources(resId: Int) = resources.getDimension(resId)
+
+    fun getIntegerFromResources(resId: Int) = resources.getInteger(resId)
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getFontFromResources(resId: Int) = resources.getFont(resId)
+
+    fun getDrawableFromResources(@DrawableRes resId: Int) = resources.getDrawable(resId, theme)
 
 }

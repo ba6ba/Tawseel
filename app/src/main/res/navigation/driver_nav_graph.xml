@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/driver_nav_graph.xml"
-    app:startDestination="@id/driverHomeFragment">
+            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/driver_nav_graph"
+            app:startDestination="@id/driverHomeFragment">
+
+    <include
+            app:graph="@navigation/side_menu_navigation_graph"
+    />
 
     <fragment
-        android:id="@+id/driverHomeFragment"
-        android:name="com.example.sarwan.tawseel.modules.driver.DriverHomeFragment"
-        android:label="DriverHomeFragment">
+            android:id="@+id/driverHomeFragment"
+            android:name="com.example.sarwan.tawseel.modules.driver.DriverHomeFragment"
+            tools:layout="@layout/fragment_home_driver"
+            android:label="Home">
 
         <action
             app:destination="@id/driverNewOrderFragment"
@@ -22,6 +28,13 @@
     <fragment
         android:id="@+id/driverNewOrderFragment"
         android:name="com.example.sarwan.tawseel.modules.driver.DriverNewOrderFragment"
-        android:label="DriverNewOrderFragment" />
+        tools:layout="@layout/fragment_new_order_driver"
+        android:label="New Order" />
+
+    <fragment
+            android:id="@+id/actionTracking"
+            android:name="com.example.sarwan.tawseel.modules.driver.DriverOrderStatusFragment"
+            tools:layout="@layout/fragment_driver_status"
+            android:label="Order Status" />
 
 </navigation>

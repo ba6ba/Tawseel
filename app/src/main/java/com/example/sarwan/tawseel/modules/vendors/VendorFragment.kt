@@ -7,7 +7,7 @@ import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.entities.DummyData
 import com.example.sarwan.tawseel.interfaces.FragmentInteraction
 import com.example.sarwan.tawseel.repository.customer.VendorRepository
-import com.example.sarwan.tawseel.utils.Global
+import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.tab_layout_with_viewpager.*
 
 class VendorFragment : BaseFragment<VendorRepository>(R.layout.fragment_vendors), FragmentInteraction<Any> {
@@ -15,7 +15,7 @@ class VendorFragment : BaseFragment<VendorRepository>(R.layout.fragment_vendors)
     override fun onFragmentShift(t: Any) {
         navigateTo(R.id.action_vendorFragment_to_DetailsFragment,
             bundle = Bundle(1).apply {
-                putSerializable(Global.PARAM, t as DummyData)
+                putSerializable(GlobalData.PARAM, t as DummyData)
             })
     }
 

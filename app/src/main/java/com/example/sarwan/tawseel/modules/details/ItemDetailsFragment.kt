@@ -10,7 +10,7 @@ import com.example.sarwan.tawseel.extensions.show
 import com.example.sarwan.tawseel.interfaces.DialogInteraction
 import com.example.sarwan.tawseel.modules.dialogs.ConfirmationDialog
 import com.example.sarwan.tawseel.repository.customer.ItemDetailsRepository
-import com.example.sarwan.tawseel.utils.Global
+import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.fragment_item_details.*
 
 class ItemDetailsFragment : BaseFragment<ItemDetailsRepository>(R.layout.fragment_item_details), DialogInteraction {
@@ -40,7 +40,7 @@ class ItemDetailsFragment : BaseFragment<ItemDetailsRepository>(R.layout.fragmen
         }
     }
 
-    override fun getBundleOnCreated(bundle: Bundle?) {
-        getRepository(ItemDetailsRepository::class.java).fromBundle(bundle?.getSerializable(Global.PARAM))
+    override fun bundleOnCreated(bundle: Bundle?) {
+        getRepository(ItemDetailsRepository::class.java).fromBundle(bundle?.getSerializable(GlobalData.PARAM))
     }
 }

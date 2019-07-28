@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.sarwan.tawseel.repository.BaseRepository
+import com.facebook.drawee.backends.pipeline.Fresco
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 
@@ -13,6 +14,8 @@ class Tawseel : Application() {
     override fun onCreate() {
         super.onCreate()
         baseRepository = BaseRepository(this)
+
+        Fresco.initialize(this)
     }
 
     fun getRepository() = baseRepository
