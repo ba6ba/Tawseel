@@ -11,19 +11,14 @@ import com.example.sarwan.tawseel.helper.SwipeRefreshLayoutHelper
 import com.example.sarwan.tawseel.repository.history.HistoryRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
-import java.io.Serializable
 
 class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_history) , () -> Unit {
 
+    private var swipeRefreshLayoutHelper : SwipeRefreshLayoutHelper ? = null
     override fun invoke() {
 
     }
 
-    override fun singleParamSerializable(serializable: Serializable?) {
-        getRepository(HistoryRepository::class.java).mode = serializable as HistoryMode
-    }
-
-    private var swipeRefreshLayoutHelper : SwipeRefreshLayoutHelper ? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews(view)
     }
@@ -37,7 +32,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
             layoutManager = LinearLayoutManager(getBaseActivity(), RecyclerView.VERTICAL, false)
             adapter = HistoryAdapter(getBaseActivity(),
                 getRepository(HistoryRepository::class.java).
-                    getHistoryList(getRepository(HistoryRepository::class.java).mode),
+                    getHistoryList(getRepository(HistoryRepository::class.java).mode?:HistoryMode.NON_BUSINESS),
                 this@HistoryFragment)
             setRecyclerListener(MapViewRecyclerListener())
             swipeRefreshLayoutHelper?.stopRefreshLoader()

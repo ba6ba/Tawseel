@@ -6,5 +6,4 @@ import com.example.sarwan.tawseel.repository.BaseRepository
 class HomeRepository : BaseRepository() {
 
     var onEditLiveData : MutableLiveData<Boolean> = MutableLiveData()
-    var showScreenInEditMode : MutableLiveData<Boolean> = MutableLiveData()
 }

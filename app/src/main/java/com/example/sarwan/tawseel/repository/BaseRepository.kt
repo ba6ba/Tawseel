@@ -2,6 +2,7 @@ package com.example.sarwan.tawseel.repository
 
 import android.content.Context
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.entities.Profile
 import com.example.sarwan.tawseel.utils.GlobalData
 import com.example.sarwan.tawseel.utils.GlobalData.PREFS_NAME
 import com.google.android.gms.maps.model.LatLng
@@ -45,11 +46,5 @@ open class BaseRepository() {
                 R.id.action_to_CustomerActivity
             }
         }
-    }
-
-    enum class Profile {
-        CUSTOMER,
-        DRIVER,
-        BUSINESS
     }
 }

@@ -13,7 +13,9 @@ object GlobalData {
     const val CUSTOMER = 0
     const val COMPANY = 1
     const val DELIVERY = 2
+    const val LATITUDE = 67.9894
+    const val LONGITUDE = 60.9894
 
 
-    fun currentTime() = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance())
+    fun currentTime() = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
 }

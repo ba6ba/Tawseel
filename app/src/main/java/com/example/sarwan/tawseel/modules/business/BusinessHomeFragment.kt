@@ -15,7 +15,7 @@ class BusinessHomeFragment : BaseFragment<HomeRepository>(R.layout.fragment_busi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()
-        dataToViews()
+        setObservers()
     }
 
     override fun viewListeners() {
@@ -28,12 +28,8 @@ class BusinessHomeFragment : BaseFragment<HomeRepository>(R.layout.fragment_busi
 
     override fun setObservers() {
         getRepository(HomeRepository::class.java).apply {
-            showScreenInEditMode.observe(this@BusinessHomeFragment, Observer {
-                showScreenInEditMode(it)
-            })
-
             onEditLiveData.observe(this@BusinessHomeFragment, Observer {
-                showScreenInEditMode.postValue(it)
+                showScreenInEditMode(it)
             })
         }
     }
@@ -46,9 +42,4 @@ class BusinessHomeFragment : BaseFragment<HomeRepository>(R.layout.fragment_busi
         edit_business.booleanText(edit, getStringFromValues(R.string.done), getStringFromValues(R.string.edit))
         edit_profile_image.visible(edit)
     }
-
-    override fun dataToViews() {
-
-    }
-
 }

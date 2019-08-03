@@ -32,6 +32,9 @@
         <activity android:name=".modules.business.BusinessActivity"
             android:windowSoftInputMode="stateAlwaysHidden"
             />
+
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCvzxP_r3ouX670MIOJr0vo6yKronnQp50"/>
+
     </application>
 
 </manifest>
