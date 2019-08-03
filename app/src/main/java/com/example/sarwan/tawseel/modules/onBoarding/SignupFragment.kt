@@ -14,7 +14,7 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
 
     override fun dismissCallBack(result: Boolean) {
         if (result){
-            navigateTo(getBaseActivity().getRepository(AuthenticationRepository::class.java).getActivityId())
+            navigateToMainApp()
         }
     }
 

@@ -3,10 +3,10 @@ package com.example.sarwan.tawseel.repository.driver
 import android.os.Handler
 import androidx.lifecycle.MutableLiveData
 import com.example.sarwan.tawseel.helper.extras.MapCameraAttributes
-import com.example.sarwan.tawseel.repository.BaseRepository
+import com.example.sarwan.tawseel.repository.history.HistoryRepository
 import com.example.sarwan.tawseel.utils.CountDownTimer
 
-open class DriverRepository : BaseRepository(){
+open class DriverRepository : HistoryRepository(){
 
     private val mapCameraAttributes = MapCameraAttributes()
 

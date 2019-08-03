@@ -2,14 +2,11 @@ package com.example.sarwan.tawseel.modules
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.sarwan.tawseel.R
-import com.example.sarwan.tawseel.base.BaseActivity
 import com.example.sarwan.tawseel.base.DrawerActivity
 import com.example.sarwan.tawseel.extensions.applyText
-import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import kotlinx.android.synthetic.main.activity_customer.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
@@ -31,5 +28,7 @@ class CustomerActivity : DrawerActivity<CustomerRepository>(R.layout.activity_cu
     private fun setupMainNavigation() {
         bottomNavigation.setupWithNavController(findNavController(R.id.main_container))
     }
+
+    override fun getNavigationMenuId(): Int = R.menu.customer_side_navigation_menu
 
 }

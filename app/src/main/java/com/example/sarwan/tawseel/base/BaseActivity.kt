@@ -13,9 +13,9 @@ import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseActivity<T : BaseRepository> : AppCompatActivity(){
 
-    private lateinit var repo : T
+    lateinit var repo : T
 
-    private fun getAppRepository() = (application as Tawseel).getRepository()
+    fun getAppRepository() = (application as Tawseel).getRepository()
 
     fun getRepository(t : Class<T>) : T {
         return if (!::repo.isInitialized) { repo = t.newInstance() ; repo } else repo

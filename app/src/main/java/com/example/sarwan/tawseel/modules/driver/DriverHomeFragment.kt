@@ -5,8 +5,6 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
-import com.example.sarwan.tawseel.extensions.actionOnClick
-import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.repository.driver.DriverRepository
 import kotlinx.android.synthetic.main.fragment_home_driver.*
 
@@ -28,13 +26,16 @@ class DriverHomeFragment : BaseFragment<DriverRepository>(R.layout.fragment_home
 
     private fun canReceiveOrders(canReceive: Boolean?) {
         if (canReceive == true){
-            get_orders.isEnabled = false
             getRepository(DriverRepository::class.java).apply {
                 requestForOrder {
                     navigateTo(R.id.driverHomeFragment_to_driverNewOrderFragment)
                 }
-                getOrderLiveData().removeObservers(this@DriverHomeFragment)
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getRepository(DriverRepository::class.java).getOrderLiveData().removeObservers(this@DriverHomeFragment)
     }
 }

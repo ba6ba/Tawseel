@@ -22,5 +22,6 @@ class BusinessActivity : DrawerActivity<BusinessRepository>(R.layout.activity_bu
         toolbar_icon?.setImageDrawable(drawable)
     }
 
+    override fun getNavigationMenuId(): Int = R.menu.buisness_side_navigation_menu
 
 }

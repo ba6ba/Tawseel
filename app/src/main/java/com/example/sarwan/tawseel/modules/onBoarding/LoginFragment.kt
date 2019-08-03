@@ -28,7 +28,7 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
 
     override fun viewListeners() {
         login?.navigateOnClick {
-            navigateTo(getRepository(AuthenticationRepository::class.java).getActivityId())
+            navigateToMainApp()
         }
 
         back?.navigateOnClick {

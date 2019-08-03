@@ -5,31 +5,47 @@ import android.os.Bundle
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.DrawerActivity
 import com.example.sarwan.tawseel.extensions.applyText
+import com.example.sarwan.tawseel.helper.extras.MapConfiguration
 import com.example.sarwan.tawseel.repository.driver.DriverRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.activity_driver.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class DriverActivity : DrawerActivity<DriverRepository>(R.layout.activity_driver) , OnMapReadyCallback{
+
+    override fun getNavigationMenuId(): Int = R.menu.driver_side_navigation_menu
+
+    private var mapConfiguration : MapConfiguration ? = null
 
     override fun onMapReady(map: GoogleMap?) {
         configureMap(map)
     }
 
     private fun configureMap(map: GoogleMap?) {
-        map?.apply {
-            mapType = GoogleMap.MAP_TYPE_NORMAL
-            clear()
-            moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(GlobalData.LATITUDE, GlobalData.LONGITUDE),13f))
-            addMarker(MarkerOptions().position(LatLng(GlobalData.LATITUDE , GlobalData.LONGITUDE)))
-            /*animateCamera(CameraUpdateFactory.
-                newCameraPosition(getRepository(DriverRepository::class.java).
-                    getDefaultCameraAttributes()), 1000, null)*/
+        mapConfiguration?.applyConfig(map)
+    }
+
+    private fun setupMap() {
+        setupConfiguration()
+        (supportFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment)?.apply {
+            onCreate(null)
+            getMapAsync(this@DriverActivity)
         }
     }
+
+    private fun setupConfiguration() {
+        mapConfiguration =
+            MapConfiguration.
+                builder().
+                addLatLng(LatLng(GlobalData.LATITUDE , GlobalData.LONGITUDE)).
+                moveCamera(true).
+                addMarker(true).
+                build()
+    }
+
+
 
     override fun toolbarTitleChange(text: String?) {
         toolbar_title?.applyText(text)
@@ -40,7 +56,6 @@ class DriverActivity : DrawerActivity<DriverRepository>(R.layout.activity_driver
     }
 
     override fun activityCreated(savedInstanceState: Bundle?) {
-        map?.onCreate(null)
-        map?.getMapAsync(this)
+        setupMap()
     }
 }

@@ -23,13 +23,21 @@ abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : F
 
     open fun bundleOnCreated(bundle: Bundle?) {}
 
+    open fun activityCreated(savedInstanceState: Bundle?) {}
+
     open fun singleParamSerializable(serializable: Serializable?) {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         baseActivity = (activity as BaseActivity<T>)
+        activityCreated(savedInstanceState)
         bundleOnCreated(arguments)
         singleParamSerializable(arguments?.getSerializable(GlobalData.PARAM))
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        activityCreated(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -42,6 +50,13 @@ abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : F
 
     protected fun navigateTo(resId : Int , bundle : Bundle ? = null ,withDelay : Boolean = false) {
         if (!withDelay) navigate(resId, bundle) else Handler().postDelayed({ navigateTo(resId, bundle, withDelay = false)}, GlobalData.SPLASH_DELAY)
+    }
+
+    fun navigateToMainApp() {
+        getBaseActivity().getAppRepository().saveDataInSharedPreference(
+            GlobalData.PROFILE, getBaseActivity().repo.profile as Any)
+        navigateTo(getBaseActivity().repo.getActivityId())
+        getBaseActivity().finish()
     }
 
     protected fun navigateBack() = navigateToBack()

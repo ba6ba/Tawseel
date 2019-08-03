@@ -60,4 +60,6 @@
     <string name="tracking">Tracking</string>
     <string name="logout">Logout</string>
     <string name="dummy_phone_no">+1 647 7163 974</string>
+    <string name="list_of_items">Items Listing</string>
+    <string name="add_item">Add an Item</string>
 </resources>

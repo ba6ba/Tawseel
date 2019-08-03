@@ -31,6 +31,7 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
     abstract fun activityCreated(savedInstanceState: Bundle?)
     abstract fun toolbarTitleChange(text : String?)
     abstract fun toolbarIconChange(drawable: Drawable)
+    abstract fun getNavigationMenuId() : Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +74,20 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
             backIconVisible.postValue(controller.graph.startDestination != destination.id)
             toolbarTitleChange(destination.label?.toString())
             toolbarIconChange(getConiditonDrawable(controller.graph.startDestination == destination.id, R.drawable.ic_navigation_white_24dp, R.drawable.back))
+        }
 
+        navigation_view?.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.actionHome -> {
+                    closeDrawer()
+                }
+                R.id.actionLogout -> {
+                    finish()
+                }
+            }
+            it.isChecked = true
+            closeDrawer()
+            true
         }
     }
 
@@ -94,12 +108,7 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
     }
 
     private fun setupNavigation() {
-        navigation_view?.setNavigationItemSelectedListener { menuItem ->
-            menuItem.isChecked = true
-            drawer_layout?.closeDrawers()
-            true
-        }
-
+        navigation_view?.inflateMenu(getNavigationMenuId())
         navigation_view?.setupWithNavController(findNavController(R.id.main_container))
     }
 

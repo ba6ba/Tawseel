@@ -7,6 +7,7 @@ object GlobalData {
     const val FINISH_TIME: String = "00 : 00"
     const val PREFS_NAME = "CCTaskPrefs"
     const val LATLNG = "LatLng"
+    const val PROFILE = "profile"
     const val PARAM = "Param"
     const val SPLASH_DELAY = 2500L
     const val LOGIN_WITH_PHONE = 0

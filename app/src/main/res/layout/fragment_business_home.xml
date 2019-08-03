@@ -49,7 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Tawseel.EditText.Rounded.Background.Stroke"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:layout_gravity="center"
                 android:gravity="top"
                 android:hint="@string/business_description"

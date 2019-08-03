@@ -29,7 +29,7 @@ class OnBoardingFragment : BaseFragment<AuthenticationRepository>(R.layout.fragm
         }
 
         skip?.navigateOnClick {
-            navigateTo(getRepository(AuthenticationRepository::class.java).getActivityId())
+            navigateToMainApp()
         }
     }
 }

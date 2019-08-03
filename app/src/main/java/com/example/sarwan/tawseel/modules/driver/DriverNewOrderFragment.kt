@@ -31,7 +31,7 @@ class DriverNewOrderFragment : BaseFragment<DriverRepository>(R.layout.fragment_
             initTimer()
             getTimer().observe(this@DriverNewOrderFragment, Observer<String> {time->
                 setTimerText(time)
-                accept?.visible(time == GlobalData.FINISH_TIME)
+                accept?.visible(time != GlobalData.FINISH_TIME)
             })
         }
     }

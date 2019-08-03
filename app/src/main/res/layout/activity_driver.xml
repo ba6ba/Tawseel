@@ -9,10 +9,23 @@
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                        android:layout_height="wrap_content">
 
-        <com.google.android.gms.maps.MapView
+        <fragment
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:id="@+id/map"/>
+
+        <fragment
+                android:id="@+id/main_container"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/driver_nav_graph"/>
 
         <include
                 layout="@layout/layout_toolbar"
@@ -23,20 +36,9 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <fragment
-            android:id="@+id/main_container"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/driver_nav_graph"/>
-
     <include
             layout="@layout/layout_navigation_view"
+
     />
 
 </androidx.drawerlayout.widget.DrawerLayout>
