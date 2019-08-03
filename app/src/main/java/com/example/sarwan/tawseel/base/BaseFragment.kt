@@ -19,8 +19,7 @@ import java.io.Serializable
 
 abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : Fragment(), TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T> {
 
-    private lateinit var baseActivity : BaseActivity
-    private var repo : T ? = null
+    private lateinit var baseActivity : BaseActivity<T>
 
     open fun bundleOnCreated(bundle: Bundle?) {}
 
@@ -28,7 +27,7 @@ abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : F
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        baseActivity = (activity as BaseActivity)
+        baseActivity = (activity as BaseActivity<T>)
         bundleOnCreated(arguments)
         singleParamSerializable(arguments?.getSerializable(GlobalData.PARAM))
     }
@@ -39,9 +38,7 @@ abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : F
 
     protected fun getBaseActivity() = baseActivity
 
-    override fun getRepository(t : Class<T>) : T{
-        return if (repo == null) { repo = t.newInstance() ; repo?:t.newInstance() } else repo?:t.newInstance()
-    }
+    override fun getRepository(t : Class<T>) : T = getBaseActivity().getRepository(t)
 
     protected fun navigateTo(resId : Int , bundle : Bundle ? = null ,withDelay : Boolean = false) {
         if (!withDelay) navigate(resId, bundle) else Handler().postDelayed({ navigateTo(resId, bundle, withDelay = false)}, GlobalData.SPLASH_DELAY)

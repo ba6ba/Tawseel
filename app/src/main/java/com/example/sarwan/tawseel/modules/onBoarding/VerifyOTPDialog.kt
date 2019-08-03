@@ -5,10 +5,10 @@ import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseDialog
 import com.example.sarwan.tawseel.extensions.navigateOnClick
-import com.example.sarwan.tawseel.repository.onBoarding.VerifyOTPRepository
+import com.example.sarwan.tawseel.repository.onBoarding.AuthenticationRepository
 import kotlinx.android.synthetic.main.dialog_verify_otp.*
 
-class VerifyOTPDialog : BaseDialog<VerifyOTPRepository>(R.layout.dialog_verify_otp) {
+class VerifyOTPDialog : BaseDialog<AuthenticationRepository>(R.layout.dialog_verify_otp) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()

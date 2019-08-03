@@ -5,10 +5,10 @@ import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.navigateOnClick
-import com.example.sarwan.tawseel.repository.onBoarding.ForgotPasswordRepository
+import com.example.sarwan.tawseel.repository.onBoarding.AuthenticationRepository
 import kotlinx.android.synthetic.main.fragment_forgot_password.*
 
-class ForgotPasswordFragment : BaseFragment<ForgotPasswordRepository>(R.layout.fragment_forgot_password) {
+class ForgotPasswordFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_forgot_password) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()

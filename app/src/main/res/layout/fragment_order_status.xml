@@ -6,6 +6,11 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:id="@+id/map"/>
 
     <include
         layout="@layout/layout_order_status"
@@ -24,43 +29,4 @@
         android:layout_marginBottom="@dimen/x60"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/top"
-        android:minHeight="@dimen/x80"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="@dimen/x20"
-            android:layout_height="@dimen/x20"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            style="@style/Tawseel.TextView.Medium.White"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/searching"
-            android:textAllCaps="true"
-            android:textSize="@dimen/t20"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -145,6 +145,7 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/t16"
+        android:text="@string/dummy_phone_no"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/change"
         app:layout_constraintStart_toStartOf="parent"

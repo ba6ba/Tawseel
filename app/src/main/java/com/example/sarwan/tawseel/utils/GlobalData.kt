@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object GlobalData {
+    const val FINISH_TIME: String = "00 : 00"
     const val PREFS_NAME = "CCTaskPrefs"
     const val LATLNG = "LatLng"
     const val PARAM = "Param"
@@ -13,8 +14,8 @@ object GlobalData {
     const val CUSTOMER = 0
     const val COMPANY = 1
     const val DELIVERY = 2
-    const val LATITUDE = 67.9894
-    const val LONGITUDE = 60.9894
+    const val LATITUDE = 24.966863
+    const val LONGITUDE = 67.048835
 
 
     fun currentTime() = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().time)

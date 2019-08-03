@@ -1,6 +1,10 @@
 package com.example.sarwan.tawseel.extensions
 
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.core.view.marginEnd
+import androidx.core.view.updateLayoutParams
 
 fun View.navigateOnClick(listener : () -> Unit) = setOnClickListener { listener() }
 

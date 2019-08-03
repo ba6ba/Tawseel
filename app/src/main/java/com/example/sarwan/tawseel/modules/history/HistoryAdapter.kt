@@ -78,7 +78,7 @@ class HistoryAdapter(private val context: Context, private val arrayList : Array
                 non_business_history_section?.visible(true)
                 payment_type?.applyText(history.paymentMethod)
                 rating_bar?.rating = history.rating?:3f
-                total_bill?.applyText(history.totalBill)
+                total_bill?.applyText("${total_bill?.text} ${history.totalBill}")
             }
         }
 
@@ -86,8 +86,8 @@ class HistoryAdapter(private val context: Context, private val arrayList : Array
             itemView.apply {
                 non_business_history_section?.visible(true)
                 business_payment_type?.applyText(history.paymentMethod)
-                history_total_bill?.applyText(history.totalBill)
-                history_your_bill?.applyText(history.yourBill)
+                history_total_bill?.applyText("${history_total_bill?.text} ${history.totalBill}")
+                history_your_bill?.applyText("${history_your_bill?.text} ${history.yourBill}")
             }
         }
     }

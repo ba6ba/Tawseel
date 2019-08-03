@@ -36,6 +36,7 @@ import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.model.LatLng
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.repository.BaseRepository
 
 
 /**
@@ -55,7 +56,7 @@ import com.example.sarwan.tawseel.R
  * (as specified in AndroidManifest.xml).
  */
 @SuppressLint("Registered")
-abstract class LocationActivity : BaseActivity() {
+abstract class LocationActivity : BaseActivity<BaseRepository>() {
 
     /**
      * call when successfully gets location

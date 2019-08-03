@@ -6,7 +6,7 @@ import com.google.android.gms.maps.model.LatLng
 
 class MapCameraAttributes @JvmOverloads constructor(
     private val latLng : LatLng = LatLng(GlobalData.LATITUDE, GlobalData.LONGITUDE),
-    private val zoom : Float = 20f,
+    private val zoom : Float = 10f,
     private val bearing : Float = 0f,
     private val tilt : Float = 45f) {
 

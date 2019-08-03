@@ -6,11 +6,11 @@ import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.entities.DummyData
 import com.example.sarwan.tawseel.interfaces.FragmentInteraction
-import com.example.sarwan.tawseel.repository.customer.VendorRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.tab_layout_with_viewpager.*
 
-class VendorFragment : BaseFragment<VendorRepository>(R.layout.fragment_vendors), FragmentInteraction<Any> {
+class VendorFragment : BaseFragment<CustomerRepository>(R.layout.fragment_vendors), FragmentInteraction<Any> {
 
     override fun onFragmentShift(t: Any) {
         navigateTo(R.id.action_vendorFragment_to_DetailsFragment,
@@ -39,7 +39,7 @@ class VendorFragment : BaseFragment<VendorRepository>(R.layout.fragment_vendors)
     }
 
     private fun vendorPagerAdapter() = VendorPagerAdapter(childFragmentManager,
-        titlesList = getRepository(VendorRepository::class.java).getCategoriesTitle()) {
+        titlesList = getRepository(CustomerRepository::class.java).getVendorCategoriesTitle()) {
         it.fragmentInteraction(this@VendorFragment)
     }
 }

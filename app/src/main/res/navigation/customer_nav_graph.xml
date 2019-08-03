@@ -4,8 +4,12 @@
             app:startDestination="@id/actionStores"
             android:id="@+id/main_nav_graph.xml">
 
+    <include
+            app:graph="@navigation/side_menu_navigation_graph"
+    />
+
     <fragment android:id="@+id/actionStores"
-              android:label="stores_fragment"
+              android:label="Stores"
               tools:layout="@layout/fragment_stores"
               android:name="com.example.sarwan.tawseel.modules.stores.StoresFragment"
     >
@@ -21,7 +25,7 @@
     </fragment>
 
     <fragment android:id="@+id/actionVendor"
-              android:label="vendors_fragment"
+              android:label="Vendor"
               tools:layout="@layout/fragment_vendors"
               android:name="com.example.sarwan.tawseel.modules.vendors.VendorFragment"
     >
@@ -41,11 +45,11 @@
             android:id="@+id/actionDetails"
             android:name="com.example.sarwan.tawseel.modules.details.ItemDetailsFragment"
             tools:layout="@layout/fragment_item_details"
-            android:label="item_details"
+            android:label="Details"
     />
 
     <fragment android:id="@+id/actionOrders"
-              android:label="orders_fragment"
+              android:label="Searching"
               tools:layout="@layout/fragment_orders"
               android:name="com.example.sarwan.tawseel.modules.orders.OrdersFragment"
     >
@@ -63,11 +67,11 @@
         android:id="@+id/actionRating"
         android:name="com.example.sarwan.tawseel.modules.rating.RatingFragment"
         tools:layout="@layout/fragment_rating"
-        android:label="item_details"
+        android:label="Rating"
         />
 
     <fragment android:id="@+id/actionNotifications"
-              android:label="notifications_fragment"
+              android:label="Notifications"
               tools:layout="@layout/fragment_notifications"
               android:name="com.example.sarwan.tawseel.modules.notifications.NotificationsFragment"
     >
@@ -77,7 +81,7 @@
     </fragment>
 
     <fragment android:id="@+id/actionUser"
-              android:label="user_fragment"
+              android:label="User"
               tools:layout="@layout/fragment_user"
               android:name="com.example.sarwan.tawseel.modules.user.UserFragment"
     >

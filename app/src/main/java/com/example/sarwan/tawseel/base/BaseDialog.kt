@@ -22,7 +22,7 @@ abstract class BaseDialog <T : BaseRepository>( private val layoutId: Int) : Dia
     TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T>{
 
     private val TAG = "BaseDialog"
-    private lateinit var baseActivity : BaseActivity
+    private lateinit var baseActivity : BaseActivity<T>
     protected var dismissListener : DialogInteraction ? = null
     protected var action : Boolean = false
 
@@ -30,7 +30,7 @@ abstract class BaseDialog <T : BaseRepository>( private val layoutId: Int) : Dia
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        baseActivity = activity as BaseActivity
+        baseActivity = activity as BaseActivity<T>
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

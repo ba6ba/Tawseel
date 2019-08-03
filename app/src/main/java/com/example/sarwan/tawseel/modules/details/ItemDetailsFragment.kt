@@ -9,11 +9,11 @@ import com.example.sarwan.tawseel.extensions.applyText
 import com.example.sarwan.tawseel.extensions.show
 import com.example.sarwan.tawseel.interfaces.DialogInteraction
 import com.example.sarwan.tawseel.modules.dialogs.ConfirmationDialog
-import com.example.sarwan.tawseel.repository.customer.ItemDetailsRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.fragment_item_details.*
 
-class ItemDetailsFragment : BaseFragment<ItemDetailsRepository>(R.layout.fragment_item_details), DialogInteraction {
+class ItemDetailsFragment : BaseFragment<CustomerRepository>(R.layout.fragment_item_details), DialogInteraction {
 
     override fun dismissCallBack(result: Boolean) {
         actionOnDialogButton(result)
@@ -35,12 +35,12 @@ class ItemDetailsFragment : BaseFragment<ItemDetailsRepository>(R.layout.fragmen
     }
 
     override fun dataToViews() {
-        getRepository(ItemDetailsRepository::class.java).getData()?.let {
+        getRepository(CustomerRepository::class.java).getData()?.let {
             description?.applyText(it.description)
         }
     }
 
     override fun bundleOnCreated(bundle: Bundle?) {
-        getRepository(ItemDetailsRepository::class.java).fromBundle(bundle?.getSerializable(GlobalData.PARAM))
+        getRepository(CustomerRepository::class.java).fromBundle(bundle?.getSerializable(GlobalData.PARAM))
     }
 }

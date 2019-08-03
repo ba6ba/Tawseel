@@ -9,19 +9,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <RatingBar
-        android:id="@+id/rating_bar"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:indeterminate="false"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:progressBackgroundTint="@color/red"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.example.sarwan.tawseel.views.TawseelRatingBar
+            android:id="@+id/rating_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="false"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" tools:visibility="visible"/>
 
     <TextView
         android:id="@+id/remaining_time"

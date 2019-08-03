@@ -5,10 +5,10 @@ import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.interfaces.FragmentInteraction
-import com.example.sarwan.tawseel.repository.customer.StoresRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import kotlinx.android.synthetic.main.tab_layout_with_viewpager.*
 
-class StoresFragment : BaseFragment<StoresRepository>(R.layout.fragment_stores), FragmentInteraction<Any> {
+class StoresFragment : BaseFragment<CustomerRepository>(R.layout.fragment_stores), FragmentInteraction<Any> {
 
     override fun onFragmentShift(t: Any) {
         navigateTo(R.id.action_storesFragment_to_VendorFragment)
@@ -34,7 +34,7 @@ class StoresFragment : BaseFragment<StoresRepository>(R.layout.fragment_stores),
     }
 
     private fun storePagerAdapter() = StorePagerAdapter(childFragmentManager,
-        titlesList = getRepository(StoresRepository::class.java).getCategoriesTitle()) {
+        titlesList = getRepository(CustomerRepository::class.java).getStoreCategoriesTitle()) {
         it.fragmentInteraction(this@StoresFragment)
     }
 

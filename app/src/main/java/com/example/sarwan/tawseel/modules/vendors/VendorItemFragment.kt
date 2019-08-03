@@ -9,11 +9,11 @@ import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.helper.SwipeRefreshLayoutHelper
 import com.example.sarwan.tawseel.interfaces.FragmentInteraction
-import com.example.sarwan.tawseel.repository.customer.VendorRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
-class VendorItemFragment : BaseFragment<VendorRepository>(R.layout.fragment_vendor_items), SwipeRefreshLayout.OnRefreshListener, (Any) -> Unit {
+class VendorItemFragment : BaseFragment<CustomerRepository>(R.layout.fragment_vendor_items), SwipeRefreshLayout.OnRefreshListener, (Any) -> Unit {
 
     private var swipeRefreshLayoutHelper : SwipeRefreshLayoutHelper? = null
     private lateinit var fragmentInteraction: FragmentInteraction<Any>
@@ -42,7 +42,7 @@ class VendorItemFragment : BaseFragment<VendorRepository>(R.layout.fragment_vend
         recycler_view?.apply {
             layoutManager = LinearLayoutManager(getBaseActivity(), RecyclerView.VERTICAL, false)
             adapter = VendorItemAdapter(getBaseActivity(),
-                getRepository(VendorRepository::class.java).getVendorsList(), this@VendorItemFragment)
+                getRepository(CustomerRepository::class.java).getVendorsList(), this@VendorItemFragment)
             swipeRefreshLayoutHelper?.stopRefreshLoader()
         }
     }

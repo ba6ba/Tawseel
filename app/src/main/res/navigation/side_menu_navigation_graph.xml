@@ -10,6 +10,6 @@
             android:id="@+id/actionHistory"
             android:name="com.example.sarwan.tawseel.modules.history.HistoryFragment"
             tools:layout="@layout/fragment_history"
-            android:label="HomeFragment" />
+            android:label="History" />
 
 </navigation>

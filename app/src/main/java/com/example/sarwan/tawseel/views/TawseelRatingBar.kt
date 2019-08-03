@@ -15,11 +15,11 @@ class TawseelRatingBar @JvmOverloads constructor(context: Context ? = null, attr
     }
 
     private fun initialize() {
-        context.getDrawable(R.drawable.ic_star_not_selected)?.let {emptyDrawable->
+        resources.getDrawable(R.drawable.ic_star_not_selected)?.let {emptyDrawable->
             setEmptyDrawable(emptyDrawable)
         }
 
-        context.getDrawable(R.drawable.ic_selected_star)?.let {filledDrawable->
+        resources.getDrawable(R.drawable.ic_selected_star)?.let {filledDrawable->
             setFilledDrawable(filledDrawable)
         }
 

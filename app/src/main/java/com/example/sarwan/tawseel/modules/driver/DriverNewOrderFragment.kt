@@ -8,12 +8,12 @@ import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.applyText
 import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.extensions.visible
-import com.example.sarwan.tawseel.repository.customer.OrderRepository
-import com.example.sarwan.tawseel.repository.driver.DriverNewOrderRepository
+import com.example.sarwan.tawseel.repository.driver.DriverRepository
+import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.fragment_new_order_driver.*
 import kotlinx.android.synthetic.main.layout_nearby_map_card.*
 
-class DriverNewOrderFragment : BaseFragment<DriverNewOrderRepository>(R.layout.fragment_new_order_driver) {
+class DriverNewOrderFragment : BaseFragment<DriverRepository>(R.layout.fragment_new_order_driver) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initCountDownTimer()
@@ -27,15 +27,11 @@ class DriverNewOrderFragment : BaseFragment<DriverNewOrderRepository>(R.layout.f
     }
 
     private fun initCountDownTimer() {
-        getRepository(DriverNewOrderRepository::class.java).apply {
+        getRepository(DriverRepository::class.java).apply {
             initTimer()
             getTimer().observe(this@DriverNewOrderFragment, Observer<String> {time->
-                time?.let {
-                    setTimerText(it)
-                }?:run {
-                    setTimerText("")
-                    accept?.visible(false)
-                }
+                setTimerText(time)
+                accept?.visible(time == GlobalData.FINISH_TIME)
             })
         }
     }

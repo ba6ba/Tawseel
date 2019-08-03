@@ -1,5 +1,7 @@
 package com.example.sarwan.tawseel.entities
 
+import com.example.sarwan.tawseel.utils.GlobalData
+
 data class History(var id : Int = 0,
                    var date : String ? = null,
                    var orderItems : ArrayList<String> ? = null,
@@ -8,6 +10,6 @@ data class History(var id : Int = 0,
                    var totalBill : String ? = null,
                    var yourBill : String ? = null,
                    var historyMode : HistoryMode ? = null,
-                   var lat : Double = 24.966863,
-                   var lon : Double = 67.048835
+                   var lat : Double = GlobalData.LATITUDE,
+                   var lon : Double = GlobalData.LONGITUDE
                    )

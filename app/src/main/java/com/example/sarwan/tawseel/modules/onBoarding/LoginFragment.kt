@@ -6,14 +6,14 @@ import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.hint
 import com.example.sarwan.tawseel.extensions.navigateOnClick
-import com.example.sarwan.tawseel.repository.onBoarding.LoginRepository
+import com.example.sarwan.tawseel.repository.onBoarding.AuthenticationRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.fragment_login.*
 
-class LoginFragment : BaseFragment<LoginRepository>(R.layout.fragment_login) {
+class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_login) {
 
     override fun bundleOnCreated(bundle: Bundle?) {
-        getRepository(LoginRepository::class.java).userName(bundle?.getInt(GlobalData.PARAM))
+        getRepository(AuthenticationRepository::class.java).userName(bundle?.getInt(GlobalData.PARAM))
 
     }
 
@@ -23,12 +23,12 @@ class LoginFragment : BaseFragment<LoginRepository>(R.layout.fragment_login) {
     }
 
     override fun dataToViews() {
-        user_name_layout?.hint(getBaseActivity().getString(getRepository(LoginRepository::class.java).userNameType))
+        user_name_layout?.hint(getBaseActivity().getString(getRepository(AuthenticationRepository::class.java).userNameType))
     }
 
     override fun viewListeners() {
         login?.navigateOnClick {
-            navigateTo(getBaseActivity().getRepository().getActivityId())
+            navigateTo(getRepository(AuthenticationRepository::class.java).getActivityId())
         }
 
         back?.navigateOnClick {

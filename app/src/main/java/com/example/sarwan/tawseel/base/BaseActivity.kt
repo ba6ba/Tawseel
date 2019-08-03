@@ -1,26 +1,32 @@
 package com.example.sarwan.tawseel.base
 
 import android.os.Build
-import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.repository.BaseRepository
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 
-abstract class BaseActivity : AppCompatActivity(){
+abstract class BaseActivity<T : BaseRepository> : AppCompatActivity(){
 
-    fun getRepository() = (application as Tawseel).getRepository()
+    private lateinit var repo : T
+
+    private fun getAppRepository() = (application as Tawseel).getRepository()
+
+    fun getRepository(t : Class<T>) : T {
+        return if (!::repo.isInitialized) { repo = t.newInstance() ; repo } else repo
+    }
 
     fun showMessage(message : String = resources.getString(R.string.something_went_wrong), length: Int = Toast.LENGTH_LONG)  =
         Toast.makeText(this,message, length).show()
 
-    fun saveLocationInSharedPreferences(latLng : LatLng) = getRepository().saveLocationInPrefs(latLng)
+    fun saveLocationInSharedPreferences(latLng : LatLng) = getAppRepository().saveLocationInPrefs(latLng)
 
-    fun getLocationFromSharedPreferences(success : (LatLng) -> Unit, failure : (String) -> Unit) = getRepository().getLocationFromPrefs(success, failure)
+    fun getLocationFromSharedPreferences(success : (LatLng) -> Unit, failure : (String) -> Unit) = getAppRepository().getLocationFromPrefs(success, failure)
 
     fun showSnackBar(mainTextStringId: Int, actionStringId: Int, length : Int = Snackbar.LENGTH_SHORT,
                      listener: View.OnClickListener) {

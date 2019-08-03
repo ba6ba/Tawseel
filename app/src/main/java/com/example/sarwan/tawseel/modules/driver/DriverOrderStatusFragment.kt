@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
-import com.example.sarwan.tawseel.repository.driver.DriverOrderStatusRepository
+import com.example.sarwan.tawseel.repository.driver.DriverRepository
 
-class DriverOrderStatusFragment : BaseFragment<DriverOrderStatusRepository>(R.layout.fragment_driver_status) {
+class DriverOrderStatusFragment : BaseFragment<DriverRepository>(R.layout.fragment_driver_status) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 

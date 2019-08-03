@@ -5,11 +5,10 @@ import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.navigateOnClick
-import com.example.sarwan.tawseel.repository.BaseRepository
-import com.example.sarwan.tawseel.repository.onBoarding.OnBoardingRepository
+import com.example.sarwan.tawseel.repository.onBoarding.AuthenticationRepository
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
 
-class OnBoardingFragment : BaseFragment<OnBoardingRepository>(R.layout.fragment_on_boarding) {
+class OnBoardingFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_on_boarding) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,15 +21,15 @@ class OnBoardingFragment : BaseFragment<OnBoardingRepository>(R.layout.fragment_
         }
 
         login_with_email?.navigateOnClick {
-            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository(OnBoardingRepository::class.java).emailBundle)
+            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository(AuthenticationRepository::class.java).emailBundle)
         }
 
         login_with_phone?.navigateOnClick {
-            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository(OnBoardingRepository::class.java).phoneBundle)
+            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository(AuthenticationRepository::class.java).phoneBundle)
         }
 
         skip?.navigateOnClick {
-            navigateTo(R.id.action_onBoardingFragment_to_MainActivity)
+            navigateTo(getRepository(AuthenticationRepository::class.java).getActivityId())
         }
     }
 }

@@ -2,15 +2,21 @@ package com.example.sarwan.tawseel.repository
 
 import android.content.Context
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.entities.HistoryMode
 import com.example.sarwan.tawseel.entities.Profile
+import com.example.sarwan.tawseel.repository.history.HistoryRepository
+import com.example.sarwan.tawseel.utils.DummyData
 import com.example.sarwan.tawseel.utils.GlobalData
 import com.example.sarwan.tawseel.utils.GlobalData.PREFS_NAME
+import com.example.sarwan.tawseel.utils.mapProfileToHistory
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 
 open class BaseRepository() {
 
-    constructor(context: Context) : this(){ this.context = context }
+    constructor(context: Context) : this() {
+        this.context = context
+    }
 
     private var context: Context ? = null
 

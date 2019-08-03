@@ -7,14 +7,14 @@ import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.extensions.show
 import com.example.sarwan.tawseel.interfaces.DialogInteraction
-import com.example.sarwan.tawseel.repository.onBoarding.SignupRepository
+import com.example.sarwan.tawseel.repository.onBoarding.AuthenticationRepository
 import kotlinx.android.synthetic.main.fragment_signup.*
 
-class SignupFragment : BaseFragment<SignupRepository>(R.layout.fragment_signup), DialogInteraction {
+class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_signup), DialogInteraction {
 
     override fun dismissCallBack(result: Boolean) {
         if (result){
-            navigateTo(getBaseActivity().getRepository().getActivityId())
+            navigateTo(getBaseActivity().getRepository(AuthenticationRepository::class.java).getActivityId())
         }
     }
 

@@ -30,7 +30,7 @@
             app:layout_constraintTop_toBottomOf="@+id/business_profile_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="16dp"/>
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="32dp"/>
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,9 +82,6 @@
                 android:inputType="text"
         />
     </com.google.android.material.textfield.TextInputLayout>
-    <include
-            layout="@layout/layout_toolbar"
-            android:id="@+id/include4"/>
 
     <com.facebook.drawee.view.SimpleDraweeView
             android:layout_width="@dimen/x150"
@@ -93,11 +90,11 @@
             app:roundAsCircle="true"
             app:placeholderImageScaleType="fitCenter"
             app:placeholderImage="@drawable/food_cover"
-            app:layout_constraintTop_toBottomOf="@+id/include4" android:layout_marginTop="32dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView android:layout_width="@dimen/x30" android:layout_height="@dimen/x30"
+    <ImageView android:layout_width="@dimen/x40" android:layout_height="@dimen/x40"
                android:background="@drawable/background_edit_image"
                android:src="@drawable/ico_edit"
                android:visibility="gone"
@@ -112,9 +109,9 @@
             android:layout_width="0dp"
             style="@style/Tawseel.TextView.Medium.Blue"
             android:layout_height="wrap_content" android:id="@+id/business_description"
-            app:layout_constraintTop_toBottomOf="@+id/business_name_layout"
+            app:layout_constraintTop_toBottomOf="@+id/business_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="16dp"/>
+            android:layout_marginStart="16dp" android:layout_marginEnd="16dp" android:layout_marginTop="32dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

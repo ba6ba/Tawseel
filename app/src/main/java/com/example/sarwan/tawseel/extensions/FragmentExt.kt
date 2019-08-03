@@ -15,10 +15,8 @@ fun Fragment.navigateToBack(){
     NavHostFragment.findNavController(this).popBackStack()
 }
 
-fun Fragment.getActualActivity(): BaseActivity {
-    return (activity as BaseActivity)
-}
+fun <T : BaseRepository> Fragment.getActualActivity() = activity as BaseActivity<T>
 
 fun <T : BaseRepository> Fragment.show(dialog: BaseDialog<T>, tag : String = dialog::class.java.simpleName) {
-    dialog.show(getActualActivity().supportFragmentManager, tag)
+    dialog.show(getActualActivity<T>().supportFragmentManager, tag)
 }

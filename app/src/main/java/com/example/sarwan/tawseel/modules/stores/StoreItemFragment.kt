@@ -9,11 +9,11 @@ import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.helper.SwipeRefreshLayoutHelper
 import com.example.sarwan.tawseel.interfaces.FragmentInteraction
-import com.example.sarwan.tawseel.repository.customer.StoresRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
-class StoreItemFragment : BaseFragment<StoresRepository>(R.layout.fragment_stores_items), SwipeRefreshLayout.OnRefreshListener, (Int) -> Unit {
+class StoreItemFragment : BaseFragment<CustomerRepository>(R.layout.fragment_stores_items), SwipeRefreshLayout.OnRefreshListener, (Int) -> Unit {
 
     private var swipeRefreshLayoutHelper : SwipeRefreshLayoutHelper ? = null
     private lateinit var fragmentInteraction: FragmentInteraction<Any>
@@ -42,7 +42,7 @@ class StoreItemFragment : BaseFragment<StoresRepository>(R.layout.fragment_store
         recycler_view?.apply {
             layoutManager = LinearLayoutManager(getBaseActivity(),RecyclerView.VERTICAL, false)
             adapter = StoreItemAdapter(getBaseActivity(),
-                getRepository(StoresRepository::class.java).getStoreList(),
+                getRepository(CustomerRepository::class.java).getStoreList(),
                 this@StoreItemFragment)
             swipeRefreshLayoutHelper?.stopRefreshLoader()
         }

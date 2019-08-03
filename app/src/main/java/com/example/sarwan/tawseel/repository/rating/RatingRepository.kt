@@ -1,6 +1,6 @@
 package com.example.sarwan.tawseel.repository.rating
 
-import com.example.sarwan.tawseel.repository.BaseRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 
-class RatingRepository : BaseRepository() {
+class RatingRepository : CustomerRepository() {
 }

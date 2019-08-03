@@ -18,6 +18,6 @@ class CountDownTimer(millisInFuture: Long,
     }
 
     override fun onFinish() {
-        timerText.postValue(null)
+        timerText.postValue(GlobalData.FINISH_TIME)
     }
 }
