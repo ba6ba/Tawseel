@@ -19,7 +19,7 @@ class MapConfiguration private constructor(){
             mapType = GoogleMap.MAP_TYPE_NORMAL
             clear()
             if (bldr.moveCamera())
-                animateCamera(CameraUpdateFactory.newLatLngZoom(bldr.getLatLng(), 30f))
+                animateCamera(CameraUpdateFactory.newLatLngZoom(bldr.getLatLng(), 10f))
             if (bldr.showMarker())
                 addMarker(MarkerOptions().position(bldr.getLatLng()))
         }

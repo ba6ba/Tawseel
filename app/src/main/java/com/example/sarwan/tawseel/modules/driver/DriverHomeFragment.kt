@@ -34,8 +34,8 @@ class DriverHomeFragment : BaseFragment<DriverRepository>(R.layout.fragment_home
         }
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStop() {
+        super.onStop()
         getRepository(DriverRepository::class.java).getOrderLiveData().removeObservers(this@DriverHomeFragment)
     }
 }

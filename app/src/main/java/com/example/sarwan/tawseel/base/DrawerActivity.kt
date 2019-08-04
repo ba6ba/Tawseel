@@ -75,20 +75,6 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
             toolbarTitleChange(destination.label?.toString())
             toolbarIconChange(getConiditonDrawable(controller.graph.startDestination == destination.id, R.drawable.ic_navigation_white_24dp, R.drawable.back))
         }
-
-        navigation_view?.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.actionHome -> {
-                    closeDrawer()
-                }
-                R.id.actionLogout -> {
-                    finish()
-                }
-            }
-            it.isChecked = true
-            closeDrawer()
-            true
-        }
     }
 
     private fun setupViews() {
@@ -109,6 +95,19 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
 
     private fun setupNavigation() {
         navigation_view?.inflateMenu(getNavigationMenuId())
+        navigation_view?.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.actionHome -> {
+                    closeDrawer()
+                }
+                R.id.actionLogout -> {
+                    finish()
+                }
+            }
+            it.isChecked = true
+            closeDrawer()
+            true
+        }
         navigation_view?.setupWithNavController(findNavController(R.id.main_container))
     }
 
@@ -120,7 +119,7 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
         drawer_layout?.closeDrawer(GravityCompat.START, true)
     }
 
-    fun toggleDrawer() {
+    private fun toggleDrawer() {
         if (drawer_layout?.isDrawerOpen(GravityCompat.START) == true) {
             closeDrawer()
         }else {
