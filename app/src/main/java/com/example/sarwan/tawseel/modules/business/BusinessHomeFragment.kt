@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.fragment_business_home.*
 
 class BusinessHomeFragment : BaseFragment<BusinessRepository>(R.layout.fragment_business_home) {
 
+    override val repository: BusinessRepository = getRepository(BusinessRepository::class.java)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()
         setObservers()

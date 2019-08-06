@@ -5,10 +5,13 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
+import com.example.sarwan.tawseel.repository.business.BusinessRepository
 import com.example.sarwan.tawseel.repository.driver.DriverRepository
 import kotlinx.android.synthetic.main.fragment_home_driver.*
 
 class DriverHomeFragment : BaseFragment<DriverRepository>(R.layout.fragment_home_driver) {
+
+    override val repository: DriverRepository = getRepository(DriverRepository::class.java)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()

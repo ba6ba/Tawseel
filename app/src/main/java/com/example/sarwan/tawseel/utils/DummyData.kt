@@ -2,9 +2,8 @@ package com.example.sarwan.tawseel.utils
 
 import com.example.sarwan.tawseel.entities.DummyData
 import com.example.sarwan.tawseel.entities.History
-import com.example.sarwan.tawseel.entities.HistoryMode
+import com.example.sarwan.tawseel.entities.enums.HistoryMode
 import com.example.sarwan.tawseel.utils.GlobalData.currentTime
-import java.util.*
 import kotlin.collections.ArrayList
 
 object DummyData {

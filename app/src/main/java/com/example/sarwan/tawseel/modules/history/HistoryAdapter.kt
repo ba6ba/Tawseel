@@ -4,18 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isGone
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.entities.History
-import com.example.sarwan.tawseel.entities.HistoryMode
+import com.example.sarwan.tawseel.entities.enums.HistoryMode
 import com.example.sarwan.tawseel.extensions.applyText
 import com.example.sarwan.tawseel.extensions.visible
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.google.android.gms.maps.model.PolygonOptions
-import com.google.android.gms.maps.model.PolylineOptions
 import kotlinx.android.synthetic.main.layout_history_list_item.view.*
 
 class HistoryAdapter(private val context: Context, private val arrayList : ArrayList<History>,

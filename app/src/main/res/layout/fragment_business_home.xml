@@ -41,6 +41,7 @@
             android:layout_marginEnd="16dp"
             android:id="@+id/business_description_layout"
             android:visibility="gone"
+            android:hint="@string/business_description"
             tools:visibility="visible"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintTop_toBottomOf="@+id/business_name_layout" android:layout_marginTop="16dp">
@@ -52,7 +53,6 @@
                 android:imeOptions="actionDone"
                 android:layout_gravity="center"
                 android:gravity="top"
-                android:hint="@string/business_description"
                 android:minHeight="@dimen/x150"
                 android:inputType="text"
         />

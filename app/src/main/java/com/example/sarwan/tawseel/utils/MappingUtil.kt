@@ -1,8 +1,7 @@
 package com.example.sarwan.tawseel.utils
 
-import com.example.sarwan.tawseel.entities.HistoryMode
-import com.example.sarwan.tawseel.entities.Profile
-import com.example.sarwan.tawseel.repository.BaseRepository
+import com.example.sarwan.tawseel.entities.enums.HistoryMode
+import com.example.sarwan.tawseel.entities.enums.Profile
 
 fun Profile.mapProfileToHistory(): HistoryMode {
     return when(this) {

@@ -17,6 +17,8 @@ object GlobalData {
     const val DELIVERY = 2
     const val LATITUDE = 24.966863
     const val LONGITUDE = 67.048835
+    const val RANDOM_SEED_VALUE = 999999
+    const val DELIVERY_CHARGES = 20L
 
 
     fun currentTime() = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().time)

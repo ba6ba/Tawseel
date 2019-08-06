@@ -5,7 +5,7 @@
             app:startDestination="@id/driverHomeFragment">
 
     <include
-            app:graph="@navigation/side_menu_navigation_graph"
+            app:graph="@navigation/common_menu_navigation_graph"
     />
 
     <fragment

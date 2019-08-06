@@ -1,4 +1,4 @@
-package com.example.sarwan.tawseel.entities
+package com.example.sarwan.tawseel.entities.enums
 
 enum class Profile {
         CUSTOMER,

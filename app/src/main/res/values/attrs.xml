@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Info layout attributes-->
+
+    <declare-styleable name="TawseelInfoLayout">
+        <attr name="titleTextAppearance" format="reference"/>
+        <attr name="subTitleTextAppearance" format="reference"/>
+        <attr name="dividerHeight" format="dimension" />
+        <attr name="dividerColor" format="color" />
+        <attr name="title" format="string" />
+        <attr name="subTitle" format="string" />
+    </declare-styleable>
+
+</resources>

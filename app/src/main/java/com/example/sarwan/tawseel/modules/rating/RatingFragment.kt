@@ -5,11 +5,12 @@ import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.actionOnClick
-import com.example.sarwan.tawseel.repository.rating.RatingRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import kotlinx.android.synthetic.main.fragment_rating.*
 
-class RatingFragment : BaseFragment<RatingRepository>(R.layout.fragment_rating) {
+class RatingFragment : BaseFragment<CustomerRepository>(R.layout.fragment_rating) {
 
+    override val repository: CustomerRepository = getRepository(CustomerRepository::class.java)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()

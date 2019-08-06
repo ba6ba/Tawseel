@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
-import com.example.sarwan.tawseel.entities.Profile
+import com.example.sarwan.tawseel.entities.enums.Profile
 import com.example.sarwan.tawseel.extensions.navigateOnClick
-import com.example.sarwan.tawseel.repository.onBoarding.AuthenticationRepository
+import com.example.sarwan.tawseel.repository.authentication.AuthenticationRepository
 import kotlinx.android.synthetic.main.fragment_splash.*
 
 class SplashFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_splash) {
+
+    override val repository: AuthenticationRepository = getRepository(AuthenticationRepository::class.java)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

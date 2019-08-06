@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x2"
+        android:background="@color/scent"
+        android:id="@+id/separator"
+       xmlns:android="http://schemas.android.com/apk/res/android"/>

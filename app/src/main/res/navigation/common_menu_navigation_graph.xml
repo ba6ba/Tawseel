@@ -12,4 +12,10 @@
             tools:layout="@layout/fragment_history"
             android:label="History" />
 
+    <fragment
+            android:id="@+id/actionProfile"
+            android:name="com.example.sarwan.tawseel.modules.user.ProfileFragment"
+            tools:layout="@layout/fragment_profile"
+            android:label="Profile" />
+
 </navigation>

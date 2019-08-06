@@ -16,9 +16,11 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.extensions.actionOnClick
 import com.example.sarwan.tawseel.extensions.getConiditonDrawable
+import com.example.sarwan.tawseel.extensions.navigate
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.repository.driver.DriverRepository
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.layout_header_nav_menu.view.*
 
 abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : BaseActivity<T>(){
 
@@ -94,21 +96,30 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
     }
 
     private fun setupNavigation() {
-        navigation_view?.inflateMenu(getNavigationMenuId())
-        navigation_view?.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.actionHome -> {
-                    closeDrawer()
+        navigation_view?.apply {
+            inflateMenu(getNavigationMenuId())
+            setNavigationItemSelectedListener {
+                when(it.itemId){
+                    R.id.actionHome -> {
+                        closeDrawer()
+                    }
+                    R.id.actionLogout -> {
+                        finish()
+                    }
                 }
-                R.id.actionLogout -> {
-                    finish()
-                }
+                it.isChecked = true
+                closeDrawer()
+                true
             }
-            it.isChecked = true
-            closeDrawer()
-            true
+            getHeaderView(0).profile_image?.actionOnClick {
+                navigateToProfileFragment()
+            }
+            setupWithNavController(findNavController(R.id.main_container))
         }
-        navigation_view?.setupWithNavController(findNavController(R.id.main_container))
+    }
+
+    private fun navigateToProfileFragment() {
+        navigate(R.id.actionProfile)
     }
 
     private fun openDrawer() {

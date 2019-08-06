@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.layout_nearby_map_card.*
 
 class DriverNewOrderFragment : BaseFragment<DriverRepository>(R.layout.fragment_new_order_driver) {
 
+    override val repository: DriverRepository = getRepository(DriverRepository::class.java)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initCountDownTimer()
         viewListeners()

@@ -3,24 +3,23 @@ package com.example.sarwan.tawseel.modules.history
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.view.setMargins
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
-import com.example.sarwan.tawseel.entities.HistoryMode
-import com.example.sarwan.tawseel.entities.Profile
+import com.example.sarwan.tawseel.entities.enums.HistoryMode
+import com.example.sarwan.tawseel.entities.enums.Profile
 import com.example.sarwan.tawseel.extensions.dpToInt
-import com.example.sarwan.tawseel.extensions.layoutParams
 import com.example.sarwan.tawseel.extensions.setMargin
 import com.example.sarwan.tawseel.helper.SwipeRefreshLayoutHelper
-import com.example.sarwan.tawseel.repository.BaseRepository
-import com.example.sarwan.tawseel.repository.history.HistoryRepository
+import com.example.sarwan.tawseel.repository.common.HistoryRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
 class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_history) , () -> Unit {
+
+    override val repository : HistoryRepository = getRepository(HistoryRepository::class.java)
 
     private var swipeRefreshLayoutHelper : SwipeRefreshLayoutHelper ? = null
 
@@ -53,7 +52,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
             layoutManager = LinearLayoutManager(getBaseActivity(), RecyclerView.VERTICAL, false)
             adapter = HistoryAdapter(getBaseActivity(),
                 getRepository(HistoryRepository::class.java).
-                    getHistoryList(getRepository(HistoryRepository::class.java).mode?:HistoryMode.NON_BUSINESS),
+                    getHistoryList(getRepository(HistoryRepository::class.java).mode?: HistoryMode.NON_BUSINESS),
                 this@HistoryFragment)
             setRecyclerListener(MapViewRecyclerListener())
             swipeRefreshLayoutHelper?.stopRefreshLoader()

@@ -2,45 +2,46 @@ package com.example.sarwan.tawseel.modules.cart
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
-import com.example.sarwan.tawseel.extensions.actionOnClick
-import com.example.sarwan.tawseel.extensions.applyText
-import com.example.sarwan.tawseel.repository.customer.CustomerRepository
+import com.example.sarwan.tawseel.extensions.visible
+import com.example.sarwan.tawseel.repository.customer.CartRepository
 import kotlinx.android.synthetic.main.fragment_cart.*
 
-class CartFragment : BaseFragment<CustomerRepository>(R.layout.fragment_cart) {
+class CartFragment : BaseFragment<CartRepository>(R.layout.fragment_cart) {
+
+    override val repository: CartRepository = getRepository(CartRepository::class.java)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewListeners()
-        dataToViews()
+        initViews(view)
+        setObservers()
     }
 
-    override fun dataToViews() {
-        setCartValue()
+    override fun setObservers() {
+        repository.cartItemListener.foreverObserver(Observer {
+            handleCartItemAddition()
+        })
     }
 
-    private fun setCartValue() {
-        value?.applyText(getRepository(CustomerRepository::class.java).getCartValue().toString())
-    }
-
-    override fun viewListeners() {
-        minus?.actionOnClick {
-            removeItemFromCart()
-            setCartValue()
-        }
-
-        plus?.actionOnClick {
-            addItemInCart()
-            setCartValue()
+    private fun handleCartItemAddition() {
+        (cart_recycler_view?.adapter as? CartItemAdapter)?.apply {
+            addItems(repository.getList())
+            checkForEmptyRecyclerView(itemCount == 0)
         }
     }
 
-    private fun removeItemFromCart() {
-        getRepository(CustomerRepository::class.java).removeFromCart()
+    private fun checkForEmptyRecyclerView(empty: Boolean) {
+        empty_layout?.visible(empty)
+        non_empty_layout?.visible(!empty)
     }
 
-    private fun addItemInCart() {
-        getRepository(CustomerRepository::class.java).addInCart()
+    override fun initViews(view: View?) {
+        cart_recycler_view?.apply {
+            layoutManager = LinearLayoutManager(getBaseActivity(),RecyclerView.VERTICAL, false)
+            adapter = CartItemAdapter(getBaseActivity(), ArrayList())
+        }
     }
 }

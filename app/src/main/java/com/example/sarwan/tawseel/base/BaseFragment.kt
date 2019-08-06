@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.interfaces.TawseelLayout
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.GlobalData
@@ -17,9 +19,11 @@ import com.example.sarwan.tawseel.extensions.navigateToBack
 import java.io.Serializable
 
 
-abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : Fragment(), TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T> {
+abstract class BaseFragment <T : BaseRepository>(private val layoutId: Int) : Fragment(), TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T> {
 
     private lateinit var baseActivity : BaseActivity<T>
+
+    abstract val repository : T
 
     open fun bundleOnCreated(bundle: Bundle?) {}
 
@@ -74,4 +78,6 @@ abstract class BaseFragment <T : BaseRepository>( private val layoutId: Int) : F
 
     protected fun getDrawableFromResources(@DrawableRes resId: Int) = getBaseActivity().getDrawableFromResources(resId)
 
+
+    fun <A> MutableLiveData<A>.foreverObserver(observer : Observer<A>) = observe(viewLifecycleOwner, observer)
 }

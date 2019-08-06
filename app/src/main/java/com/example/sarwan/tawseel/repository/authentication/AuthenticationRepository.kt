@@ -1,11 +1,11 @@
-package com.example.sarwan.tawseel.repository.onBoarding
+package com.example.sarwan.tawseel.repository.authentication
 
 import android.os.Bundle
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 
-open class AuthenticationRepository : BaseRepository() {
+class AuthenticationRepository : BaseRepository() {
 
     var userNameType : Int = R.string.email
 

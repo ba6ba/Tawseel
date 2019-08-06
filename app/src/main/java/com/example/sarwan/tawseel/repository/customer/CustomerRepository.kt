@@ -1,23 +1,22 @@
 package com.example.sarwan.tawseel.repository.customer
 
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.entities.DummyData
+import com.example.sarwan.tawseel.entities.enums.StoresCategories
+import com.example.sarwan.tawseel.entities.enums.VendorCategories
+import com.example.sarwan.tawseel.extensions.decBy
+import com.example.sarwan.tawseel.extensions.greaterTo
+import com.example.sarwan.tawseel.extensions.incBy
 import com.example.sarwan.tawseel.repository.BaseRepository
-import com.example.sarwan.tawseel.repository.history.HistoryRepository
 
-open class CustomerRepository : HistoryRepository() {
+open class CustomerRepository : BaseRepository() {
 
-    fun addInCart() { itemsInCart+=1 }
+    private lateinit var dummyData : DummyData
 
-    fun removeFromCart() {
-        if (itemsInCart > 0)
-            itemsInCart-=1
-    }
-
-    fun getCartValue() = itemsInCart
-
-    private var dummyData : DummyData? = null
-
-    fun fromBundle(obj : Any?) {  dummyData = obj as DummyData
+    fun fromBundle(obj : Any?) {
+        dummyData = obj as DummyData
     }
 
     fun getData() = dummyData
@@ -26,15 +25,13 @@ open class CustomerRepository : HistoryRepository() {
 
     fun getVehicleNumber() = "ICT-139"
 
-    enum class StoresCategories { All , Food , Restaurants , Bakery }
-
     fun getStoreCategoriesTitle() = StoresCategories.values().toList().map { it.name }
 
     fun getStoreList() = com.example.sarwan.tawseel.utils.DummyData.makeStoreDummyData()
 
-    enum class VendorCategories { All , New , Starters , Italian }
-
     fun getVendorCategoriesTitle() = VendorCategories.values().toList().map { it.name }
 
     fun getVendorsList() = com.example.sarwan.tawseel.utils.DummyData.makeVendorDummyData()
+
+    fun handleEmptyCartError() = ""
 }

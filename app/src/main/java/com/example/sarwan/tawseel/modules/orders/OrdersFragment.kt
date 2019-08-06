@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.layout_nearby_map_card.*
 
 class OrdersFragment : BaseFragment<CustomerRepository>(R.layout.fragment_order_status), OnMapReadyCallback {
 
+    override val repository: CustomerRepository = getRepository(CustomerRepository::class.java)
+
     private var mapConfiguration : MapConfiguration ? = null
 
     override fun onMapReady(map: GoogleMap?) {

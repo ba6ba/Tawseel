@@ -1,15 +1,11 @@
-package com.example.sarwan.tawseel.repository.history
+package com.example.sarwan.tawseel.repository.common
 
-import androidx.lifecycle.MutableLiveData
-import com.example.sarwan.tawseel.entities.History
-import com.example.sarwan.tawseel.entities.HistoryMode
-import com.example.sarwan.tawseel.entities.Profile
+import com.example.sarwan.tawseel.entities.enums.HistoryMode
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.DummyData
-import com.example.sarwan.tawseel.utils.GlobalData
 import com.example.sarwan.tawseel.utils.mapProfileToHistory
 
-abstract class HistoryRepository() : BaseRepository(){
+class HistoryRepository() : BaseRepository(){
 
     val mode: HistoryMode? by lazy {
         profile?.mapProfileToHistory()

@@ -12,6 +12,8 @@ import kotlinx.android.synthetic.main.tab_layout_with_viewpager.*
 
 class VendorFragment : BaseFragment<CustomerRepository>(R.layout.fragment_vendors), FragmentInteraction<Any> {
 
+    override val repository: CustomerRepository = getRepository(CustomerRepository::class.java)
+
     override fun onFragmentShift(t: Any) {
         navigateTo(R.id.action_vendorFragment_to_DetailsFragment,
             bundle = Bundle(1).apply {
