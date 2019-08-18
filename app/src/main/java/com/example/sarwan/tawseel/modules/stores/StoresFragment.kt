@@ -10,7 +10,9 @@ import kotlinx.android.synthetic.main.tab_layout_with_viewpager.*
 
 class StoresFragment : BaseFragment<CustomerRepository>(R.layout.fragment_stores), FragmentInteraction<Any> {
 
-    override val repository: CustomerRepository = getRepository(CustomerRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(CustomerRepository::class.java)
+    }
 
     override fun onFragmentShift(t: Any) {
         navigateTo(R.id.action_storesFragment_to_VendorFragment)
@@ -36,7 +38,7 @@ class StoresFragment : BaseFragment<CustomerRepository>(R.layout.fragment_stores
     }
 
     private fun storePagerAdapter() = StorePagerAdapter(childFragmentManager,
-        titlesList = getRepository(CustomerRepository::class.java).getStoreCategoriesTitle()) {
+        titlesList = repository.getStoreCategoriesTitle()) {
         it.fragmentInteraction(this@StoresFragment)
     }
 

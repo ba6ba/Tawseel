@@ -11,7 +11,9 @@ import kotlinx.android.synthetic.main.fragment_home_driver.*
 
 class DriverHomeFragment : BaseFragment<DriverRepository>(R.layout.fragment_home_driver) {
 
-    override val repository: DriverRepository = getRepository(DriverRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(DriverRepository::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()
@@ -19,17 +21,17 @@ class DriverHomeFragment : BaseFragment<DriverRepository>(R.layout.fragment_home
 
     override fun viewListeners() {
         get_orders?.setOnCheckedChangeListener { compoundButton, b ->
-            getRepository(DriverRepository::class.java).getOrderLiveData().postValue(b)
+            repository.getOrderLiveData().postValue(b)
         }
 
-        getRepository(DriverRepository::class.java).getOrderLiveData().observe(this, Observer {
+        repository.getOrderLiveData().observe(this, Observer {
             canReceiveOrders(it)
         })
     }
 
     private fun canReceiveOrders(canReceive: Boolean?) {
         if (canReceive == true){
-            getRepository(DriverRepository::class.java).apply {
+            repository.apply {
                 requestForOrder {
                     navigateTo(R.id.driverHomeFragment_to_driverNewOrderFragment)
                 }
@@ -39,6 +41,6 @@ class DriverHomeFragment : BaseFragment<DriverRepository>(R.layout.fragment_home
 
     override fun onStop() {
         super.onStop()
-        getRepository(DriverRepository::class.java).getOrderLiveData().removeObservers(this@DriverHomeFragment)
+        repository.getOrderLiveData().removeObservers(this@DriverHomeFragment)
     }
 }

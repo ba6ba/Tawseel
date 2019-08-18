@@ -10,7 +10,10 @@ import kotlinx.android.synthetic.main.fragment_on_boarding.*
 
 class OnBoardingFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_on_boarding) {
 
-    override val repository: AuthenticationRepository = getRepository(AuthenticationRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(AuthenticationRepository::class.java)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewListeners()
@@ -22,11 +25,11 @@ class OnBoardingFragment : BaseFragment<AuthenticationRepository>(R.layout.fragm
         }
 
         login_with_email?.navigateOnClick {
-            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository(AuthenticationRepository::class.java).emailBundle)
+            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = repository.emailBundle)
         }
 
         login_with_phone?.navigateOnClick {
-            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = getRepository(AuthenticationRepository::class.java).phoneBundle)
+            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = repository.phoneBundle)
         }
 
         skip?.navigateOnClick {

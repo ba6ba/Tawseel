@@ -21,7 +21,7 @@ object DummyData {
         for (i in 1 until 4){
             add(DummyData(id = i, title = "Fresh Biscuits",
                 description = "Very healthy, good for health",
-                extra = "$ ${i.times(i+4)}"
+                extra = "${i.times(i+4)}"
             ))
         }
     }

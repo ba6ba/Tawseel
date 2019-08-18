@@ -10,13 +10,15 @@ import com.example.sarwan.tawseel.extensions.applyText
 import com.example.sarwan.tawseel.extensions.show
 import com.example.sarwan.tawseel.interfaces.DialogInteraction
 import com.example.sarwan.tawseel.modules.dialogs.ConfirmationDialog
-import com.example.sarwan.tawseel.repository.customer.CartRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.fragment_item_details.*
 
-class ItemDetailsFragment : BaseFragment<CartRepository>(R.layout.fragment_item_details), DialogInteraction {
+class ItemDetailsFragment : BaseFragment<CustomerRepository>(R.layout.fragment_item_details), DialogInteraction {
 
-    override val repository: CartRepository = getRepository(CartRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(CustomerRepository::class.java)
+    }
 
     override fun dismissCallBack(result: Boolean) {
         actionOnDialogButton(result)

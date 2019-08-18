@@ -15,7 +15,10 @@ import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
 class StoreItemFragment : BaseFragment<CustomerRepository>(R.layout.fragment_stores_items), SwipeRefreshLayout.OnRefreshListener, (Int) -> Unit {
 
-    override val repository: CustomerRepository = getRepository(CustomerRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(CustomerRepository::class.java)
+    }
+
 
     private var swipeRefreshLayoutHelper : SwipeRefreshLayoutHelper ? = null
     private lateinit var fragmentInteraction: FragmentInteraction<Any>
@@ -44,7 +47,7 @@ class StoreItemFragment : BaseFragment<CustomerRepository>(R.layout.fragment_sto
         recycler_view?.apply {
             layoutManager = LinearLayoutManager(getBaseActivity(),RecyclerView.VERTICAL, false)
             adapter = StoreItemAdapter(getBaseActivity(),
-                getRepository(CustomerRepository::class.java).getStoreList(),
+                repository.getStoreList(),
                 this@StoreItemFragment)
             swipeRefreshLayoutHelper?.stopRefreshLoader()
         }

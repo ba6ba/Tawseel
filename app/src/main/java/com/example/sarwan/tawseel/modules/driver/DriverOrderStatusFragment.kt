@@ -8,7 +8,9 @@ import com.example.sarwan.tawseel.repository.driver.DriverRepository
 
 class DriverOrderStatusFragment : BaseFragment<DriverRepository>(R.layout.fragment_driver_status) {
 
-    override val repository: DriverRepository = getRepository(DriverRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(DriverRepository::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 

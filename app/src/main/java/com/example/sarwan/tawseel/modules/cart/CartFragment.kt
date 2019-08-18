@@ -8,15 +8,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.visible
-import com.example.sarwan.tawseel.repository.customer.CartRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import kotlinx.android.synthetic.main.fragment_cart.*
 
-class CartFragment : BaseFragment<CartRepository>(R.layout.fragment_cart) {
+class CartFragment : BaseFragment<CustomerRepository>(R.layout.fragment_cart) {
 
-    override val repository: CartRepository = getRepository(CartRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(CustomerRepository::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews(view)
+        handleCartItemAddition()
         setObservers()
     }
 

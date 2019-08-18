@@ -12,7 +12,9 @@ import kotlinx.android.synthetic.main.fragment_signup.*
 
 class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_signup), DialogInteraction {
 
-    override val repository: AuthenticationRepository = getRepository(AuthenticationRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(AuthenticationRepository::class.java)
+    }
 
     override fun dismissCallBack(result: Boolean) {
         if (result){

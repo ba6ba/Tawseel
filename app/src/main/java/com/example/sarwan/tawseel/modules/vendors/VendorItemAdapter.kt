@@ -30,7 +30,7 @@ class VendorItemAdapter(private val context : Context, private val arrayList : A
                 arrayList[position].let {
                     name?.applyText(it.title)
                     description?.applyText(it.description)
-                    price?.applyText(it.extra)
+                    price?.applyText("$ ${it.extra}")
 
                     navigateOnItemClick(position) { tag->
                         itemClick(arrayList[tag])

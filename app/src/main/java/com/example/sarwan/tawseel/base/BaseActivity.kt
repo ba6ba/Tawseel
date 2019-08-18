@@ -8,6 +8,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.repository.BaseRepository
+import com.example.sarwan.tawseel.repository.business.BusinessRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 
@@ -18,7 +20,14 @@ abstract class BaseActivity<T : BaseRepository> : AppCompatActivity(){
     fun getAppRepository() = (application as Tawseel).getRepository()
 
     fun getRepository(t : Class<T>) : T {
-        return if (!::repo.isInitialized) { repo = t.newInstance() ; repo } else repo
+        return try {
+            if (!::repo.isInitialized) {
+                repo = t.newInstance()
+            }
+            t.cast(repo) as T
+        }catch (e : Exception){
+            t.newInstance()
+        }
     }
 
     fun showMessage(message : String = resources.getString(R.string.something_went_wrong), length: Int = Toast.LENGTH_LONG)  =

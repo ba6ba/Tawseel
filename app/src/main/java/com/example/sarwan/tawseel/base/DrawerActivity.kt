@@ -119,7 +119,7 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
     }
 
     private fun navigateToProfileFragment() {
-        navigate(R.id.actionProfile)
+        navHostFragment?.navController?.navigate(R.id.actionProfile)
     }
 
     private fun openDrawer() {

@@ -12,10 +12,11 @@ import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_login) {
 
-    override val repository: AuthenticationRepository = getRepository(AuthenticationRepository::class.java)
-
+    override fun createRepoInstance() {
+        repository = getRepository(AuthenticationRepository::class.java)
+    }
     override fun bundleOnCreated(bundle: Bundle?) {
-        getRepository(AuthenticationRepository::class.java).userName(bundle?.getInt(GlobalData.PARAM))
+        repository.userName(bundle?.getInt(GlobalData.PARAM))
 
     }
 
@@ -25,7 +26,7 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
     }
 
     override fun dataToViews() {
-        user_name_layout?.hint(getBaseActivity().getString(getRepository(AuthenticationRepository::class.java).userNameType))
+        user_name_layout?.hint(getBaseActivity().getString(repository.userNameType))
     }
 
     override fun viewListeners() {

@@ -19,7 +19,9 @@ import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
 class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_history) , () -> Unit {
 
-    override val repository : HistoryRepository = getRepository(HistoryRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(HistoryRepository::class.java)
+    }
 
     private var swipeRefreshLayoutHelper : SwipeRefreshLayoutHelper ? = null
 
@@ -28,7 +30,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
     }
 
     override fun activityCreated(savedInstanceState: Bundle?) {
-        getRepository(HistoryRepository::class.java).profile = getBaseActivity().
+        repository.profile = getBaseActivity().
             getAppRepository().getProfileFromSharedPreference<Profile>(GlobalData.PROFILE)
     }
 
@@ -37,7 +39,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
     }
 
     private fun checkForCustomization(view: View) {
-        if (getRepository(HistoryRepository::class.java).profile == Profile.DRIVER){
+        if (repository.profile == Profile.DRIVER){
             reCreateView()
         }
         initViews(view)
@@ -51,8 +53,8 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
         recycler_view?.apply {
             layoutManager = LinearLayoutManager(getBaseActivity(), RecyclerView.VERTICAL, false)
             adapter = HistoryAdapter(getBaseActivity(),
-                getRepository(HistoryRepository::class.java).
-                    getHistoryList(getRepository(HistoryRepository::class.java).mode?: HistoryMode.NON_BUSINESS),
+                repository.
+                    getHistoryList(repository.mode?: HistoryMode.NON_BUSINESS),
                 this@HistoryFragment)
             setRecyclerListener(MapViewRecyclerListener())
             swipeRefreshLayoutHelper?.stopRefreshLoader()

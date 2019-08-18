@@ -46,22 +46,22 @@ class TawseelInfoLayout @JvmOverloads constructor(context : Context,
         updateDividerColor()
     }
 
-    private fun updateDividerColor(color : Int = this::mDividerColor.get()) {
+    private fun updateDividerColor(color : Int = mDividerColor) {
         divider?.setBackgroundColor(color)
     }
 
-    private fun updateDividerHeight(height : Float = this::mDividerHeight.get()) {
+    private fun updateDividerHeight(height : Float = mDividerHeight) {
         val dividerView = divider
         dividerView?.layoutParams(width = divider?.takeWidth(), height = height.toInt())
         parent_view?.removeView(divider)
         parent_view?.addView(dividerView)
     }
 
-    fun updateSubTitleText(text : String ? = this::mSubTitle.name) {
+    fun updateSubTitleText(text : String ? = mSubTitle) {
         sub_title?.text = text
     }
 
-    fun updateTitleText(text : String ? = this::mTitle.name) {
+    fun updateTitleText(text : String ? = mTitle) {
         title?.text = text
     }
 }

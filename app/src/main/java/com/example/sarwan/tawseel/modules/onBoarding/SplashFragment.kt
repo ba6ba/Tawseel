@@ -11,11 +11,13 @@ import kotlinx.android.synthetic.main.fragment_splash.*
 
 class SplashFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_splash) {
 
-    override val repository: AuthenticationRepository = getRepository(AuthenticationRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(AuthenticationRepository::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getRepository(AuthenticationRepository::class.java).navigateIf(success = {
+        repository.navigateIf(success = {
             navigateTo(R.id.action_splashFragment_to_MainActivity, withDelay = true)
         }, failure = {
             checkForClickAction()
@@ -24,17 +26,17 @@ class SplashFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
 
     private fun checkForClickAction() {
         customer?.navigateOnClick {
-            getRepository(AuthenticationRepository::class.java).profile = Profile.CUSTOMER
+            repository.profile = Profile.CUSTOMER
             navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(AuthenticationRepository::class.java).getCustomerBundle())
         }
 
         company?.navigateOnClick {
-            getRepository(AuthenticationRepository::class.java).profile = Profile.BUSINESS
+            repository.profile = Profile.BUSINESS
             navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(AuthenticationRepository::class.java).getCompanyBundle())
         }
 
         delivery?.navigateOnClick {
-            getRepository(AuthenticationRepository::class.java).profile = Profile.DRIVER
+            repository.profile = Profile.DRIVER
             navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(AuthenticationRepository::class.java).getDriverBundle())
         }
     }

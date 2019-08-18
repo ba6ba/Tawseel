@@ -45,9 +45,10 @@ class CartItemAdapter(private val context : Context, private val arrayList : Arr
     }
 
     private fun handleDivider(divider: View?, position: Int) {
-        arrayList.validPosition(position + 1){list , valid ->
+        val nextPosition = position + 1
+        arrayList.validPosition(nextPosition){list , valid ->
             if (valid){
-                divider?.visible(arrayList[position].section != arrayList[position+1].section)
+                divider?.visible(arrayList[position].section != arrayList[nextPosition].section)
             }
         }
     }
@@ -97,9 +98,11 @@ class CartItemAdapter(private val context : Context, private val arrayList : Arr
 
     fun addPriceSections(){
         totalPrice = arrayList.map { it.price }.sum()
-        addTotalPriceItem()
-        addDeliveryItem()
-        addGSTItem()
-        addTotalPriceSection()
+        if (totalPrice!=0L){
+            addTotalPriceItem()
+            addDeliveryItem()
+            addGSTItem()
+            addTotalPriceSection()
+        }
     }
 }

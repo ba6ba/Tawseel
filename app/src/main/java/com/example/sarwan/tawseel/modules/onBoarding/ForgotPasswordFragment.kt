@@ -10,7 +10,9 @@ import kotlinx.android.synthetic.main.fragment_forgot_password.*
 
 class ForgotPasswordFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_forgot_password) {
 
-    override val repository: AuthenticationRepository = getRepository(AuthenticationRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(AuthenticationRepository::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()

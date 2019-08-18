@@ -9,7 +9,9 @@ import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 
 class ProfileFragment : BaseFragment<ProfileRepository>(R.layout.fragment_profile) {
 
-    override val repository: ProfileRepository = getRepository(ProfileRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(ProfileRepository::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

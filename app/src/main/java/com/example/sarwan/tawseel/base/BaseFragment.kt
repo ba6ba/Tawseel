@@ -16,24 +16,26 @@ import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import com.example.sarwan.tawseel.extensions.navigate
 import com.example.sarwan.tawseel.extensions.navigateToBack
+import com.example.sarwan.tawseel.interfaces.Resources
 import java.io.Serializable
 
 
-abstract class BaseFragment <T : BaseRepository>(private val layoutId: Int) : Fragment(), TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T> {
+abstract class BaseFragment <T : BaseRepository>(private val layoutId: Int) :
+    Fragment(), TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T> , Resources{
 
     private lateinit var baseActivity : BaseActivity<T>
+    protected lateinit var repository : T
 
-    abstract val repository : T
+    abstract fun createRepoInstance()
 
     open fun bundleOnCreated(bundle: Bundle?) {}
-
     open fun activityCreated(savedInstanceState: Bundle?) {}
-
     open fun singleParamSerializable(serializable: Serializable?) {}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         baseActivity = (activity as BaseActivity<T>)
+        createRepoInstance()
         activityCreated(savedInstanceState)
         bundleOnCreated(arguments)
         singleParamSerializable(arguments?.getSerializable(GlobalData.PARAM))
@@ -65,18 +67,18 @@ abstract class BaseFragment <T : BaseRepository>(private val layoutId: Int) : Fr
 
     protected fun navigateBack() = navigateToBack()
 
-    protected fun getStringFromValues(resId: Int) = getBaseActivity().getStringFromValues(resId)
+    override fun getStringFromValues(resId: Int) = getBaseActivity().getStringFromValues(resId)
 
-    protected fun getColorFromValues(resId: Int) = getBaseActivity().getColorFromValues(resId)
+    override fun getColorFromValues(resId: Int) = getBaseActivity().getColorFromValues(resId)
 
-    protected fun getDimensionFromResources(resId: Int) = getBaseActivity().getDimensionFromResources(resId)
+    override fun getDimensionFromResources(resId: Int) = getBaseActivity().getDimensionFromResources(resId)
 
-    protected fun getIntegerFromResources(resId: Int) = getBaseActivity().getIntegerFromResources(resId)
+    override fun getIntegerFromResources(resId: Int) = getBaseActivity().getIntegerFromResources(resId)
 
     @RequiresApi(Build.VERSION_CODES.O)
-    protected fun getFontFromResources(resId: Int) = getBaseActivity().getFontFromResources(resId)
+    override fun getFontFromResources(resId: Int) = getBaseActivity().getFontFromResources(resId)
 
-    protected fun getDrawableFromResources(@DrawableRes resId: Int) = getBaseActivity().getDrawableFromResources(resId)
+    override fun getDrawableFromResources(@DrawableRes resId: Int) = getBaseActivity().getDrawableFromResources(resId)
 
 
     fun <A> MutableLiveData<A>.foreverObserver(observer : Observer<A>) = observe(viewLifecycleOwner, observer)

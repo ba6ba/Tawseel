@@ -5,7 +5,11 @@
             android:id="@+id/main_nav_graph.xml">
 
     <include
-            app:graph="@navigation/common_menu_navigation_graph"
+            app:graph="@navigation/history_navigation_graph"
+    />
+
+    <include
+            app:graph="@navigation/profile_navigation_graph"
     />
 
     <fragment android:id="@+id/actionStores"

@@ -18,7 +18,9 @@ import kotlinx.android.synthetic.main.layout_nearby_map_card.*
 
 class OrdersFragment : BaseFragment<CustomerRepository>(R.layout.fragment_order_status), OnMapReadyCallback {
 
-    override val repository: CustomerRepository = getRepository(CustomerRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(CustomerRepository::class.java)
+    }
 
     private var mapConfiguration : MapConfiguration ? = null
 
@@ -61,7 +63,7 @@ class OrdersFragment : BaseFragment<CustomerRepository>(R.layout.fragment_order_
     }
 
     override fun dataToViews() {
-        getRepository(CustomerRepository::class.java).apply {
+        repository.apply {
             title?.applyText(getDriverName())
             sub_title?.applyText(getVehicleNumber())
             rating_bar?.toggleVisibility(remaining_time)

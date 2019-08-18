@@ -8,9 +8,12 @@ import com.example.sarwan.tawseel.repository.business.BusinessRepository
 
 class AddItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_business_add_item) {
 
-    override val repository: BusinessRepository = getRepository(BusinessRepository::class.java)
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
     }
+
+    override fun createRepoInstance() {
+        repository = getRepository(BusinessRepository::class.java)
+    }
+
 }

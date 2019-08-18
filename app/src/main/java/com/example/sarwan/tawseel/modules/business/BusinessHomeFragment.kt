@@ -15,7 +15,9 @@ import kotlinx.android.synthetic.main.fragment_business_home.*
 
 class BusinessHomeFragment : BaseFragment<BusinessRepository>(R.layout.fragment_business_home) {
 
-    override val repository: BusinessRepository = getRepository(BusinessRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(BusinessRepository::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()
@@ -24,22 +26,22 @@ class BusinessHomeFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
 
     override fun viewListeners() {
         edit_business?.actionOnClick {
-            getRepository(BusinessRepository::class.java).onEditLiveData.apply {
+            repository.onEditLiveData.apply {
                 postValue(value?.let { !it }?:true)
             }
         }
 
         business_name_layout.textChangeListener {
-            getRepository(BusinessRepository::class.java).businessName.postValue(it)
+            repository.businessName.postValue(it)
         }
 
         business_description_layout.textChangeListener {
-            getRepository(BusinessRepository::class.java).businessDescription.postValue(it)
+            repository.businessDescription.postValue(it)
         }
     }
 
     override fun setObservers() {
-        getRepository(BusinessRepository::class.java).apply {
+        repository.apply {
             onEditLiveData.observe(this@BusinessHomeFragment, Observer {
                 showScreenInEditMode(it)
             })

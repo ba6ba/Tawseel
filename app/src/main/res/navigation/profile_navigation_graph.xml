@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/actionHistory"
-            app:startDestination="@id/actionHistory"
+            android:id="@+id/actionProfile"
+            app:startDestination="@id/actionProfile"
 
 >
-
-    <fragment
-            android:id="@+id/actionHistory"
-            android:name="com.example.sarwan.tawseel.modules.history.HistoryFragment"
-            tools:layout="@layout/fragment_history"
-            android:label="History" />
 
     <fragment
             android:id="@+id/actionProfile"

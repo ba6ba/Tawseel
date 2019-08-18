@@ -10,7 +10,10 @@ import kotlinx.android.synthetic.main.fragment_rating.*
 
 class RatingFragment : BaseFragment<CustomerRepository>(R.layout.fragment_rating) {
 
-    override val repository: CustomerRepository = getRepository(CustomerRepository::class.java)
+    override fun createRepoInstance() {
+        repository = getRepository(CustomerRepository::class.java)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()

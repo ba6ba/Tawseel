@@ -9,17 +9,26 @@ import com.example.sarwan.tawseel.extensions.actionOnClick
 import com.example.sarwan.tawseel.extensions.applyText
 import com.example.sarwan.tawseel.extensions.decBy
 import com.example.sarwan.tawseel.extensions.incBy
-import com.example.sarwan.tawseel.repository.customer.CartRepository
+import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import kotlinx.android.synthetic.main.layout_cart_value.*
 
-class CartValueFragment : BaseFragment<CartRepository>(R.layout.layout_cart_value) {
+class CartValueFragment : BaseFragment<CustomerRepository>(R.layout.layout_cart_value) {
 
-    override val repository: CartRepository = getRepository(CartRepository::class.java)
+    override fun activityCreated(savedInstanceState: Bundle?) {
+        repository.cartItemListener.value = 0
+    }
+
+    override fun createRepoInstance() {
+        repository = getRepository(CustomerRepository::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()
         setObservers()
+        setCartValue(getItemCountFromCartIfAdded())
     }
+
+    private fun getItemCountFromCartIfAdded(): Int = repository.getList().filter { it.id == repository.getData().id }.count()
 
     override fun setObservers() {
         repository.cartItemListener.foreverObserver(Observer { count->
@@ -43,14 +52,14 @@ class CartValueFragment : BaseFragment<CartRepository>(R.layout.layout_cart_valu
 
     private fun remove() {
         repository.apply {
-            cartItemListener.value?.decBy()
+            cartItemListener.value = cartItemListener.value?.decBy()
             added = false
         }
     }
 
     private fun add() {
         repository.apply {
-            cartItemListener.value?.incBy()
+            cartItemListener.value = cartItemListener.value?.incBy()
             added = true
         }
     }
