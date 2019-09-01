@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
+import com.example.sarwan.tawseel.entities.enums.AuthenticationType
 import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.repository.authentication.AuthenticationRepository
 import kotlinx.android.synthetic.main.fragment_on_boarding.*
@@ -25,11 +26,13 @@ class OnBoardingFragment : BaseFragment<AuthenticationRepository>(R.layout.fragm
         }
 
         login_with_email?.navigateOnClick {
-            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = repository.emailBundle)
+            repository.authenticationType = AuthenticationType.EMAIL
+            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment)
         }
 
         login_with_phone?.navigateOnClick {
-            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment, bundle = repository.phoneBundle)
+            repository.authenticationType = AuthenticationType.PHONE
+            navigateTo(R.id.action_onBoardingFragment_to_LoginFragment)
         }
 
         skip?.navigateOnClick {

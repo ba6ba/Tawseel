@@ -20,11 +20,11 @@ import com.example.sarwan.tawseel.interfaces.Resources
 import java.io.Serializable
 
 
-abstract class BaseFragment <T : BaseRepository>(private val layoutId: Int) :
-    Fragment(), TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T> , Resources{
+abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
+    Fragment(), TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T>, Resources {
 
-    private lateinit var baseActivity : BaseActivity<T>
-    protected lateinit var repository : T
+    private lateinit var baseActivity: BaseActivity<T>
+    protected lateinit var repository: T
 
     abstract fun createRepoInstance()
 
@@ -52,16 +52,20 @@ abstract class BaseFragment <T : BaseRepository>(private val layoutId: Int) :
 
     protected fun getBaseActivity() = baseActivity
 
-    override fun getRepository(t : Class<T>) : T = getBaseActivity().getRepository(t)
+    override fun getRepository(t: Class<T>): T = getBaseActivity().getRepository(t)
 
-    protected fun navigateTo(resId : Int , bundle : Bundle ? = null ,withDelay : Boolean = false) {
-        if (!withDelay) navigate(resId, bundle) else Handler().postDelayed({ navigateTo(resId, bundle, withDelay = false)}, GlobalData.SPLASH_DELAY)
+    protected fun navigateTo(resId: Int, bundle: Bundle? = null, withDelay: Boolean = false) {
+        if (!withDelay) navigate(resId, bundle) else Handler().postDelayed({
+            navigateTo(
+                resId,
+                bundle,
+                withDelay = false
+            )
+        }, GlobalData.SPLASH_DELAY)
     }
 
     fun navigateToMainApp() {
-        getBaseActivity().getAppRepository().saveDataInSharedPreference(
-            GlobalData.PROFILE, getBaseActivity().repo.profile as Any)
-        navigateTo(getBaseActivity().repo.getActivityId())
+        navigateTo(getBaseActivity().repo.getActivityId(getBaseActivity().getAppRepository().userProfile))
         getBaseActivity().finish()
     }
 
@@ -81,5 +85,10 @@ abstract class BaseFragment <T : BaseRepository>(private val layoutId: Int) :
     override fun getDrawableFromResources(@DrawableRes resId: Int) = getBaseActivity().getDrawableFromResources(resId)
 
 
-    fun <A> MutableLiveData<A>.foreverObserver(observer : Observer<A>) = observe(viewLifecycleOwner, observer)
+    fun <A> MutableLiveData<A>.foreverObserver(observer: Observer<A>) = observe(viewLifecycleOwner, observer)
+
+    protected fun errorApiCall(message: String?) {
+        getBaseActivity().showMessage(message)
+    }
+
 }

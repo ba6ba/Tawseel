@@ -3,6 +3,7 @@ package com.example.sarwan.tawseel.repository
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import com.example.sarwan.tawseel.entities.UserProfile
 import com.example.sarwan.tawseel.extensions.get
 import com.example.sarwan.tawseel.utils.GlobalData
 import com.example.sarwan.tawseel.utils.GlobalData.PREFS_NAME
@@ -13,6 +14,7 @@ class AppRepository(private val context : Context) {
 
     var preferences : SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     val gson : Gson = Gson()
+    var userProfile : UserProfile? = null
 
     fun saveLocationInPrefs(latLng : LatLng)  = preferences.edit()?.putString(GlobalData.LATLNG, gson.toJson(latLng))?.apply()
 

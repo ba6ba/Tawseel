@@ -1,44 +1,69 @@
 package com.example.sarwan.tawseel.base
 
 import android.os.Build
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.entities.UserProfile
+import com.example.sarwan.tawseel.entities.enums.ProfileType
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.repository.business.BusinessRepository
 import com.example.sarwan.tawseel.repository.customer.CustomerRepository
+import com.example.sarwan.tawseel.utils.GlobalData
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 
-abstract class BaseActivity<T : BaseRepository> : AppCompatActivity(){
+abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
 
-    lateinit var repo : T
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getAppRepository().userProfile =
+            getAppRepository().getProfileFromSharedPreference<UserProfile>(GlobalData.PROFILE)
+        if (getAppRepository().userProfile == null) {
+            getAppRepository().userProfile = UserProfile()
+        }
+    }
+
+    fun saveUserProfile() {
+        getAppRepository().saveDataInSharedPreference(
+            GlobalData.PROFILE, getAppRepository().userProfile as UserProfile
+        )
+    }
+
+    lateinit var repo: T
 
     fun getAppRepository() = (application as Tawseel).getRepository()
 
-    fun getRepository(t : Class<T>) : T {
+    fun getRepository(t: Class<T>): T {
         return try {
             if (!::repo.isInitialized) {
                 repo = t.newInstance()
             }
             t.cast(repo) as T
-        }catch (e : Exception){
+        } catch (e: Exception) {
             t.newInstance()
         }
     }
 
-    fun showMessage(message : String = resources.getString(R.string.something_went_wrong), length: Int = Toast.LENGTH_LONG)  =
-        Toast.makeText(this,message, length).show()
+    fun showMessage(
+        message: String? = resources.getString(R.string.something_went_wrong),
+        length: Int = Toast.LENGTH_LONG
+    ) =
+        Toast.makeText(this, message, length).show()
 
-    fun saveLocationInSharedPreferences(latLng : LatLng) = getAppRepository().saveLocationInPrefs(latLng)
+    fun saveLocationInSharedPreferences(latLng: LatLng) = getAppRepository().saveLocationInPrefs(latLng)
 
-    fun getLocationFromSharedPreferences(success : (LatLng) -> Unit, failure : (String) -> Unit) = getAppRepository().getLocationFromPrefs(success, failure)
+    fun getLocationFromSharedPreferences(success: (LatLng) -> Unit, failure: (String) -> Unit) =
+        getAppRepository().getLocationFromPrefs(success, failure)
 
-    fun showSnackBar(mainTextStringId: Int, actionStringId: Int, length : Int = Snackbar.LENGTH_SHORT,
-                     listener: View.OnClickListener) {
+    fun showSnackBar(
+        mainTextStringId: Int, actionStringId: Int, length: Int = Snackbar.LENGTH_SHORT,
+        listener: View.OnClickListener
+    ) {
         Snackbar.make(findViewById(android.R.id.content), getString(mainTextStringId), length)
             .setAction(getString(actionStringId), listener).show()
     }

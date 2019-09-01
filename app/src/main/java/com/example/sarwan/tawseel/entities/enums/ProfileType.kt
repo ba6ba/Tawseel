@@ -1,6 +1,6 @@
 package com.example.sarwan.tawseel.entities.enums
 
-enum class Profile {
+enum class ProfileType {
         CUSTOMER,
         DRIVER,
         BUSINESS

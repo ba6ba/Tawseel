@@ -7,4 +7,5 @@ interface TawseelLayout {
     fun dataToViews(){}
     fun initViews(view : View?= null) {}
     fun setObservers() {}
+    fun callApis(){}
 }

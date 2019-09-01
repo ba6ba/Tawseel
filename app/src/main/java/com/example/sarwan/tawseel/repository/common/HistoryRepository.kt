@@ -8,7 +8,7 @@ import com.example.sarwan.tawseel.utils.mapProfileToHistory
 class HistoryRepository() : BaseRepository(){
 
     val mode: HistoryMode? by lazy {
-        profile?.mapProfileToHistory()
+        profileType?.mapProfileToHistory()
     }
 
     fun getHistoryList(mode: HistoryMode) = if (mode == HistoryMode.BUSINESS) DummyData.makeBusinessHistory() else DummyData.makeNonBusinessHistory()

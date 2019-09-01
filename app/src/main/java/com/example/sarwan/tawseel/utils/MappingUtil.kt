@@ -1,11 +1,11 @@
 package com.example.sarwan.tawseel.utils
 
 import com.example.sarwan.tawseel.entities.enums.HistoryMode
-import com.example.sarwan.tawseel.entities.enums.Profile
+import com.example.sarwan.tawseel.entities.enums.ProfileType
 
-fun Profile.mapProfileToHistory(): HistoryMode {
+fun ProfileType.mapProfileToHistory(): HistoryMode {
     return when(this) {
-        Profile.BUSINESS-> { HistoryMode.BUSINESS }
+        ProfileType.BUSINESS-> { HistoryMode.BUSINESS }
         else -> { HistoryMode.NON_BUSINESS }
     }
 }

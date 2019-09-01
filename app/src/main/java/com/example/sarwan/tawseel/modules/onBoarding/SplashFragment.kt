@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
-import com.example.sarwan.tawseel.entities.enums.Profile
+import com.example.sarwan.tawseel.entities.enums.ProfileType
 import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.repository.authentication.AuthenticationRepository
 import kotlinx.android.synthetic.main.fragment_splash.*
@@ -26,18 +26,18 @@ class SplashFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
 
     private fun checkForClickAction() {
         customer?.navigateOnClick {
-            repository.profile = Profile.CUSTOMER
-            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(AuthenticationRepository::class.java).getCustomerBundle())
+            getBaseActivity().getAppRepository().userProfile?.profileType = ProfileType.CUSTOMER
+            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment)
         }
 
         company?.navigateOnClick {
-            repository.profile = Profile.BUSINESS
-            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(AuthenticationRepository::class.java).getCompanyBundle())
+            getBaseActivity().getAppRepository().userProfile?.profileType = ProfileType.BUSINESS
+            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment)
         }
 
         delivery?.navigateOnClick {
-            repository.profile = Profile.DRIVER
-            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment, bundle = getRepository(AuthenticationRepository::class.java).getDriverBundle())
+            getBaseActivity().getAppRepository().userProfile?.profileType = ProfileType.DRIVER
+            navigateTo(R.id.action_splashFragment_to_OnBoardingFragment)
         }
     }
 }

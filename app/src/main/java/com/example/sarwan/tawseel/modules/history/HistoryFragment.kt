@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.entities.enums.HistoryMode
-import com.example.sarwan.tawseel.entities.enums.Profile
+import com.example.sarwan.tawseel.entities.enums.ProfileType
 import com.example.sarwan.tawseel.extensions.dpToInt
 import com.example.sarwan.tawseel.extensions.setMargin
 import com.example.sarwan.tawseel.helper.SwipeRefreshLayoutHelper
@@ -30,8 +30,8 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
     }
 
     override fun activityCreated(savedInstanceState: Bundle?) {
-        repository.profile = getBaseActivity().
-            getAppRepository().getProfileFromSharedPreference<Profile>(GlobalData.PROFILE)
+        repository.userProfile?.profileType = getBaseActivity().
+            getAppRepository().getProfileFromSharedPreference<ProfileType>(GlobalData.PROFILE)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,7 +39,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
     }
 
     private fun checkForCustomization(view: View) {
-        if (repository.profile == Profile.DRIVER){
+        if (repository.userProfile?.profileType == ProfileType.DRIVER){
             reCreateView()
         }
         initViews(view)
