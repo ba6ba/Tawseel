@@ -2,6 +2,7 @@ package com.example.sarwan.tawseel.modules.onBoarding
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.extensions.hint
@@ -41,5 +42,21 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
         forget_password?.navigateOnClick {
             navigateTo(R.id.action_LoginFragment_to_ForgotPasswordFragment)
         }
+
+        name?.validationResult?.observe(viewLifecycleOwner, Observer {
+            haveText(it.text)
+        })
+
+        email?.validationResult?.observe(viewLifecycleOwner, Observer {
+            haveText(it.text)
+        })
+
+        password?.validationResult?.observe(viewLifecycleOwner, Observer {
+            haveText(it.text)
+        })
+    }
+
+    private fun haveText(text : String?){
+        val have = text
     }
 }

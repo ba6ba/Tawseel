@@ -76,4 +76,8 @@
     <string name="delivery_charges">Delivery charges</string>
     <string name="gst">General Sales Tax</string>
     <string name="sub_total">Sub Total</string>
+    <string name="must_not_be_empty">must not be empty</string>
+    <string name="length_constraint">must be equals to</string>
+    <string name="valid_password">must contains</string>
+    <string name="valid_email_address">must be a valid email address</string>
 </resources>

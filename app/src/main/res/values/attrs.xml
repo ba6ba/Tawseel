@@ -12,4 +12,26 @@
         <attr name="subTitle" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="TawseelTextInputLayoutWithValidation">
+        <attr name="hint" format="string"/>
+        <attr name="validation_type" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="not_empty" value="1"/>
+            <enum name="email" value="2"/>
+            <enum name="length_constraint" value="3"/>
+            <enum name="password" value="4"/>
+            <enum name="phone" value="5"/>
+        </attr>
+        <attr name="validation_rule" format="flags">
+            <flag name="none" value="0"/>
+            <flag name="upper_character" value="1"/>
+            <flag name="lower_character" value="2"/>
+            <flag name="numeric" value="3"/>
+            <flag name="special" value="4"/>
+        </attr>
+        <attr name="max_number_of_characters" format="integer"/>
+        <attr name="min_number_of_characters" format="integer"/>
+    </declare-styleable>
+
+
 </resources>
