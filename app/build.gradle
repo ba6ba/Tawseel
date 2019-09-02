@@ -20,16 +20,17 @@ android {
     buildTypes {
 
         staging {
+            initWith(debug)
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BE_URL", "http://13.59.196.107:8000/")
+            buildConfigField("String", "BE_URL", '"http://13.59.196.107:8000/"')
         }
 
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BE_URL", "http://13.59.196.107:8000/")
+            buildConfigField("String", "BE_URL", '"http://13.59.196.107:8000/"')
         }
     }
     dataBinding {

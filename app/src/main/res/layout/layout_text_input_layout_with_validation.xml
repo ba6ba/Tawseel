@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:errorEnabled="true"
+    app:hintAnimationEnabled="false"
+    app:hintEnabled="true">
+
+    <com.google.android.material.textfield.TextInputEditText
+        style="@style/Tawseel.EditText.Rounded.Background.Stroke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:minHeight="@dimen/x50" />
+
+</com.google.android.material.textfield.TextInputLayout>

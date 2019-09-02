@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_login) {
 
-    private lateinit var loginRequest : LoginRequest
+    private var loginRequest = LoginRequest()
 
     override fun createRepoInstance() {
         repository = getRepository(AuthenticationRepository::class.java)
@@ -33,8 +33,8 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
     }
 
     override fun setObservers() {
-        repository.loginApiInstance.foreverObserver(Observer {apiResponse->
-            when(apiResponse){
+        repository.loginApiInstance.foreverObserver(Observer { apiResponse ->
+            when (apiResponse) {
 
                 is ApiResponse.Error -> {
                     errorApiCall(apiResponse.message)
@@ -57,13 +57,21 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
     }
 
     override fun dataToViews() {
-        user_name_layout?.hint(getBaseActivity().getString(repository.getStringForAuthenticationType()))
+        user_name?.setHint(getBaseActivity().getString(repository.getStringForAuthenticationType()))
     }
 
     override fun viewListeners() {
         login?.navigateOnClick {
             callApis()
         }
+
+        user_name?.validationResult?.foreverObserver(Observer {
+            loginRequest.email = it.text.toString()
+        })
+
+        password?.validationResult?.foreverObserver(Observer {
+            loginRequest.password = it.text.toString()
+        })
 
         back?.navigateOnClick {
             navigateBack()
@@ -74,3 +82,4 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
         }
     }
 }
+

@@ -14,6 +14,7 @@ import com.example.sarwan.tawseel.extensions.setMargin
 import com.example.sarwan.tawseel.helper.SwipeRefreshLayoutHelper
 import com.example.sarwan.tawseel.repository.common.HistoryRepository
 import com.example.sarwan.tawseel.utils.GlobalData
+import com.example.sarwan.tawseel.utils.mapProfileToHistory
 import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
@@ -30,7 +31,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
     }
 
     override fun activityCreated(savedInstanceState: Bundle?) {
-        repository.userProfile?.profileType = getBaseActivity().
+        getBaseActivity().getAppRepository().userProfile?.profileType = getBaseActivity().
             getAppRepository().getProfileFromSharedPreference<ProfileType>(GlobalData.PROFILE)
     }
 
@@ -39,7 +40,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
     }
 
     private fun checkForCustomization(view: View) {
-        if (repository.userProfile?.profileType == ProfileType.DRIVER){
+        if (getBaseActivity().getAppRepository().userProfile?.profileType == ProfileType.DRIVER){
             reCreateView()
         }
         initViews(view)
@@ -54,7 +55,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
             layoutManager = LinearLayoutManager(getBaseActivity(), RecyclerView.VERTICAL, false)
             adapter = HistoryAdapter(getBaseActivity(),
                 repository.
-                    getHistoryList(repository.mode?: HistoryMode.NON_BUSINESS),
+                    getHistoryList(getBaseActivity().getAppRepository().userProfile?.profileType?.mapProfileToHistory()?: HistoryMode.NON_BUSINESS),
                 this@HistoryFragment)
             setRecyclerListener(MapViewRecyclerListener())
             swipeRefreshLayoutHelper?.stopRefreshLoader()
