@@ -26,8 +26,9 @@
             <flag name="none" value="0"/>
             <flag name="upper_character" value="1"/>
             <flag name="lower_character" value="2"/>
-            <flag name="numeric" value="3"/>
-            <flag name="special" value="4"/>
+            <flag name="numeric" value="4"/>
+            <flag name="special" value="8"/>
+            <flag name="all" value="15"/>
         </attr>
         <attr name="max_number_of_characters" format="integer"/>
         <attr name="min_number_of_characters" format="integer"/>

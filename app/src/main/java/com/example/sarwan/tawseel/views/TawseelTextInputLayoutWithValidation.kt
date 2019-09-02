@@ -35,16 +35,16 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
         if (mMaxLimit != Int.MAX_VALUE) mMaxLimit else 6
     }
     private val upperRule: Boolean by lazy {
-        validationRule == 0
+        ValidationRule.possibleUpperRuleValues().contains(validationRule) && mValidationType == ValidationType.VALID_PASSWORD
     }
     private val lowerRule: Boolean by lazy {
-        validationRule == 1
+        ValidationRule.possibleLowerRuleValues().contains(validationRule) && mValidationType == ValidationType.VALID_PASSWORD
     }
     private val numericRule: Boolean by lazy {
-        validationRule == 2
+        ValidationRule.possibleNumericRuleValues().contains(validationRule) && mValidationType == ValidationType.VALID_PASSWORD
     }
     private val specialCharRule: Boolean by lazy {
-        validationRule == 3
+        ValidationRule.possibleSpecialRuleValues().contains(validationRule) && mValidationType == ValidationType.VALID_PASSWORD
     }
 
     val validationResult: MutableLiveData<Validation.Result> = MutableLiveData()
@@ -136,7 +136,7 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
             validate = validatePasswordRegex(PasswordRegex.numeric, string)
         if (specialCharRule)
             validate = validatePasswordRegex(PasswordRegex.special_char, string)
-        result(validate && passwordLength == string?.length)
+        result(validate && string?.length?.isInRangeOf(mMinLimit, mMaxLimit) == true)
     }
 
     private fun validatePasswordRegex(passwordRegex: PasswordRegex, string: String?) =
@@ -181,11 +181,13 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     }
 
     private fun generatePasswordConstraintMessage(): String {
-        var errorString = ""
-        if (upperRule) errorString += " upper characters"
-        if (lowerRule) errorString += " lower characters"
-        if (numericRule) errorString += " numeric characters"
-        return errorString
+        val errorString = arrayListOf<String>()
+        if (upperRule) errorString.add("upper characters")
+        if (lowerRule) errorString.add("lower characters")
+        if (numericRule) errorString.add("numeric characters")
+        if (specialCharRule) errorString.add("special characters")
+        errorString.add("length must be in between $mMinLimit - $mMaxLimit")
+        return errorString.joinToString(" , ")
     }
 
     private fun makeTextValidation(result: Boolean, string: String?) {

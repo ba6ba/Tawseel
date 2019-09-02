@@ -16,6 +16,7 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
     override fun createRepoInstance() {
         repository = getRepository(AuthenticationRepository::class.java)
     }
+
     override fun bundleOnCreated(bundle: Bundle?) {
         repository.userName(bundle?.getInt(GlobalData.PARAM))
 
@@ -42,21 +43,5 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
         forget_password?.navigateOnClick {
             navigateTo(R.id.action_LoginFragment_to_ForgotPasswordFragment)
         }
-
-        name?.validationResult?.observe(viewLifecycleOwner, Observer {
-            haveText(it.text)
-        })
-
-        email?.validationResult?.observe(viewLifecycleOwner, Observer {
-            haveText(it.text)
-        })
-
-        password?.validationResult?.observe(viewLifecycleOwner, Observer {
-            haveText(it.text)
-        })
-    }
-
-    private fun haveText(text : String?){
-        val have = text
     }
 }

@@ -4,7 +4,7 @@
                                                    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
                                                    android:layout_height="match_parent">
 
-    <LinearLayout android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                        android:layout_height="wrap_content"
                                                        app:layout_constraintTop_toTopOf="parent"
                                                        app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/password"/>
+                app:layout_constraintTop_toBottomOf="@+id/password_layout"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password_layout"
@@ -37,7 +37,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="24dp"
             app:errorEnabled="true"
-            android:visibility="gone"
             app:hintAnimationEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +60,6 @@
                 android:layout_height="wrap_content"
                 app:hintAnimationEnabled="false"
                 app:errorEnabled="true"
-                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
@@ -80,39 +78,7 @@
             />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/name"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:validation_type="not_empty"
-                app:hint="@string/accept"
-        />
-
-        <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/email"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/name"
-                app:validation_type="email"
-                app:hint="@string/accept"
-        />
-
-        <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/password"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/email"
-                app:validation_rule="lower_character|upper_character|numeric"
-                app:validation_type="password"
-                app:hint="@string/accept"
-                app:max_number_of_characters="9"
-                app:min_number_of_characters="3"/>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
