@@ -6,7 +6,9 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.entities.User
 import com.example.sarwan.tawseel.entities.enums.AuthenticationType
+import com.example.sarwan.tawseel.entities.enums.ValidationType
 import com.example.sarwan.tawseel.entities.requests.LoginRequest
 import com.example.sarwan.tawseel.entities.requests.SignupRequest
 import com.example.sarwan.tawseel.entities.responses.LoginResponse
@@ -34,6 +36,20 @@ class AuthenticationRepository : BaseRepository() {
 
     fun getStringForAuthenticationType(type: AuthenticationType = authenticationType) =
         if (type == AuthenticationType.EMAIL) R.string.email else R.string.phone
+
+    fun getValidationTypeForAuthenticationType(type: AuthenticationType = authenticationType) =
+        if (type == AuthenticationType.EMAIL) ValidationType.VALID_EMAIL else ValidationType.PHONE
+
+    fun getLoginTypeForAuthenticationType(type: AuthenticationType = authenticationType) =
+        if (type == AuthenticationType.EMAIL) "email" else "phone"
+
+    fun mapSignupDataToUser(signupResponse: SignupResponse.Data?) = User().apply {
+        _id = signupResponse?._id
+        email = signupResponse?.email
+        userType = signupResponse?.userType
+        phone = signupResponse?.phone
+        name = signupResponse?.name
+    }
 
     fun callLoginApi(params: LoginRequest) {
         _loginApiInstance.addSource(loginApi(params)) {

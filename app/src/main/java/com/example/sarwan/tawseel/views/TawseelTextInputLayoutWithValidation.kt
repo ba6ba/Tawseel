@@ -2,6 +2,7 @@ package com.example.sarwan.tawseel.views
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.text.InputType
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Patterns
@@ -32,9 +33,6 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     private var mMinLimit: Int = 0
     private var validationRule: Int = 0
     private var validationError: String? = generateError()
-    private val passwordLength : IntRange by lazy {
-        mMinLimit..mMaxLimit
-    }
 
     private val upperRule: Boolean by lazy {
         ValidationRule.possibleUpperRuleValues().contains(validationRule) && mValidationType == ValidationType.VALID_PASSWORD
@@ -64,15 +62,21 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     private fun updateAttributes() {
         setHint()
         makeViewCustomised()
+        setInputType()
         addTextChangeListener()
     }
 
     private fun makeViewCustomised() {
         if (mValidationType == ValidationType.VALID_PASSWORD) {
-            mMaxLimit = 6
+            mMaxLimit = 8
             _layout?.isPasswordVisibilityToggleEnabled = true
             _layout?.setPasswordVisibilityToggleTintList(ColorStateList.valueOf(context.resources.getColor(R.color.colorPrimary)))
         }
+    }
+
+    fun setValidationType(validationType: ValidationType) {
+        mValidationType = validationType
+        updateAttributes()
     }
 
     fun setHint(hint: String? = mHint) {
@@ -83,6 +87,23 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     private fun addTextChangeListener() {
         _layout?.textChangeListener {
             validateText(string = it)
+        }
+    }
+
+    private fun setInputType() {
+        _layout?.editText?.inputType = when (mValidationType) {
+            ValidationType.VALID_PASSWORD -> {
+                InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+            ValidationType.VALID_EMAIL -> {
+                InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+            }
+            ValidationType.PHONE -> {
+                InputType.TYPE_CLASS_PHONE
+            }
+            else -> {
+                InputType.TYPE_CLASS_TEXT
+            }
         }
     }
 
@@ -114,11 +135,8 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
             ValidationType.LENGTH_CONSTRAINT -> {
                 lengthConstraintTextValidation(string)
             }
-            ValidationType.MUST_NOT_BE_EMPTY -> {
-                nonEmptyTextValidation(string)
-            }
             else -> {
-
+                nonEmptyTextValidation(string)
             }
         }
     }
@@ -202,17 +220,17 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
         if (lowerRule) errorString.add("lower characters")
         if (numericRule) errorString.add("numeric characters")
         if (specialCharRule) errorString.add("special characters")
-        errorString.add("length must be in between $passwordLength")
+        errorString.add("length must be in between ${mMinLimit..mMaxLimit}")
         return errorString.joinToString(" , ")
     }
 
     private fun makeTextValidation(result: Boolean, string: String?) {
         if (result) {
-            validationResult.postValue(Validation.result(string))
             validationError = null
         } else {
             validationError = generateError()
         }
+        validationResult.postValue(Validation.result(result, string))
         setValidationError()
     }
 }

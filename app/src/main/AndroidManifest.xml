@@ -1,39 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:dist="http://schemas.android.com/apk/distribution"
-          package="com.example.sarwan.tawseel">
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.example.sarwan.tawseel">
 
-    <dist:module dist:instant="true"/>
+    <dist:module dist:instant="true" />
 
     <application
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:name=".base.Tawseel"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+        android:name=".base.Tawseel"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity android:name=".modules.onBoarding.AuthenticationActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".modules.CustomerActivity"
-                  android:windowSoftInputMode="stateAlwaysHidden"
-        />
+        <activity
+            android:name=".modules.CustomerActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
-        <activity android:name=".modules.driver.DriverActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+        <activity
+            android:name=".modules.driver.DriverActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
-        <activity android:name=".modules.business.BusinessActivity"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+        <activity
+            android:name=".modules.business.BusinessActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyA6O6Hta1dl-q_nytwn08B2UINAuZ_jVds"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyA6O6Hta1dl-q_nytwn08B2UINAuZ_jVds" />
 
     </application>
 

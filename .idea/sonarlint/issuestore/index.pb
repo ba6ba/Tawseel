@@ -43,3 +43,21 @@ Iapp/src/main/java/com/example/sarwan/tawseel/repository/BaseRepository.kt,6/8/
 Sapp/src/main/java/com/example/sarwan/tawseel/repository/common/HistoryRepository.kt,a/1/a19773eac41e36b8d6a454fbd9dab19ede1eda3d
 
 Oapp/src/main/java/com/example/sarwan/tawseel/modules/history/HistoryFragment.kt,f/9/f967d68a43115ec00fe1059f41b7040e744629df
+ä
+Zapp/src/main/java/com/example/sarwan/tawseel/views/TawseelTextInputLayoutWithValidation.kt,7/9/7940e21b43afca8b74084f4755a327d753ec619a
+í
+bapp/src/main/java/com/example/sarwan/tawseel/repository/authentication/AuthenticationRepository.kt,3/6/365940fb472a8b1eeb16dd1e100a936ffddd47b0
+s
+Capp/src/main/java/com/example/sarwan/tawseel/entities/Validation.kt,3/3/33c4ae5c7cd78885124cbfb02b90f88a9e891001
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+q
+Aapp/src/main/java/com/example/sarwan/tawseel/base/BaseFragment.kt,1/c/1cea1570341a8a07fce2d730f642fc4bd75fd60a
+x
+Happ/src/main/java/com/example/sarwan/tawseel/repository/AppRepository.kt,a/5/a5500b0089f1a999f5cc873baa88a5e34dc69989
+q
+Aapp/src/main/java/com/example/sarwan/tawseel/base/BaseActivity.kt,b/e/be53984d60bb6faa5b8a967f0fdc2108f1c9e5f9
+t
+Dapp/src/main/java/com/example/sarwan/tawseel/entities/UserProfile.kt,3/e/3e0d8e6593818edadf8ed49b6a99136b405cb08b
+Å
+Qapp/src/main/java/com/example/sarwan/tawseel/modules/onBoarding/SignupFragment.kt,7/d/7d5cdd9e9ed28b1060af303d8778d066f15888f7

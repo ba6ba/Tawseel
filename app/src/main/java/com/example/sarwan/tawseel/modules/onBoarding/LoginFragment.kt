@@ -1,10 +1,13 @@
 package com.example.sarwan.tawseel.modules.onBoarding
 
 import android.os.Bundle
+import android.text.InputType
 import android.view.View
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
+import com.example.sarwan.tawseel.entities.enums.AuthenticationType
 import com.example.sarwan.tawseel.entities.requests.LoginRequest
 import com.example.sarwan.tawseel.entities.responses.LoginResponse
 import com.example.sarwan.tawseel.extensions.hint
@@ -17,6 +20,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_login) {
 
     private var loginRequest = LoginRequest()
+    private var enableLoginLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
     override fun createRepoInstance() {
         repository = getRepository(AuthenticationRepository::class.java)
@@ -33,7 +37,7 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
     }
 
     override fun setObservers() {
-        repository.loginApiInstance.foreverObserver(Observer { apiResponse ->
+        repository.loginApiInstance.observe(viewLifecycleOwner,Observer { apiResponse ->
             when (apiResponse) {
 
                 is ApiResponse.Error -> {
@@ -44,6 +48,10 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
                     successApiCall(apiResponse.data?.data)
                 }
             }
+        })
+
+        enableLoginLiveData.foreverObserver(Observer {
+            login?.isEnabled = it
         })
     }
 
@@ -57,7 +65,9 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
     }
 
     override fun dataToViews() {
+        user_name?.setValidationType(repository.getValidationTypeForAuthenticationType())
         user_name?.setHint(getBaseActivity().getString(repository.getStringForAuthenticationType()))
+        loginRequest.loginType = repository.getLoginTypeForAuthenticationType()
     }
 
     override fun viewListeners() {
@@ -66,10 +76,12 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
         }
 
         user_name?.validationResult?.foreverObserver(Observer {
-            loginRequest.email = it.text.toString()
+            enableLoginLiveData.value = it.result
+            setUserName(it.text.toString())
         })
 
         password?.validationResult?.foreverObserver(Observer {
+            enableLoginLiveData.value = it.result
             loginRequest.password = it.text.toString()
         })
 
@@ -79,6 +91,14 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
 
         forget_password?.navigateOnClick {
             navigateTo(R.id.action_LoginFragment_to_ForgotPasswordFragment)
+        }
+    }
+
+    private fun setUserName(text: String) {
+        if (repository.authenticationType == AuthenticationType.PHONE)
+            loginRequest.phone = text
+        else {
+            loginRequest.email = text
         }
     }
 }

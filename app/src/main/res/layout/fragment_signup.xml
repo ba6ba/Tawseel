@@ -1,186 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-                                                       android:layout_height="wrap_content"
-                                                       app:layout_constraintStart_toStartOf="parent"
-                                                       app:layout_constraintEnd_toEndOf="parent"
-                                                       android:layout_marginTop="8dp"
-                                                       app:layout_constraintHorizontal_bias="0.0"
-                                                       android:layout_marginBottom="8dp"
-                                                       app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                                                       app:layout_constraintBottom_toTopOf="@+id/signup">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/signup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="false"
-                app:errorEnabled="true"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:id="@+id/name_layout"
-                app:layout_constraintHorizontal_bias="0.0" app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="8dp">
+        <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
+            android:id="@+id/name_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:hint="@string/full_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:validation_type="not_empty" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/full_name"
-                    style="@style/Tawseel.EditText.Rounded.Background.Stroke"
-                    android:imeOptions="actionNext"
-                    android:layout_gravity="center"
-                    android:minHeight="@dimen/x50"
-                    android:inputType="textCapSentences"
+        <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
+            android:id="@+id/phone_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:hint="@string/phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_layout"
+            app:validation_type="phone" />
+
+        <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
+            android:id="@+id/email_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:hint="@string/email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_layout"
+            app:validation_type="email" />
+
+        <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
+            android:id="@+id/password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:hint="@string/password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_layout"
+            app:validation_type="password"
+            app:validation_rule="all"
             />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="false"
-                app:errorEnabled="true"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:id="@+id/phone_layout"
-                app:layout_constraintHorizontal_bias="0.0"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/name_layout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/phone"
-                    style="@style/Tawseel.EditText.Rounded.Background.Stroke"
-                    android:imeOptions="actionNext"
-                    android:layout_gravity="center"
-                    android:minHeight="@dimen/x50"
-                    android:inputType="phone"
+        <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
+            android:id="@+id/confirm_password_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            app:hint="@string/password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_layout"
+            app:validation_type="password"
+            app:validation_rule="all"
             />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="false"
-                app:passwordToggleEnabled="true"
-                app:errorEnabled="true"
-                app:passwordToggleTint="@color/scent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:id="@+id/confirm_password_layout"
-                app:layout_constraintTop_toBottomOf="@+id/password_layout" android:layout_marginTop="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/confirm_password"
-                    style="@style/Tawseel.EditText.Rounded.Background.Stroke"
-                    android:imeOptions="actionDone"
-                    android:layout_gravity="center"
-                    android:minHeight="@dimen/x50"
-                    android:inputType="textPassword"
-            />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="false"
-                app:passwordToggleEnabled="true"
-                app:errorEnabled="true"
-                app:passwordToggleTint="@color/scent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:id="@+id/password_layout"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/email_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/password"
-                    style="@style/Tawseel.EditText.Rounded.Background.Stroke"
-                    android:imeOptions="actionNext"
-                    android:layout_gravity="center"
-                    android:minHeight="@dimen/x50"
-                    android:inputType="textPassword"
-            />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintAnimationEnabled="false"
-                app:errorEnabled="true"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-                android:id="@+id/email_layout"
-                app:layout_constraintHorizontal_bias="0.0"
-                android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/phone_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/email"
-                    style="@style/Tawseel.EditText.Rounded.Background.Stroke"
-                    android:imeOptions="actionNext"
-                    android:layout_gravity="center"
-                    android:minHeight="@dimen/x50"
-                    android:inputType="textEmailAddress"
-            />
-        </com.google.android.material.textfield.TextInputLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:background="@drawable/igloo_shape"
-            android:backgroundTint="@color/scent"
-            android:text="@string/signup"
-            android:elevation="@dimen/x16"
-            style="@style/Tawseel.TextView.Rounded.Background"
-            android:id="@+id/signup"
-            android:textSize="@dimen/t24"
-            android:paddingStart="@dimen/x36"
-            android:paddingEnd="@dimen/x36"
-            android:gravity="center"
-            app:layout_constraintStart_toStartOf="parent"
+    <Button
+        android:id="@+id/signup"
+        style="@style/Tawseel.TextView.Rounded.Background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/igloo_shape"
+        android:backgroundTint="@color/scent"
+        android:elevation="@dimen/x16"
+        android:enabled="false"
+        android:gravity="center"
+        android:paddingStart="@dimen/x36"
+        android:paddingEnd="@dimen/x36"
+        android:text="@string/signup"
+        android:textSize="@dimen/t24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/igloo_shape" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top"
+        android:minHeight="@dimen/x80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/x20"
+            android:layout_height="@dimen/x20"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            style="@style/Tawseel.TextView.Medium.White"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/signup"
+            android:textAllCaps="true"
+            android:textSize="@dimen/t20"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.486"
-            app:layout_constraintBottom_toBottomOf="parent" app:srcCompat="@drawable/igloo_shape"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-                                                       android:layout_height="wrap_content"
-                                                       android:background="@drawable/top"
-                                                       android:minHeight="@dimen/x80"
-                                                       app:layout_constraintTop_toTopOf="parent"
-                                                       app:layout_constraintStart_toStartOf="parent"
-                                                       app:layout_constraintEnd_toEndOf="parent"
-                                                       android:id="@+id/constraintLayout">
-
-        <ImageView android:layout_width="@dimen/x20" android:layout_height="@dimen/x20"
-                   android:src="@drawable/back"
-                   android:id="@+id/back"
-                   app:layout_constraintStart_toStartOf="parent"
-                   android:layout_marginStart="16dp"
-                   android:layout_marginTop="8dp"
-                   app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:text="@string/signup"
-                  android:textAllCaps="true"
-                  android:textSize="@dimen/t20"
-                  style="@style/Tawseel.TextView.Medium.White"
-                  android:textStyle="bold"
-                  android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-                  android:layout_marginStart="8dp" app:layout_constraintStart_toStartOf="parent"
-                  app:layout_constraintTop_toTopOf="parent"
-                  android:layout_marginTop="8dp"
-                  android:id="@+id/textView2"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

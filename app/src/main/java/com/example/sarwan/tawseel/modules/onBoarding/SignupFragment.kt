@@ -2,6 +2,7 @@ package com.example.sarwan.tawseel.modules.onBoarding
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
@@ -16,7 +17,8 @@ import kotlinx.android.synthetic.main.fragment_signup.*
 
 class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_signup), DialogInteraction {
 
-    private lateinit var signupRequest: SignupRequest
+    private var signupRequest: SignupRequest = SignupRequest()
+    private var enableSignUpLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
     override fun createRepoInstance() {
         repository = getRepository(AuthenticationRepository::class.java)
@@ -45,6 +47,10 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
                 }
             }
         })
+
+        enableSignUpLiveData.foreverObserver(Observer {
+            signup?.isEnabled = it
+        })
     }
 
     override fun callApis() {
@@ -54,13 +60,7 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
     private fun successApiCall(data: SignupResponse.Data?) {
         getBaseActivity().apply {
             getAppRepository().userProfile?.token = data?.token
-            getAppRepository().userProfile?.user?.copy(
-                _id = data?._id ?: "",
-                name = data?.name ?: "",
-                phone = data?.phone ?: "",
-                email = data?.email ?: "",
-                userType = data?.userType ?: ""
-            )
+            getAppRepository().userProfile?.user = repo.mapSignupDataToUser(data)
             saveUserProfile()
         }
         showOTPVerification()
@@ -74,6 +74,31 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
         back?.navigateOnClick {
             navigateBack()
         }
+
+        name_layout?.validationResult?.foreverObserver(Observer {
+            enableSignUpLiveData.value = it.result
+            signupRequest.name = it.text.toString()
+        })
+
+        email_layout?.validationResult?.foreverObserver(Observer {
+            enableSignUpLiveData.value = it.result
+            signupRequest.email = it.text.toString()
+        })
+
+        phone_layout?.validationResult?.foreverObserver(Observer {
+            enableSignUpLiveData.value = it.result
+            signupRequest.phone = it.text.toString()
+        })
+
+        password_layout?.validationResult?.foreverObserver(Observer {
+            enableSignUpLiveData.value = it.result
+            signupRequest.password = it.text.toString()
+        })
+
+        confirm_password_layout?.validationResult?.foreverObserver(Observer {
+            enableSignUpLiveData.value = it.result
+            signupRequest.confirmPassword = it.text.toString()
+        })
     }
 
     private fun showOTPVerification() {
