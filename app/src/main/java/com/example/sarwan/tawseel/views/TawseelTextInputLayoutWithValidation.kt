@@ -70,7 +70,15 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
         if (mValidationType == ValidationType.VALID_PASSWORD) {
             mMaxLimit = 8
             _layout?.isPasswordVisibilityToggleEnabled = true
-            _layout?.setPasswordVisibilityToggleTintList(ColorStateList.valueOf(context.resources.getColor(R.color.colorPrimary)))
+            _layout?.setPasswordVisibilityToggleTintList(
+                ColorStateList.valueOf(
+                    context.resources.getColor(
+                        R.color.colorPrimary
+                    )
+                )
+            )
+        } else if (mValidationType == ValidationType.PHONE) {
+            _layout?.editText?.setText(context.resources.getString(R.string.plus_sign))
         }
     }
 
@@ -108,15 +116,32 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     }
 
     private fun getAttributes() {
-        context.theme.obtainStyledAttributes(attrs, R.styleable.TawseelTextInputLayoutWithValidation, 0, 0).apply {
+        context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.TawseelTextInputLayoutWithValidation,
+            0,
+            0
+        ).apply {
             try {
                 mHint = getString(R.styleable.TawseelTextInputLayoutWithValidation_hint)
                 mMaxLimit =
-                    getInt(R.styleable.TawseelTextInputLayoutWithValidation_max_number_of_characters, Int.MAX_VALUE)
-                mMinLimit = getInt(R.styleable.TawseelTextInputLayoutWithValidation_min_number_of_characters, 0)
+                    getInt(
+                        R.styleable.TawseelTextInputLayoutWithValidation_max_number_of_characters,
+                        Int.MAX_VALUE
+                    )
+                mMinLimit = getInt(
+                    R.styleable.TawseelTextInputLayoutWithValidation_min_number_of_characters,
+                    0
+                )
                 mValidationType =
-                    ValidationType.fromId(getInt(R.styleable.TawseelTextInputLayoutWithValidation_validation_type, 0))
-                validationRule = getInt(R.styleable.TawseelTextInputLayoutWithValidation_validation_rule, 0)
+                    ValidationType.fromId(
+                        getInt(
+                            R.styleable.TawseelTextInputLayoutWithValidation_validation_type,
+                            0
+                        )
+                    )
+                validationRule =
+                    getInt(R.styleable.TawseelTextInputLayoutWithValidation_validation_rule, 0)
                 mValidationRule = ValidationRule.fromId(validationRule)
             } finally {
                 recycle()
@@ -135,10 +160,23 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
             ValidationType.LENGTH_CONSTRAINT -> {
                 lengthConstraintTextValidation(string)
             }
+            ValidationType.PHONE -> {
+                phoneTextValidation(string)
+            }
             else -> {
                 nonEmptyTextValidation(string)
             }
         }
+    }
+
+    private fun phoneTextValidation(string: String?) {
+        var phoneString: String? = "+"
+        if (string?.contains(phoneString.toString()) == false) {
+            phoneString.plus(string)
+        } else {
+            phoneString = string
+        }
+        makeTextValidation(!TextUtils.isEmpty(phoneString), phoneString)
     }
 
     private fun emailTextValidation(string: String?) {
@@ -183,7 +221,12 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     }
 
     private fun validLengthRange(string: String?, result: (Boolean) -> Unit) {
-        result(!TextUtils.isEmpty(string) && string?.length?.isInRangeOf(mMinLimit, mMaxLimit) == true)
+        result(
+            !TextUtils.isEmpty(string) && string?.length?.isInRangeOf(
+                mMinLimit,
+                mMaxLimit
+            ) == true
+        )
     }
 
     private fun nonEmptyTextValidation(string: String?) {

@@ -42,7 +42,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/user_name"
             app:validation_type="password"
-            app:validation_rule="all"
+            app:validation_rule="numeric|upper_character|lower_character"
             />
 
         <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation

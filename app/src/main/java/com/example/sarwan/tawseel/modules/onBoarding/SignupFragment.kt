@@ -5,23 +5,35 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.base.BaseActivity
 import com.example.sarwan.tawseel.base.BaseFragment
+import com.example.sarwan.tawseel.entities.User
 import com.example.sarwan.tawseel.entities.requests.SignupRequest
 import com.example.sarwan.tawseel.entities.responses.SignupResponse
 import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.extensions.show
 import com.example.sarwan.tawseel.interfaces.DialogInteraction
+import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthProviderCallBack
+import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthProviderResponse
+import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthProviderResponseType
+import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthentication
 import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.repository.authentication.AuthenticationRepository
+import com.example.sarwan.tawseel.utils.EMPTY_STRING
 import kotlinx.android.synthetic.main.fragment_signup.*
 
-class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_signup), DialogInteraction {
+class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_signup),
+    DialogInteraction, PhoneAuthProviderCallBack {
 
     private var signupRequest: SignupRequest = SignupRequest()
     private var enableSignUpLiveData: MutableLiveData<Boolean> = MutableLiveData()
+    private lateinit var phoneAuthentication: PhoneAuthentication
+    private lateinit var otpDialog: VerifyOTPDialog
 
     override fun createRepoInstance() {
         repository = getRepository(AuthenticationRepository::class.java)
+        phoneAuthentication = PhoneAuthentication(bActivity, this)
+        otpDialog = VerifyOTPDialog.newInstance()
     }
 
     override fun dismissCallBack(result: Boolean) {
@@ -51,6 +63,18 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
         enableSignUpLiveData.foreverObserver(Observer {
             signup?.isEnabled = it
         })
+
+        repository.verificationCodeLiveData.foreverObserver(Observer {
+            phoneAuthentication.requestForCodeVerification(it)
+        })
+
+        repository.resendCodeLiveData.foreverObserver(Observer {
+            doPhoneAuthentication()
+        })
+    }
+
+    private fun doPhoneAuthentication() {
+        phoneAuthentication.initiate()
     }
 
     override fun callApis() {
@@ -61,14 +85,15 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
         getBaseActivity().apply {
             getAppRepository().userProfile?.token = data?.token
             getAppRepository().userProfile?.user = repo.mapSignupDataToUser(data)
+            getAppRepository().userProfile?.isLoggedIn = true
             saveUserProfile()
         }
-        showOTPVerification()
+        navigateToMainApp()
     }
 
     override fun viewListeners() {
         signup?.navigateOnClick {
-            callApis()
+            setupForPhoneAuthentication()
         }
 
         back?.navigateOnClick {
@@ -101,9 +126,49 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
         })
     }
 
+    private fun setupForPhoneAuthentication() {
+        getBaseActivity().apply {
+            getAppRepository().userProfile?.user = User(phone = signupRequest.phone)
+            saveUserProfile()
+        }
+        doPhoneAuthentication()
+    }
+
     private fun showOTPVerification() {
-        show(VerifyOTPDialog.newInstance().apply {
+        show(otpDialog.apply {
             dismissListener(this@SignupFragment)
         })
     }
+
+    override fun onVerificationStateResponse(phoneAuthProviderResponse: PhoneAuthProviderResponse) {
+        if (phoneAuthProviderResponse.message.isNotEmpty()) {
+            showMessage(phoneAuthProviderResponse.message)
+        }
+        when (phoneAuthProviderResponse.type) {
+            PhoneAuthProviderResponseType.SUCCESS -> {
+                if (otpDialog.isAdded) {
+                    otpDialog.dismiss()
+                }
+                callApis()
+            }
+
+            PhoneAuthProviderResponseType.CODE_REQUEST -> {
+                showOTPVerification()
+
+            }
+
+            PhoneAuthProviderResponseType.ERROR -> {
+                //
+            }
+
+            PhoneAuthProviderResponseType.CODE_RECEIVED -> {
+                if (!otpDialog.isAdded) {
+                    repository.alreadyVerified = true
+                    callApis()
+                }
+                otpDialog.setAutoVerificationCode(phoneAuthProviderResponse.code ?: EMPTY_STRING)
+            }
+        }
+    }
+
 }

@@ -37,7 +37,7 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
     }
 
     override fun setObservers() {
-        repository.loginApiInstance.observe(viewLifecycleOwner,Observer { apiResponse ->
+        repository.loginApiInstance.observe(viewLifecycleOwner, Observer { apiResponse ->
             when (apiResponse) {
 
                 is ApiResponse.Error -> {
@@ -59,6 +59,7 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
         getBaseActivity().apply {
             getAppRepository().userProfile?.token = data?.token
             getAppRepository().userProfile?.user = data?.user
+            getAppRepository().userProfile?.isLoggedIn = true
             saveUserProfile()
             navigateToMainApp()
         }

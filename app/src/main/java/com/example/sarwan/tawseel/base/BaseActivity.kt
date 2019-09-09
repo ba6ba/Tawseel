@@ -9,10 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.entities.UserProfile
-import com.example.sarwan.tawseel.entities.enums.ProfileType
 import com.example.sarwan.tawseel.repository.BaseRepository
-import com.example.sarwan.tawseel.repository.business.BusinessRepository
-import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
@@ -21,12 +18,14 @@ abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getAppRepository().userProfile =
-            getAppRepository().getProfileFromSharedPreference<UserProfile>(GlobalData.PROFILE)
+        getAppRepository().userProfile = getProfileFromSharedPreference()
         if (getAppRepository().userProfile == null) {
             getAppRepository().userProfile = UserProfile()
         }
     }
+
+    public fun getProfileFromSharedPreference() =
+        getAppRepository().getFromSharedPreference<UserProfile>(GlobalData.PROFILE)
 
     fun saveUserProfile() {
         getAppRepository().saveDataInSharedPreference(
@@ -55,7 +54,8 @@ abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
     ) =
         Toast.makeText(this, message, length).show()
 
-    fun saveLocationInSharedPreferences(latLng: LatLng) = getAppRepository().saveLocationInPrefs(latLng)
+    fun saveLocationInSharedPreferences(latLng: LatLng) =
+        getAppRepository().saveLocationInPrefs(latLng)
 
     fun getLocationFromSharedPreferences(success: (LatLng) -> Unit, failure: (String) -> Unit) =
         getAppRepository().getLocationFromPrefs(success, failure)

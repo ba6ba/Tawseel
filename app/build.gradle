@@ -16,6 +16,7 @@ android {
         versionName Releases.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
 
@@ -59,6 +60,8 @@ dependencies {
     implementation Libraries.retrofit
     implementation Libraries.retrofitGsonConverter
     implementation Libraries.httpLoggingInterceptor
+    implementation Firebase.fireBaseAuth
+    implementation Firebase.fireBaseFireStore
     implementation ThirdPartyLibraries.ratingBar
     testImplementation TestLibraries.mockk
     testImplementation TestLibraries.archCoreTest
@@ -72,3 +75,5 @@ dependencies {
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.mockWebServer
 }
+
+apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin

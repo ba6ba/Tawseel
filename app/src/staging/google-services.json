@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "157681505328",
+    "firebase_url": "https://tawseelapp-123.firebaseio.com",
+    "project_id": "tawseelapp-123",
+    "storage_bucket": "tawseelapp-123.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157681505328:android:ca6583908640ba8ba909f5",
+        "android_client_info": {
+          "package_name": "com.example.ba6ba.tawseel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157681505328-3i7dn28df6clmu5irr5npnrvb4220qu7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6G1JDfl-ikpIfvU16HP2X841XSwXrsr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157681505328-3i7dn28df6clmu5irr5npnrvb4220qu7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "157681505328-i1r1bu1d8iac9riuv8agssjojhee8vs8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "TestingProject.TawseelDrivingApp1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

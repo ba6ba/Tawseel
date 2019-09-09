@@ -9,6 +9,9 @@ import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import kotlinx.android.synthetic.main.dialog_confirmation.*
 
 class ConfirmationDialog : BaseDialog<CustomerRepository>(R.layout.dialog_confirmation) {
+    override fun createRepoInstance() {
+        repository = getRepository(CustomerRepository::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,7 +48,8 @@ class ConfirmationDialog : BaseDialog<CustomerRepository>(R.layout.dialog_confir
          *
          * @return A new instance of fragment ConfirmationDialog.
          */
-        private var instance : ConfirmationDialog ? = null
+        private var instance: ConfirmationDialog? = null
+
         @JvmStatic
         fun newInstance() = ConfirmationDialog().apply {
             instance = this
@@ -53,8 +57,8 @@ class ConfirmationDialog : BaseDialog<CustomerRepository>(R.layout.dialog_confir
         }
 
         @JvmStatic
-        fun getInstance() : ConfirmationDialog {
-            return instance?.let { it }?:kotlin.run { ConfirmationDialog.newInstance() }
+        fun getInstance(): ConfirmationDialog {
+            return instance?.let { it } ?: kotlin.run { ConfirmationDialog.newInstance() }
         }
     }
 }

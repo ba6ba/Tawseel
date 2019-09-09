@@ -15,6 +15,8 @@ object AndroidVersions{
 
 
 object Versions {
+    const val fireBaseAuth: String = "19.0.0"
+    const val fireBaseFireStore : String = "21.0.0"
     const val kotlin = "1.3.31"
     const val gradle = "3.3.2"
     const val appCompat = "1.0.2"
@@ -88,6 +90,11 @@ object AndroidLibraries {
     const val navigationFrag = "androidx.navigation:navigation-fragment-ktx:${Versions.nav}"
     const val googlePlayService = "com.google.android.gms:play-services-location:${Versions.googlePlay}"
     const val googleMaps = "com.google.android.gms:play-services-maps:${Versions.googlePlay}"
+}
+
+object Firebase {
+    const val fireBaseAuth = "com.google.firebase:firebase-auth:${Versions.fireBaseAuth}"
+    const val fireBaseFireStore = "com.google.firebase:firebase-firestore:${Versions.fireBaseAuth}"
 }
 
 object TestLibraries {

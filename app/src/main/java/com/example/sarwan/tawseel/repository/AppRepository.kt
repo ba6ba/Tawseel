@@ -31,6 +31,6 @@ class AppRepository(private val context : Context) {
             putString(key, gson.toJson(data))
     })
 
-    inline fun <reified T> getProfileFromSharedPreference(key : String) : T? =
+    inline fun <reified T> getFromSharedPreference(key : String) : T? =
         gson.fromJson(preferences.get(key), T::class.java)
 }

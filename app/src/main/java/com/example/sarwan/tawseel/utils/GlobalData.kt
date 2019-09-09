@@ -23,3 +23,5 @@ object GlobalData {
 
     fun currentTime() = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().time)
 }
+
+const val EMPTY_STRING = ""

@@ -1,45 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/x10"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="@dimen/x10"
-        android:background="@drawable/background_dialog_round_corner"
+    android:background="@drawable/background_dialog_round_corner"
+    android:padding="@dimen/x10"
 
->
+    >
 
-    <LinearLayout android:layout_width="wrap_content"
-                  android:orientation="horizontal"
-                  android:layout_height="wrap_content"
-                  app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-                  app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-                  android:layout_marginTop="32dp" app:layout_constraintTop_toBottomOf="@+id/number3">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number3">
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:id="@+id/back"
-                  style="@style/Tawseel.Stroke.Background.Button"
-                  app:layout_constraintStart_toStartOf="parent"
-                  app:layout_constraintBottom_toBottomOf="parent"
-                  app:layout_constraintTop_toBottomOf="@+id/description"
-                  android:layout_marginStart="@dimen/x20"
-                  android:layout_marginEnd="@dimen/x20"
-        />
+        <TextView
+            android:id="@+id/back"
+            style="@style/Tawseel.Stroke.Background.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginEnd="@dimen/x20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description" />
 
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:id="@+id/verify"
-                  style="@style/Tawseel.Stroke.Background.Button"
-                  android:backgroundTint="@color/colorPrimary"
-                  app:layout_constraintBottom_toBottomOf="parent"
-                  android:textColor="@color/white"
-                  android:layout_marginStart="@dimen/x20"
-                  android:text="@string/verify"
-                  android:layout_marginEnd="@dimen/x20"
-                  app:layout_constraintStart_toEndOf="@+id/yes"/>
+        <TextView
+            android:id="@+id/verify"
+            style="@style/Tawseel.Stroke.Background.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/x20"
+            android:layout_marginEnd="@dimen/x20"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/verify"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/yes" />
 
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:weightSum="6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/number">
+
+        <include
+            android:id="@+id/pin_first"
+            layout="@layout/layout_pin_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <include
+            android:id="@+id/pin_second"
+            layout="@layout/layout_pin_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <include
+            android:id="@+id/pin_three"
+            layout="@layout/layout_pin_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <include
+            android:id="@+id/pin_four"
+            layout="@layout/layout_pin_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <include
+            android:id="@+id/pin_five"
+            layout="@layout/layout_pin_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <include
+            android:id="@+id/pin_six"
+            layout="@layout/layout_pin_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/number3"
+        style="@style/Tawseel.TextView.Medium.Grey"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/resend_code_desc"
+        android:textAlignment="center"
+        android:textColor="@color/darK_grey"
+        android:textSize="@dimen/t14"
+        app:layout_constraintEnd_toStartOf="@+id/resend"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
         android:id="@+id/change"
@@ -53,73 +133,6 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
-    <TextView android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              style="@style/Tawseel.TextView.Medium.Grey"
-              android:textSize="@dimen/t14"
-              android:textAlignment="center"
-              android:textColor="@color/darK_grey"
-              android:text="@string/resend_code_desc"
-              android:id="@+id/number3" app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-              android:layout_marginTop="16dp" android:layout_marginStart="8dp"
-              app:layout_constraintStart_toStartOf="@+id/linearLayout" android:layout_marginEnd="8dp"
-              app:layout_constraintEnd_toStartOf="@+id/resend"/>
-
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-                  android:weightSum="6"
-                  app:layout_constraintStart_toStartOf="parent"
-                  android:layout_marginStart="8dp" android:layout_marginTop="16dp"
-                  app:layout_constraintTop_toBottomOf="@+id/number" app:layout_constraintEnd_toEndOf="parent"
-                  android:layout_marginEnd="8dp" android:id="@+id/linearLayout">
-
-        <include
-                layout="@layout/layout_pin_code"
-                android:id="@+id/pin_first"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-        />
-        <include
-                layout="@layout/layout_pin_code"
-                android:id="@+id/pin_second"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-        />
-
-        <include
-                layout="@layout/layout_pin_code"
-                android:id="@+id/pin_three"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-        />
-
-        <include
-                layout="@layout/layout_pin_code"
-                android:id="@+id/pin_four"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-        />
-
-        <include
-                layout="@layout/layout_pin_code"
-                android:id="@+id/pin_five"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-        />
-
-        <include
-                layout="@layout/layout_pin_code"
-                android:id="@+id/pin_six"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-        />
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/resend"
@@ -142,39 +155,45 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:text="@string/dummy_phone_no"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="@dimen/t16"
-        android:text="@string/dummy_phone_no"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/change"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:text="@tools:sample/us_phones" />
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/enter_six_digit_otp"
-              style="@style/Tawseel.TextView.Medium.Grey"
-              android:textSize="@dimen/t14"
-              android:textColor="@color/darK_grey"
-              android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-              android:layout_marginStart="8dp"
-              app:layout_constraintStart_toStartOf="parent"
-              android:id="@+id/textView4" app:layout_constraintTop_toBottomOf="@+id/textView5"
-              android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/textView4"
+        style="@style/Tawseel.TextView.Medium.Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/enter_six_digit_otp"
+        android:textColor="@color/darK_grey"
+        android:textSize="@dimen/t14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:text="@string/verify_otp"
-              style="@style/Tawseel.TextView.Medium.Grey"
-              android:textSize="@dimen/t22"
-              android:textColor="@color/black"
-              android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-              android:layout_marginStart="8dp"
-              app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="8dp"
-              app:layout_constraintTop_toTopOf="parent" android:id="@+id/textView5"/>
-
+    <TextView
+        android:id="@+id/textView5"
+        style="@style/Tawseel.TextView.Medium.Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/verify_otp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/t22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

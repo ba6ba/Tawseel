@@ -6,4 +6,5 @@ class UserProfile {
     var user : User ? = null
     var profileType: ProfileType? = null
     var token : String ? = null
+    var isLoggedIn = false
 }

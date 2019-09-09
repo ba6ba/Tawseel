@@ -17,8 +17,11 @@ class SplashFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        repository.navigateIf(success = {
-            navigateTo(R.id.action_splashFragment_to_MainActivity, withDelay = true)
+        repository.navigateIf(bActivity, success = {
+            navigateTo(
+                repository.getActivityId(getProfileFromSharedPreference()),
+                withDelay = true
+            )
         }, failure = {
             checkForClickAction()
         })

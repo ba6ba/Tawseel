@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.textfield.TextInputEditText
+<com.google.android.material.textfield.TextInputEditText xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Tawseel.TextView.Medium.Blue"
     android:layout_width="@dimen/x50"
     android:layout_height="@dimen/x65"
-    style="@style/Tawseel.TextView.Medium.Blue"
-    tools:text="@tools:sample/cities"
-    android:maxLength="1"
-    android:textSize="@dimen/t30"
-    android:textAlignment="center"
-    android:inputType="number"
-    android:backgroundTint="@color/scent"
     android:layout_marginStart="@dimen/x8"
     android:layout_marginEnd="@dimen/x8"
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"/>
+    android:backgroundTint="@color/scent"
+    android:imeOptions="actionNext"
+    android:inputType="number"
+    android:maxLength="1"
+    android:textAlignment="center"
+    android:textSize="@dimen/t30"
+    tools:text="@tools:sample/cities" />

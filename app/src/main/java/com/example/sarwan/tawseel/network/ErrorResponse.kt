@@ -1,3 +1,7 @@
 package com.example.sarwan.tawseel.network
 
-class ErrorResponse(private val errors: Error) {}
+class ErrorResponse(
+    val success: Boolean,
+    val data: Any,
+    val error: Error
+)

@@ -80,4 +80,10 @@
     <string name="length_constraint">must be equals to</string>
     <string name="valid_password">must contains</string>
     <string name="valid_email_address">must be a valid email address</string>
+    <string name="code_has_been_sent_message">Code has been sent to your device. Kindly enter code to proceed with signup process</string>
+    <string name="successfully_signup">Successfully Sign up!</string>
+    <string name="signup_failed">Signup Failed</string>
+    <string name="invalid_code">Invalid code. Please enter valid code to proceed.</string>
+    <string name="pin_must_not_be_empty">Pin must not be empty</string>
+    <string name="plus_sign">+</string>
 </resources>

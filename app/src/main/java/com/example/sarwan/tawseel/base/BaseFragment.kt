@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
@@ -23,7 +24,7 @@ import java.io.Serializable
 abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
     Fragment(), TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T>, Resources {
 
-    private lateinit var baseActivity: BaseActivity<T>
+    protected lateinit var bActivity: BaseActivity<T>
     protected lateinit var repository: T
 
     abstract fun createRepoInstance()
@@ -34,7 +35,7 @@ abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        baseActivity = (activity as BaseActivity<T>)
+        bActivity = (activity as BaseActivity<T>)
         createRepoInstance()
         activityCreated(savedInstanceState)
         bundleOnCreated(arguments)
@@ -46,11 +47,15 @@ abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
         activityCreated(savedInstanceState)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return createView(inflater, container = container, layoutId = layoutId)
     }
 
-    protected fun getBaseActivity() = baseActivity
+    protected fun getBaseActivity() = bActivity
 
     override fun getRepository(t: Class<T>): T = getBaseActivity().getRepository(t)
 
@@ -75,20 +80,29 @@ abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
 
     override fun getColorFromValues(resId: Int) = getBaseActivity().getColorFromValues(resId)
 
-    override fun getDimensionFromResources(resId: Int) = getBaseActivity().getDimensionFromResources(resId)
+    override fun getDimensionFromResources(resId: Int) =
+        getBaseActivity().getDimensionFromResources(resId)
 
-    override fun getIntegerFromResources(resId: Int) = getBaseActivity().getIntegerFromResources(resId)
+    override fun getIntegerFromResources(resId: Int) =
+        getBaseActivity().getIntegerFromResources(resId)
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun getFontFromResources(resId: Int) = getBaseActivity().getFontFromResources(resId)
 
-    override fun getDrawableFromResources(@DrawableRes resId: Int) = getBaseActivity().getDrawableFromResources(resId)
+    override fun getDrawableFromResources(@DrawableRes resId: Int) =
+        getBaseActivity().getDrawableFromResources(resId)
 
 
-    fun <A> MutableLiveData<A>.foreverObserver(observer: Observer<A>) = observe(viewLifecycleOwner, observer)
+    fun <A> MutableLiveData<A>.foreverObserver(observer: Observer<A>) =
+        observe(viewLifecycleOwner, observer)
 
     protected fun errorApiCall(message: String?) {
         getBaseActivity().showMessage(message)
     }
+
+    fun showMessage(message: String?, length: Int = Toast.LENGTH_LONG) =
+        bActivity.showMessage(message, length)
+
+    fun getProfileFromSharedPreference() = getBaseActivity().getProfileFromSharedPreference()
 
 }

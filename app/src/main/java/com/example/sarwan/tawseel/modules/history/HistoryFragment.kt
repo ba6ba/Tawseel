@@ -18,21 +18,21 @@ import com.example.sarwan.tawseel.utils.mapProfileToHistory
 import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
-class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_history) , () -> Unit {
+class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_history), () -> Unit {
 
     override fun createRepoInstance() {
         repository = getRepository(HistoryRepository::class.java)
     }
 
-    private var swipeRefreshLayoutHelper : SwipeRefreshLayoutHelper ? = null
+    private var swipeRefreshLayoutHelper: SwipeRefreshLayoutHelper? = null
 
     override fun invoke() {
-
+        //
     }
 
     override fun activityCreated(savedInstanceState: Bundle?) {
-        getBaseActivity().getAppRepository().userProfile?.profileType = getBaseActivity().
-            getAppRepository().getProfileFromSharedPreference<ProfileType>(GlobalData.PROFILE)
+        getBaseActivity().getAppRepository().userProfile?.profileType =
+            getBaseActivity().getProfileFromSharedPreference()?.profileType
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,7 +40,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
     }
 
     private fun checkForCustomization(view: View) {
-        if (getBaseActivity().getAppRepository().userProfile?.profileType == ProfileType.DRIVER){
+        if (getBaseActivity().getAppRepository().userProfile?.profileType == ProfileType.DRIVER) {
             reCreateView()
         }
         initViews(view)
@@ -53,10 +53,14 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
 
         recycler_view?.apply {
             layoutManager = LinearLayoutManager(getBaseActivity(), RecyclerView.VERTICAL, false)
-            adapter = HistoryAdapter(getBaseActivity(),
-                repository.
-                    getHistoryList(getBaseActivity().getAppRepository().userProfile?.profileType?.mapProfileToHistory()?: HistoryMode.NON_BUSINESS),
-                this@HistoryFragment)
+            adapter = HistoryAdapter(
+                getBaseActivity(),
+                repository.getHistoryList(
+                    getBaseActivity().getAppRepository().userProfile?.profileType?.mapProfileToHistory()
+                        ?: HistoryMode.NON_BUSINESS
+                ),
+                this@HistoryFragment
+            )
             setRecyclerListener(MapViewRecyclerListener())
             swipeRefreshLayoutHelper?.stopRefreshLoader()
         }
@@ -74,12 +78,12 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
         }
     }
 
-    companion object{
+    companion object {
 
         @JvmStatic
-        fun newInstance(mode : HistoryMode) = HistoryFragment().apply {
+        fun newInstance(mode: HistoryMode) = HistoryFragment().apply {
             arguments = Bundle(1).apply {
-                putSerializable(GlobalData.PARAM , mode)
+                putSerializable(GlobalData.PARAM, mode)
             }
         }
     }

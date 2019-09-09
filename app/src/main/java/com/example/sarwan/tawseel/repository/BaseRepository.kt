@@ -8,7 +8,11 @@ import com.example.sarwan.tawseel.base.Tawseel
 import com.example.sarwan.tawseel.entities.User
 import com.example.sarwan.tawseel.entities.UserProfile
 import com.example.sarwan.tawseel.entities.enums.ProfileType
+import com.example.sarwan.tawseel.network.ErrorResponse
 import com.example.sarwan.tawseel.utils.GlobalData
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import okhttp3.ResponseBody
 
 abstract class BaseRepository() {
 
@@ -28,4 +32,10 @@ abstract class BaseRepository() {
             }
         }
     }
+
+    fun apiErrorBody(response: ResponseBody?) =
+        Gson().fromJson(
+            response?.charStream(),
+            object : TypeToken<ErrorResponse>() {}.type
+        ) as ErrorResponse
 }

@@ -22,26 +22,28 @@ abstract class BaseDialog <T : BaseRepository>( private val layoutId: Int) : Dia
     TawseelLayout, com.example.sarwan.tawseel.interfaces.Fragment<T>{
 
     private val TAG = "BaseDialog"
-    private lateinit var baseActivity : BaseActivity<T>
+    protected lateinit var bActivity : BaseActivity<T>
     protected var dismissListener : DialogInteraction ? = null
     protected var action : Boolean = false
 
-    private var repo : T ? = null
+    protected lateinit var repository: T
+
+    abstract fun createRepoInstance()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        baseActivity = activity as BaseActivity<T>
+        bActivity = activity as BaseActivity<T>
+        createRepoInstance()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return createView(inflater, container = container, layoutId = layoutId)
     }
 
-    protected fun getBaseActivity() = baseActivity
+    protected fun getBaseActivity() = bActivity
 
-    override fun getRepository(t : Class<T>) : T{
-        return if (repo == null) { repo = t.newInstance() ; repo?:t.newInstance() } else repo?:t.newInstance()
-    }
+    override fun getRepository(t: Class<T>): T = getBaseActivity().getRepository(t)
 
     fun dismissListener(listener : DialogInteraction) {
         dismissListener = listener
