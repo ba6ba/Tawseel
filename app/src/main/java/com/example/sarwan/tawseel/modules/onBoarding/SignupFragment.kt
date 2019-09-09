@@ -8,6 +8,7 @@ import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseActivity
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.entities.User
+import com.example.sarwan.tawseel.entities.enums.ProfileType
 import com.example.sarwan.tawseel.entities.requests.SignupRequest
 import com.example.sarwan.tawseel.entities.responses.SignupResponse
 import com.example.sarwan.tawseel.extensions.navigateOnClick
@@ -20,10 +21,12 @@ import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthentication
 import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.repository.authentication.AuthenticationRepository
 import com.example.sarwan.tawseel.utils.EMPTY_STRING
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_signup.*
+import kotlinx.android.synthetic.main.fragment_signup.back
 
 class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_signup),
-    DialogInteraction, PhoneAuthProviderCallBack {
+    PhoneAuthProviderCallBack {
 
     private var signupRequest: SignupRequest = SignupRequest()
     private var enableSignUpLiveData: MutableLiveData<Boolean> = MutableLiveData()
@@ -36,15 +39,18 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
         otpDialog = VerifyOTPDialog.newInstance()
     }
 
-    override fun dismissCallBack(result: Boolean) {
-        if (result) {
-            navigateToMainApp()
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewListeners()
         setObservers()
+        dataToViews()
+    }
+
+    override fun dataToViews() {
+        user_name?.setHint(
+            repository.getSignupNameForProfileType(
+                getProfileFromSharedPreference()?.profileType ?: ProfileType.DRIVER
+            )
+        )
     }
 
     override fun setObservers() {
@@ -135,9 +141,7 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
     }
 
     private fun showOTPVerification() {
-        show(otpDialog.apply {
-            dismissListener(this@SignupFragment)
-        })
+        show(otpDialog)
     }
 
     override fun onVerificationStateResponse(phoneAuthProviderResponse: PhoneAuthProviderResponse) {

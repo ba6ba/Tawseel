@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseActivity
 import com.example.sarwan.tawseel.entities.User
+import com.example.sarwan.tawseel.entities.UserProfile
 import com.example.sarwan.tawseel.entities.enums.AuthenticationType
 import com.example.sarwan.tawseel.entities.enums.Irrelevant
+import com.example.sarwan.tawseel.entities.enums.ProfileType
 import com.example.sarwan.tawseel.entities.enums.ValidationType
 import com.example.sarwan.tawseel.entities.requests.LoginRequest
 import com.example.sarwan.tawseel.entities.requests.SignupRequest
@@ -46,6 +48,8 @@ class AuthenticationRepository : BaseRepository() {
 
     fun getLoginTypeForAuthenticationType(type: AuthenticationType = authenticationType) =
         if (type == AuthenticationType.EMAIL) "email" else "phone"
+
+    fun getSignupNameForProfileType(type: ProfileType) = if (type == ProfileType.BUSINESS) "Business Name" else "Full Name"
 
     fun mapSignupDataToUser(signupResponse: SignupResponse.Data?) = User().apply {
         _id = signupResponse?._id
