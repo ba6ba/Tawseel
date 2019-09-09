@@ -9,12 +9,15 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.entities.UserProfile
+import com.example.sarwan.tawseel.extensions.navigate
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
+
+    lateinit var repo: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +36,17 @@ abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
         )
     }
 
-    lateinit var repo: T
+    protected fun logOut() {
+        clearUserFromSharedPreference()
+    }
+
+    private fun clearUserFromSharedPreference() {
+        clearUser()
+    }
+
+    private fun clearUser() {
+        getAppRepository().saveDataInSharedPreference(GlobalData.PROFILE, UserProfile())
+    }
 
     fun getAppRepository() = (application as Tawseel).getRepository()
 

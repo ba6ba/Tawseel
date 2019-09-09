@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class CustomerActivity : DrawerActivity<CustomerRepository>(R.layout.activity_customer) {
 
     override fun activityCreated(savedInstanceState: Bundle?) {
-        setupMainNavigation()
+        //
     }
 
     override fun toolbarTitleChange(text: String?) {
@@ -23,10 +23,6 @@ class CustomerActivity : DrawerActivity<CustomerRepository>(R.layout.activity_cu
 
     override fun toolbarIconChange(drawable: Drawable) {
         toolbar_icon?.setImageDrawable(drawable)
-    }
-
-    private fun setupMainNavigation() {
-        bottomNavigation.setupWithNavController(findNavController(R.id.main_container))
     }
 
     override fun getNavigationMenuId(): Int = R.menu.customer_side_navigation_menu

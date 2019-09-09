@@ -2,11 +2,13 @@ package com.example.sarwan.tawseel.modules.cart
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
+import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.extensions.visible
 import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import kotlinx.android.synthetic.main.fragment_cart.*
@@ -21,6 +23,14 @@ class CartFragment : BaseFragment<CustomerRepository>(R.layout.fragment_cart) {
         initViews(view)
         handleCartItemAddition()
         setObservers()
+        viewListeners()
+    }
+
+    override fun viewListeners() {
+        cart_button?.navigateOnClick {
+            if (empty_layout?.isVisible == true) navigateBack() else navigateTo(R.id.actionOrders)
+        }
+
     }
 
     override fun setObservers() {
@@ -39,12 +49,21 @@ class CartFragment : BaseFragment<CustomerRepository>(R.layout.fragment_cart) {
     private fun checkForEmptyRecyclerView(empty: Boolean) {
         empty_layout?.visible(empty)
         non_empty_layout?.visible(!empty)
+        cartButtonText(empty)
+    }
+
+    private fun cartButtonText(empty: Boolean) {
+        if (empty) cart_button?.text =
+            bActivity.getStringFromValues(R.string.shop_now) else bActivity.getStringFromValues(R.string.deliver)
+
     }
 
     override fun initViews(view: View?) {
         cart_recycler_view?.apply {
-            layoutManager = LinearLayoutManager(getBaseActivity(),RecyclerView.VERTICAL, false)
+            layoutManager = LinearLayoutManager(getBaseActivity(), RecyclerView.VERTICAL, false)
             adapter = CartItemAdapter(getBaseActivity(), ArrayList())
         }
+
+        cartButtonText(empty_layout?.isVisible == true)
     }
 }

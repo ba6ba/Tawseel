@@ -1,44 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/driver_nav_graph"
-            app:startDestination="@id/driverHomeFragment">
-
-    <include
-            app:graph="@navigation/history_navigation_graph"
-    />
-
-    <include
-            app:graph="@navigation/profile_navigation_graph"
-    />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/driver_nav_graph"
+    app:startDestination="@id/driverHomeFragment">
 
     <fragment
-            android:id="@+id/driverHomeFragment"
-            android:name="com.example.sarwan.tawseel.modules.driver.DriverHomeFragment"
-            tools:layout="@layout/fragment_home_driver"
-            android:label="Home">
+        android:id="@+id/driverHomeFragment"
+        android:name="com.example.sarwan.tawseel.modules.driver.DriverHomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home_driver">
 
         <action
-            app:destination="@id/driverNewOrderFragment"
             android:id="@+id/driverHomeFragment_to_driverNewOrderFragment"
+            app:destination="@id/driverNewOrderFragment"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"
-            />
+            app:popExitAnim="@android:anim/fade_out" />
 
     </fragment>
 
     <fragment
         android:id="@+id/driverNewOrderFragment"
         android:name="com.example.sarwan.tawseel.modules.driver.DriverNewOrderFragment"
-        tools:layout="@layout/fragment_new_order_driver"
-        android:label="New Order" />
+        android:label="New Order"
+        tools:layout="@layout/fragment_new_order_driver" />
 
     <fragment
-            android:id="@+id/actionTracking"
-            android:name="com.example.sarwan.tawseel.modules.driver.DriverOrderStatusFragment"
-            tools:layout="@layout/fragment_driver_status"
-            android:label="Order Status" />
+        android:id="@+id/actionTracking"
+        android:name="com.example.sarwan.tawseel.modules.driver.DriverOrderStatusFragment"
+        android:label="Order Status"
+        tools:layout="@layout/fragment_driver_status" />
+
+    <include app:graph="@navigation/profile_navigation_graph" />
+
+    <include app:graph="@navigation/history_navigation_graph" />
+
+    <include app:graph="@navigation/authentication_nav_graph" />
 
 </navigation>

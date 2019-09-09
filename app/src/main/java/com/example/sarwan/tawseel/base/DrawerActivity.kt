@@ -3,37 +3,35 @@ package com.example.sarwan.tawseel.base
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.annotation.DrawableRes
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.NavigationUI.navigateUp
 import androidx.navigation.ui.setupWithNavController
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.extensions.actionOnClick
 import com.example.sarwan.tawseel.extensions.getConiditonDrawable
-import com.example.sarwan.tawseel.extensions.navigate
 import com.example.sarwan.tawseel.repository.BaseRepository
-import com.example.sarwan.tawseel.repository.driver.DriverRepository
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.layout_header_nav_menu.view.*
 
-abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : BaseActivity<T>(){
+abstract class DrawerActivity<T : BaseRepository>(private val layout: Int) : BaseActivity<T>() {
 
-    private var navHostFragment : NavHostFragment ? = null
-    private var drawer_layout : DrawerLayout ? = null
-    private var navigation_view : NavigationView ? = null
-    private var toolBarIcon : ImageView ? = null
-    private var backIconVisible : MutableLiveData<Boolean> = MutableLiveData()
+    private var navHostFragment: NavHostFragment? = null
+    private var drawer_layout: DrawerLayout? = null
+    private var navigation_view: NavigationView? = null
+    private var toolBarIcon: ImageView? = null
+    private var backIconVisible: MutableLiveData<Boolean> = MutableLiveData()
+    private val BUSINESS_NAME_PLACEHOLDER = "[BUSINESS_NAME]"
+    private val CUSTOMER_NAME_PLACEHOLDER = "[CUSTOMER_NAME]"
+    private val DRIVER_NAME_PLACEHOLDER = "[DRIVER_NAME]"
 
     abstract fun activityCreated(savedInstanceState: Bundle?)
-    abstract fun toolbarTitleChange(text : String?)
+    abstract fun toolbarTitleChange(text: String?)
     abstract fun toolbarIconChange(drawable: Drawable)
-    abstract fun getNavigationMenuId() : Int
+    abstract fun getNavigationMenuId(): Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,16 +50,15 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
         })
     }
 
-    private fun lockDrawer(lock: Boolean?){
-        drawer_layout?.setDrawerLockMode(if(lock == true) DrawerLayout.LOCK_MODE_LOCKED_CLOSED else DrawerLayout.LOCK_MODE_UNLOCKED)
+    private fun lockDrawer(lock: Boolean?) {
+        drawer_layout?.setDrawerLockMode(if (lock == true) DrawerLayout.LOCK_MODE_LOCKED_CLOSED else DrawerLayout.LOCK_MODE_UNLOCKED)
     }
 
     private fun clickListener() {
         toolBarIcon?.actionOnClick {
-            if (backIconVisible.value == true){
+            if (backIconVisible.value == true) {
                 performBackAction()
-            }
-            else {
+            } else {
                 toggleDrawer()
             }
         }
@@ -74,23 +71,46 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
     private fun navigationListener() {
         navHostFragment?.navController?.addOnDestinationChangedListener { controller, destination, arguments ->
             backIconVisible.postValue(controller.graph.startDestination != destination.id)
-            toolbarTitleChange(destination.label?.toString())
-            toolbarIconChange(getConiditonDrawable(controller.graph.startDestination == destination.id, R.drawable.ic_navigation_white_24dp, R.drawable.back))
+            toolbarTitleChange(getHeaderTitle(destination.label?.toString()))
+            toolbarIconChange(
+                getConiditonDrawable(
+                    controller.graph.startDestination == destination.id,
+                    R.drawable.ic_navigation_white_24dp,
+                    R.drawable.back
+                )
+            )
         }
+    }
+
+    private fun getHeaderTitle(header: String?): String? {
+        if (header?.contains(BUSINESS_NAME_PLACEHOLDER) == true) {
+            return getProfileFromSharedPreference()?.business?.businessName
+        }
+
+        if (header?.contains(DRIVER_NAME_PLACEHOLDER) == true) {
+            return getProfileFromSharedPreference()?.user?.name
+        }
+
+        if (header?.contains(CUSTOMER_NAME_PLACEHOLDER) == true) {
+            return getProfileFromSharedPreference()?.user?.name
+        }
+
+        return header
     }
 
     private fun setupViews() {
         backIconVisible.value = false
         drawer_layout = findViewById(R.id.drawer_layout)
         navigation_view = findViewById(R.id.navigation_view)
-        navHostFragment = supportFragmentManager.findFragmentById(R.id.main_container) as? NavHostFragment
+        navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.main_container) as? NavHostFragment
         toolBarIcon = findViewById(R.id.toolbar_icon)
     }
 
     override fun onBackPressed() {
-        if (drawer_layout?.isDrawerOpen(GravityCompat.START) == true){
+        if (drawer_layout?.isDrawerOpen(GravityCompat.START) == true) {
             drawer_layout?.closeDrawer(GravityCompat.START)
-        }else {
+        } else {
             super.onBackPressed()
         }
     }
@@ -99,12 +119,28 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
         navigation_view?.apply {
             inflateMenu(getNavigationMenuId())
             setNavigationItemSelectedListener {
-                when(it.itemId){
+                when (it.itemId) {
                     R.id.actionHome -> {
                         closeDrawer()
                     }
                     R.id.actionLogout -> {
-                        finish()
+                        //logOut()
+                        //navigateToLoginFragment()
+                    }
+                    R.id.actionHistory -> {
+
+                    }
+                    R.id.actionItemsList -> {
+
+                    }
+                    R.id.actionAddItem -> {
+
+                    }
+                    R.id.actionCart -> {
+
+                    }
+                    R.id.actionTracking -> {
+
                     }
                 }
                 it.isChecked = true
@@ -122,6 +158,10 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
         navHostFragment?.navController?.navigate(R.id.actionProfile)
     }
 
+    private fun navigateToLoginFragment() {
+        navHostFragment?.navController?.navigate(R.id.actionLogin)
+    }
+
     private fun openDrawer() {
         drawer_layout?.openDrawer(GravityCompat.START, true)
     }
@@ -133,7 +173,7 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout : Int) : Ba
     private fun toggleDrawer() {
         if (drawer_layout?.isDrawerOpen(GravityCompat.START) == true) {
             closeDrawer()
-        }else {
+        } else {
             openDrawer()
         }
     }

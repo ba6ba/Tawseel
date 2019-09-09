@@ -20,14 +20,22 @@ class BusinessHomeFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        dataToViews()
         viewListeners()
         setObservers()
+    }
+
+    override fun dataToViews() {
+        business_description?.text = getProfileFromSharedPreference()?.business?.businessDescription
+            ?: repository.DEFAULT_BUSINESS_NAME
+        business_name?.text = getProfileFromSharedPreference()?.business?.businessImage
+            ?: repository.DEFAULT_BUSINESS_DESCRIPTION
     }
 
     override fun viewListeners() {
         edit_business?.actionOnClick {
             repository.onEditLiveData.apply {
-                postValue(value?.let { !it }?:true)
+                postValue(value?.let { !it } ?: true)
             }
         }
 
@@ -53,7 +61,6 @@ class BusinessHomeFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
             businessDescription.observe(this@BusinessHomeFragment, Observer {
                 business_description.text = it
             })
-
         }
     }
 
@@ -62,7 +69,11 @@ class BusinessHomeFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
         business_name_layout.visible(edit)
         business_description.visible(!edit)
         business_description_layout.visible(edit)
-        edit_business.booleanText(edit, getStringFromValues(R.string.done), getStringFromValues(R.string.edit))
+        edit_business.booleanText(
+            edit,
+            getStringFromValues(R.string.done),
+            getStringFromValues(R.string.edit)
+        )
         edit_profile_image.visible(edit)
     }
 }

@@ -14,7 +14,8 @@ import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.fragment_item_details.*
 
-class ItemDetailsFragment : BaseFragment<CustomerRepository>(R.layout.fragment_item_details), DialogInteraction {
+class ItemDetailsFragment : BaseFragment<CustomerRepository>(R.layout.fragment_item_details),
+    DialogInteraction {
 
     override fun createRepoInstance() {
         repository = getRepository(CustomerRepository::class.java)
@@ -25,7 +26,7 @@ class ItemDetailsFragment : BaseFragment<CustomerRepository>(R.layout.fragment_i
     }
 
     private fun actionOnDialogButton(result: Boolean) {
-        if (!result) navigateBack()
+        if (!result) navigateTo(R.id.actionCart)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,9 +38,9 @@ class ItemDetailsFragment : BaseFragment<CustomerRepository>(R.layout.fragment_i
     override fun setObservers() {
         repository.apply {
             cartItemListener.foreverObserver(Observer {
-                if (added){
+                if (added) {
                     addToCart(getData())
-                }else {
+                } else {
                     removeFromCart(getData())
                 }
             })

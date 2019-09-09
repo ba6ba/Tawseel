@@ -22,7 +22,7 @@
             app:layout_constraintBottom_toBottomOf="parent" app:srcCompat="@drawable/igloo_shape"
             android:id="@+id/edit_business"/>
     <TextView
-            tools:text="@string/business_description"
+            tools:text="@string/business_name"
             android:textStyle="bold"
             android:layout_width="0dp"
             style="@style/Tawseel.TextView.Medium.Blue"

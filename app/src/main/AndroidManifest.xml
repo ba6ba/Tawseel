@@ -3,8 +3,6 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.example.sarwan.tawseel">
 
-    <dist:module dist:instant="true" />
-
     <application
         android:name=".base.Tawseel"
         android:allowBackup="true"
@@ -38,6 +36,12 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA6O6Hta1dl-q_nytwn08B2UINAuZ_jVds" />
 
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
     </application>
+
+    <dist:module dist:instant="true" />
 
 </manifest>

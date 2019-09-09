@@ -57,10 +57,6 @@ class VerifyOTPDialog : BaseDialog<AuthenticationRepository>(R.layout.dialog_ver
             verifyPinNumbers()
         }
 
-        back?.navigateOnClick {
-            dismiss()
-        }
-
         change?.navigateOnClick {
             dismiss()
         }

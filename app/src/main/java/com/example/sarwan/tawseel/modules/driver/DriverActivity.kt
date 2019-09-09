@@ -13,11 +13,12 @@ import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_driver.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
-class DriverActivity : DrawerActivity<DriverRepository>(R.layout.activity_driver) , OnMapReadyCallback{
+class DriverActivity : DrawerActivity<DriverRepository>(R.layout.activity_driver),
+    OnMapReadyCallback {
 
     override fun getNavigationMenuId(): Int = R.menu.driver_side_navigation_menu
 
-    private var mapConfiguration : MapConfiguration ? = null
+    private var mapConfiguration: MapConfiguration? = null
 
     override fun onMapReady(map: GoogleMap?) {
         configureMap(map)
@@ -37,14 +38,9 @@ class DriverActivity : DrawerActivity<DriverRepository>(R.layout.activity_driver
 
     private fun setupConfiguration() {
         mapConfiguration =
-            MapConfiguration.
-                builder().
-                addLatLng(LatLng(GlobalData.LATITUDE , GlobalData.LONGITUDE)).
-                moveCamera(true).
-                addMarker(true).
-                build()
+            MapConfiguration.builder().addLatLng(LatLng(GlobalData.LATITUDE, GlobalData.LONGITUDE))
+                .moveCamera(true).addMarker(true).build()
     }
-
 
 
     override fun toolbarTitleChange(text: String?) {

@@ -16,13 +16,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.layout_nearby_map_card.*
 
-class OrdersFragment : BaseFragment<CustomerRepository>(R.layout.fragment_order_status), OnMapReadyCallback {
+class OrdersFragment : BaseFragment<CustomerRepository>(R.layout.fragment_order_status),
+    OnMapReadyCallback {
 
     override fun createRepoInstance() {
         repository = getRepository(CustomerRepository::class.java)
     }
 
-    private var mapConfiguration : MapConfiguration ? = null
+    private var mapConfiguration: MapConfiguration? = null
 
     override fun onMapReady(map: GoogleMap?) {
         configureMap(map)
@@ -42,12 +43,8 @@ class OrdersFragment : BaseFragment<CustomerRepository>(R.layout.fragment_order_
 
     private fun setupConfiguration() {
         mapConfiguration =
-            MapConfiguration.
-                builder().
-                addLatLng(LatLng(GlobalData.LATITUDE , GlobalData.LONGITUDE)).
-                moveCamera(true).
-                addMarker(true).
-                build()
+            MapConfiguration.builder().addLatLng(LatLng(GlobalData.LATITUDE, GlobalData.LONGITUDE))
+                .moveCamera(true).addMarker(true).build()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,6 +55,10 @@ class OrdersFragment : BaseFragment<CustomerRepository>(R.layout.fragment_order_
 
     override fun viewListeners() {
         title?.navigateOnClick {
+            navigateTo(R.id.action_ordersFragment_to_RatingFragment)
+        }
+
+        avatar?.navigateOnClick {
             navigateTo(R.id.action_ordersFragment_to_RatingFragment)
         }
     }

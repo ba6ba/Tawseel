@@ -1,108 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-            app:startDestination="@id/actionStores"
-            android:id="@+id/main_nav_graph.xml">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph.xml"
+    app:startDestination="@id/actionStores">
 
-    <include
-            app:graph="@navigation/history_navigation_graph"
-    />
+    <fragment
+        android:id="@+id/actionStores"
+        android:name="com.example.sarwan.tawseel.modules.stores.StoresFragment"
+        android:label="Stores"
+        tools:layout="@layout/fragment_stores">
 
-    <include
-            app:graph="@navigation/profile_navigation_graph"
-    />
-
-    <fragment android:id="@+id/actionStores"
-              android:label="Stores"
-              tools:layout="@layout/fragment_stores"
-              android:name="com.example.sarwan.tawseel.modules.stores.StoresFragment"
-    >
-
-        <action android:id="@+id/action_storesFragment_to_VendorFragment"
-                app:enterAnim="@android:anim/slide_in_left"
-                app:exitAnim="@android:anim/slide_out_right"
-                app:popEnterAnim="@android:anim/fade_in"
-                app:popExitAnim="@android:anim/fade_out"
-                app:destination="@+id/actionVendor"
-        />
+        <action
+            android:id="@+id/action_storesFragment_to_VendorFragment"
+            app:destination="@+id/actionVendor"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
 
     </fragment>
 
-    <fragment android:id="@+id/actionVendor"
-              android:label="Vendor"
-              tools:layout="@layout/fragment_vendors"
-              android:name="com.example.sarwan.tawseel.modules.vendors.VendorFragment"
-    >
+    <fragment
+        android:id="@+id/actionVendor"
+        android:name="com.example.sarwan.tawseel.modules.vendors.VendorFragment"
+        android:label="Vendor"
+        tools:layout="@layout/fragment_vendors">
 
-        <action android:id="@+id/action_vendorFragment_to_DetailsFragment"
-                app:enterAnim="@android:anim/slide_in_left"
-                app:exitAnim="@android:anim/slide_out_right"
-                app:popEnterAnim="@android:anim/fade_in"
-                app:popExitAnim="@android:anim/fade_out"
-                app:destination="@id/actionDetails"
-        />
+        <action
+            android:id="@+id/action_vendorFragment_to_DetailsFragment"
+            app:destination="@id/actionDetails"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
 
 
     </fragment>
 
     <fragment
-            android:id="@+id/actionDetails"
-            android:name="com.example.sarwan.tawseel.modules.details.ItemDetailsFragment"
-            tools:layout="@layout/fragment_item_details"
-            android:label="Details"
-    />
+        android:id="@+id/actionDetails"
+        android:name="com.example.sarwan.tawseel.modules.details.ItemDetailsFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_item_details" />
 
-    <fragment android:id="@+id/actionOrders"
-              android:label="Order Status"
-              tools:layout="@layout/fragment_orders"
-              android:name="com.example.sarwan.tawseel.modules.orders.OrdersFragment"
-    >
-        <action android:id="@+id/action_ordersFragment_to_RatingFragment"
+    <fragment
+        android:id="@+id/actionOrders"
+        android:name="com.example.sarwan.tawseel.modules.orders.OrdersFragment"
+        android:label="Order Status"
+        tools:layout="@layout/fragment_orders">
+        <action
+            android:id="@+id/action_ordersFragment_to_RatingFragment"
+            app:destination="@id/actionRating"
             app:enterAnim="@android:anim/slide_in_left"
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out"
-            app:destination="@id/actionRating"
-            />
+            app:popExitAnim="@android:anim/fade_out" />
 
     </fragment>
 
     <fragment
         android:id="@+id/actionRating"
         android:name="com.example.sarwan.tawseel.modules.rating.RatingFragment"
-        tools:layout="@layout/fragment_rating"
         android:label="Rating"
-        />
+        tools:layout="@layout/fragment_rating" />
 
-    <fragment android:id="@+id/actionNotifications"
-              android:label="Notifications"
-              tools:layout="@layout/fragment_notifications"
-              android:name="com.example.sarwan.tawseel.modules.notifications.NotificationsFragment"
-    >
+    <fragment
+        android:id="@+id/actionNotifications"
+        android:name="com.example.sarwan.tawseel.modules.notifications.NotificationsFragment"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notifications">
 
-
-
-    </fragment>
-
-    <fragment android:id="@+id/actionUser"
-              android:label="User"
-              tools:layout="@layout/fragment_user"
-              android:name="com.example.sarwan.tawseel.modules.user.UserFragment"
-    >
 
     </fragment>
 
-    <fragment android:id="@+id/actionCart"
-              android:label="Cart"
-              tools:layout="@layout/fragment_cart"
-              android:name="com.example.sarwan.tawseel.modules.cart.CartFragment"
-    />
+    <fragment
+        android:id="@+id/actionUser"
+        android:name="com.example.sarwan.tawseel.modules.user.UserFragment"
+        android:label="User"
+        tools:layout="@layout/fragment_user">
 
-    <fragment android:id="@+id/actionTracking"
-              android:label="Order Status"
-              tools:layout="@layout/fragment_orders"
-              android:name="com.example.sarwan.tawseel.modules.orders.OrdersFragment"
-    />
+    </fragment>
 
+    <fragment
+        android:id="@+id/actionCart"
+        android:name="com.example.sarwan.tawseel.modules.cart.CartFragment"
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart" />
+
+    <fragment
+        android:id="@+id/actionTracking"
+        android:name="com.example.sarwan.tawseel.modules.orders.OrdersFragment"
+        android:label="Order Status"
+        tools:layout="@layout/fragment_orders" />
+
+    <include app:graph="@navigation/history_navigation_graph" />
+
+    <include app:graph="@navigation/profile_navigation_graph" />
+
+    <include app:graph="@navigation/authentication_nav_graph" />
 
 </navigation>
