@@ -5,7 +5,6 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
-import com.example.sarwan.tawseel.base.BaseActivity
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.entities.User
 import com.example.sarwan.tawseel.entities.enums.ProfileType
@@ -13,7 +12,6 @@ import com.example.sarwan.tawseel.entities.requests.SignupRequest
 import com.example.sarwan.tawseel.entities.responses.SignupResponse
 import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.extensions.show
-import com.example.sarwan.tawseel.interfaces.DialogInteraction
 import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthProviderCallBack
 import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthProviderResponse
 import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthProviderResponseType
@@ -21,6 +19,7 @@ import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthentication
 import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.repository.authentication.AuthenticationRepository
 import com.example.sarwan.tawseel.utils.EMPTY_STRING
+import com.example.sarwan.tawseel.utils.getProfileTypeForApi
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.fragment_signup.back
@@ -43,6 +42,7 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
         viewListeners()
         setObservers()
         dataToViews()
+        signupRequest.userType = getProfileTypeForApi(getProfileFromSharedPreference()?.profileType)
     }
 
     override fun dataToViews() {

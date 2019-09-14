@@ -9,7 +9,7 @@ object GlobalData {
     const val LATLNG = "LatLng"
     const val PROFILE = "profileType"
     const val PARAM = "Param"
-    const val SPLASH_DELAY = 2500L
+    const val SPLASH_DELAY = 1500L
     const val LOGIN_WITH_PHONE = 0
     const val LOGIN_WITH_EMAIL = 1
     const val CUSTOMER = 0

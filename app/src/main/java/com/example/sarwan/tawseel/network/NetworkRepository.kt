@@ -19,7 +19,8 @@ object NetworkRepository {
     }
 
     private fun setupRepo() {
-        logging.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+        logging.level =
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
     }
 
     fun getInstance(token: String = "") =
@@ -34,7 +35,7 @@ object NetworkRepository {
         val request = chain.request()
         val newRequest: Request
         newRequest = request.newBuilder()
-            .addHeader("Authorization", token)
+            .addHeader("Authorization", if (token.isEmpty()) token else "Bearer $token")
             .addHeader("Content-Type", "application/json")
             .addHeader("Accept", "application/json")
             .build()

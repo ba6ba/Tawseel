@@ -32,10 +32,4 @@ abstract class BaseRepository() {
             }
         }
     }
-
-    fun apiErrorBody(response: ResponseBody?) =
-        Gson().fromJson(
-            response?.charStream(),
-            object : TypeToken<ErrorResponse>() {}.type
-        ) as ErrorResponse
 }

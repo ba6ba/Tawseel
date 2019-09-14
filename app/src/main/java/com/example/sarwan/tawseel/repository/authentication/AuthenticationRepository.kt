@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseActivity
 import com.example.sarwan.tawseel.entities.User
-import com.example.sarwan.tawseel.entities.UserProfile
 import com.example.sarwan.tawseel.entities.enums.AuthenticationType
 import com.example.sarwan.tawseel.entities.enums.Irrelevant
 import com.example.sarwan.tawseel.entities.enums.ProfileType
@@ -17,6 +16,7 @@ import com.example.sarwan.tawseel.entities.responses.LoginResponse
 import com.example.sarwan.tawseel.entities.responses.SignupResponse
 import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.network.NetworkRepository
+import com.example.sarwan.tawseel.network.RetrofitCustomResponse
 import com.example.sarwan.tawseel.repository.BaseRepository
 import retrofit2.Call
 import retrofit2.Response
@@ -26,7 +26,7 @@ class AuthenticationRepository : BaseRepository() {
     var alreadyVerified: Boolean = false
     var verificationCode: String = ""
     var verificationCodeLiveData: MutableLiveData<String> = MutableLiveData()
-    var resendCodeLiveData : MutableLiveData<Irrelevant> = MutableLiveData()
+    var resendCodeLiveData: MutableLiveData<Irrelevant> = MutableLiveData()
     var authenticationType: AuthenticationType = AuthenticationType.EMAIL
     private var _loginApiInstance: MediatorLiveData<ApiResponse<LoginResponse>> = MediatorLiveData()
     var loginApiInstance: MutableLiveData<ApiResponse<LoginResponse>> = _loginApiInstance
@@ -49,7 +49,8 @@ class AuthenticationRepository : BaseRepository() {
     fun getLoginTypeForAuthenticationType(type: AuthenticationType = authenticationType) =
         if (type == AuthenticationType.EMAIL) "email" else "phone"
 
-    fun getSignupNameForProfileType(type: ProfileType) = if (type == ProfileType.BUSINESS) "Business Name" else "Full Name"
+    fun getSignupNameForProfileType(type: ProfileType) =
+        if (type == ProfileType.BUSINESS) "Business Name" else "Full Name"
 
     fun mapSignupDataToUser(signupResponse: SignupResponse.Data?) = User().apply {
         _id = signupResponse?._id
@@ -68,27 +69,7 @@ class AuthenticationRepository : BaseRepository() {
     private fun loginApi(params: LoginRequest): LiveData<ApiResponse<LoginResponse>> {
         val responseLiveData: MutableLiveData<ApiResponse<LoginResponse>> = MutableLiveData()
         NetworkRepository.getInstance().login(params)
-            .enqueue(object : retrofit2.Callback<LoginResponse> {
-                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    responseLiveData.postValue(ApiResponse.error(t.localizedMessage))
-                }
-
-                override fun onResponse(
-                    call: Call<LoginResponse>,
-                    response: Response<LoginResponse>
-                ) {
-                    if (response.isSuccessful && response.body()?.success == true) {
-                        responseLiveData.postValue(ApiResponse.success(response.body()))
-                    } else {
-                        responseLiveData.postValue(
-                            ApiResponse.error(
-                                response.body()?.error?.msg
-                                    ?: apiErrorBody(response.errorBody()).error.msg
-                            )
-                        )
-                    }
-                }
-            })
+            .enqueue(object : RetrofitCustomResponse<LoginResponse>(responseLiveData) {})
         return responseLiveData
     }
 
@@ -101,27 +82,7 @@ class AuthenticationRepository : BaseRepository() {
     private fun signupApi(params: SignupRequest): LiveData<ApiResponse<SignupResponse>> {
         val responseLiveData: MutableLiveData<ApiResponse<SignupResponse>> = MutableLiveData()
         NetworkRepository.getInstance().signup(params)
-            .enqueue(object : retrofit2.Callback<SignupResponse> {
-                override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
-                    responseLiveData.postValue(ApiResponse.error(t.localizedMessage))
-                }
-
-                override fun onResponse(
-                    call: Call<SignupResponse>,
-                    response: Response<SignupResponse>
-                ) {
-                    if (response.isSuccessful && response.body()?.success == true) {
-                        responseLiveData.postValue(ApiResponse.success(response.body()))
-                    } else {
-                        responseLiveData.postValue(
-                            ApiResponse.error(
-                                response.body()?.error?.msg
-                                    ?: apiErrorBody(response.errorBody()).error.msg
-                            )
-                        )
-                    }
-                }
-            })
+            .enqueue(object : RetrofitCustomResponse<SignupResponse>(responseLiveData){})
         return responseLiveData
     }
 }
