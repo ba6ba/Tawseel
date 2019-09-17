@@ -2,16 +2,18 @@ package com.example.sarwan.tawseel.modules.business
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
+import com.example.sarwan.tawseel.entities.enums.GetItemType
+import com.example.sarwan.tawseel.entities.responses.ItemListResponse
+import com.example.sarwan.tawseel.extensions.emptyAdapter
 import com.example.sarwan.tawseel.helper.SwipeRefreshLayoutHelper
-import com.example.sarwan.tawseel.interfaces.FragmentInteraction
-import com.example.sarwan.tawseel.modules.vendors.VendorItemAdapter
+import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.repository.business.BusinessRepository
-import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
@@ -23,22 +25,46 @@ class BusinessItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
     }
 
     private var swipeRefreshLayoutHelper: SwipeRefreshLayoutHelper? = null
-    private lateinit var fragmentInteraction: FragmentInteraction<Any>
 
-    fun fragmentInteraction(listener: FragmentInteraction<Any>) {
-        fragmentInteraction = listener
-    }
-
-    override fun invoke(p1: Any) {
-        fragmentInteraction.onFragmentShift(p1)
+    override fun invoke(obj: Any) {
+        navigateTo(R.id.action_business_listing_to_details_fragment,
+            bundle = Bundle(1).apply {
+                putSerializable(GlobalData.PARAM, obj as ItemListResponse.Data)
+            })
     }
 
     override fun onRefresh() {
-
+        //
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews(view)
+        setObservers()
+        viewListeners()
+    }
+
+    override fun setObservers() {
+        repository.getItemListByIdApiInstance.foreverObserver(Observer {
+            when (it) {
+                is ApiResponse.Success -> {
+                    attachItemsToList(it.data?.data)
+                }
+
+                is ApiResponse.Error -> {
+                    showMessage(it.message)
+                }
+            }
+        })
+    }
+
+    private fun attachItemsToList(data: ArrayList<ItemListResponse.Data>?) {
+        data?.let {
+            (recycler_view?.adapter as? BusinessItemAdapter)?.addAll(data)
+            swipeRefreshLayoutHelper?.apply {
+                stopRefreshLoader()
+                toggleLayouts(recycler_view?.adapter?.emptyAdapter == true)
+            }
+        }
     }
 
     override fun initViews(view: View?) {
@@ -48,12 +74,13 @@ class BusinessItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
 
         recycler_view?.apply {
             layoutManager = LinearLayoutManager(getBaseActivity(), RecyclerView.VERTICAL, false)
-            adapter = BusinessItemAdapter(
-                getBaseActivity(),
-                repository.getBusinessItemsList(), this@BusinessItemFragment
-            )
-            swipeRefreshLayoutHelper?.stopRefreshLoader()
+            adapter = BusinessItemAdapter(getBaseActivity(), ArrayList(), this@BusinessItemFragment)
         }
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        repository.callGetItemByIdApi("", GetItemType.BY_STORE_ID)
     }
 
     companion object {

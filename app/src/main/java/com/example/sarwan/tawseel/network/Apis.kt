@@ -43,31 +43,31 @@ interface Apis {
     /**
      * update store
      * */
-    @PUT("store/{storeId}")
+    @PUT("store")
     fun updateStore(@Query("storeId") storeId: String, @Body request: StoreRequest): Call<StoreResponse>
 
     /**
      * delete store
      * */
-    @DELETE("store/{storeId}")
+    @DELETE("store")
     fun deleteStore(@Query("storeId") storeId: String): Call<DeleteResponse>
 
     /**
      * get store by store id
      * */
-    @GET("store/{storeId}")
+    @GET("store")
     fun findStoreById(@Query("storeId") storeId: String): Call<StoreResponse>
 
     /**
      * get store by category id
      * */
-    @GET("store/{categoryId}")
+    @GET("store")
     fun findStoreByCategoryId(@Query("categoryId") categoryId: String): Call<StoreListResponse>
 
     /**
      * get store by owner id
      * */
-    @GET("store/{ownerId}")
+    @GET("store")
     fun findStoreByOwnerId(@Query("ownerId") ownerId: String): Call<StoreListResponse>
 
     /**
@@ -85,31 +85,31 @@ interface Apis {
     /**
      * update item
      * */
-    @PUT("item/{itemId}")
+    @PUT("item")
     fun updateItem(@Query("itemId") itemId: String, @Body request: ItemRequest): Call<ItemResponse>
 
     /**
      * delete item
      * */
-    @DELETE("item/{itemId}")
+    @DELETE("item")
     fun deleteItem(@Query("itemId") itemId: String): Call<DeleteResponse>
 
     /**
      * get item by item id
      * */
-    @GET("item/{itemId}")
+    @GET("item")
     fun findItemById(@Query("itemId") itemId: String): Call<ItemResponse>
 
     /**
      * get item by store id
      * */
-    @GET("item/{storeId}")
+    @GET("item")
     fun findItemByStoreId(@Query("storeId") storeId: String): Call<ItemListResponse>
 
     /**
      * get item by item type
      * */
-    @GET("item/type/{type}")
+    @GET("item/type")
     fun findItemByItemType(@Query("type") type: String): Call<ItemListResponse>
 
 

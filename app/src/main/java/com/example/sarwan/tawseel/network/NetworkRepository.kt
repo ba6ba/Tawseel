@@ -1,6 +1,7 @@
 package com.example.sarwan.tawseel.network
 
 import com.example.sarwan.tawseel.BuildConfig
+import com.example.sarwan.tawseel.interfaces.TokenProvider
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -9,10 +10,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object NetworkRepository {
+object NetworkRepository : TokenProvider {
+
+    override fun get(token: String) {
+        this.token = token
+    }
 
     private val TIMEOUT = 25
     private var logging: HttpLoggingInterceptor = HttpLoggingInterceptor()
+    private lateinit var token: String
 
     init {
         setupRepo()
@@ -23,7 +29,7 @@ object NetworkRepository {
             if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
     }
 
-    fun getInstance(token: String = "") =
+    fun getInstance() =
         Retrofit.Builder().baseUrl(NetworkConstants.BASE_URL).addConverterFactory(
             GsonConverterFactory.create(
                 gson()

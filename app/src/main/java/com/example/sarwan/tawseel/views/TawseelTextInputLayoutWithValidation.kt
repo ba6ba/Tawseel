@@ -16,6 +16,7 @@ import com.example.sarwan.tawseel.entities.enums.ValidationType
 import com.example.sarwan.tawseel.extensions.hint
 import com.example.sarwan.tawseel.extensions.isInRangeOf
 import com.example.sarwan.tawseel.extensions.textChangeListener
+import com.example.sarwan.tawseel.utils.dpToPx
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.layout_text_input_layout_with_validation.view.*
 import java.util.regex.Pattern
@@ -32,6 +33,7 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     private var mMaxLimit: Int = Int.MAX_VALUE
     private var mMinLimit: Int = 0
     private var validationRule: Int = 0
+    private var minHeight: Int = 0
     private var validationError: String? = generateError()
 
     private val upperRule: Boolean by lazy {
@@ -60,10 +62,15 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     }
 
     private fun updateAttributes() {
+//        setMinHeight()
         setHint()
         makeViewCustomised()
         setInputType()
         addTextChangeListener()
+    }
+
+    private fun setMinHeight() {
+        _layout?.editText?.minHeight = dpToPx(resources, minHeight)
     }
 
     private fun makeViewCustomised() {
@@ -132,6 +139,10 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
                 mMinLimit = getInt(
                     R.styleable.TawseelTextInputLayoutWithValidation_min_number_of_characters,
                     0
+                )
+                minHeight = getInt(
+                    R.styleable.TawseelTextInputLayoutWithValidation_min_height,
+                     0
                 )
                 mValidationType =
                     ValidationType.fromId(

@@ -3,11 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/add"
+        android:id="@+id/enter"
         style="@style/Tawseel.TextView.Rounded.Background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +18,7 @@
         android:gravity="center"
         android:paddingStart="@dimen/x36"
         android:paddingEnd="@dimen/x36"
-        android:text="@string/add"
+        android:text="@string/enter"
         android:enabled="false"
         android:textSize="@dimen/t24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,55 +27,62 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/igloo_shape" />
 
-    <ImageView
-        android:id="@+id/cover2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/x200"
-        android:scaleType="fitXY"
-        android:src="@drawable/food_cover"
+    <TextView
+        android:id="@+id/category_label"
+        style="@style/Tawseel.TextView.Medium.Blue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/category_label"
+        android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/upload"
-        style="@style/Tawseel.Stroke.Background.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginEnd="8dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="@string/upload"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cover2" />
-
-    <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
-        android:id="@+id/item_name_layout"
-        android:layout_width="match_parent"
+        android:id="@+id/address_label"
+        style="@style/Tawseel.TextView.Medium.Blue"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        app:hint="@string/item_name"
+        android:text="@string/address"
+        android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upload"
-        app:validation_type="not_empty" />
+        app:layout_constraintTop_toBottomOf="@+id/category_layout" />
 
     <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
-        android:id="@+id/item_description_layout"
+        android:id="@+id/category_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:hint="@string/item_description"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_label"
+        app:hint="@string/select_category"
+        app:validation_type="not_empty" />
+
+    <com.example.sarwan.tawseel.views.TawseelTextInputLayoutWithValidation
+        android:id="@+id/address_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_name_layout"
+        app:layout_constraintTop_toBottomOf="@+id/address_label"
+        app:hint="@string/address"
         app:validation_type="not_empty" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

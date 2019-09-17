@@ -5,6 +5,6 @@ data class StoreRequest(
     var storeAddress: String? = null,
     var categoryId: String? = null,
     var ownerId: String? = null,
-    var lat: Double? = null,
-    var lng: Double? = null
+    var lat: Double? = 32.132,
+    var lng: Double? = 67.124
 )

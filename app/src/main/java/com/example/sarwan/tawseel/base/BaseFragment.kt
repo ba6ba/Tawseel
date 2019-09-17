@@ -12,12 +12,13 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.example.sarwan.tawseel.interfaces.TawseelLayout
-import com.example.sarwan.tawseel.repository.BaseRepository
-import com.example.sarwan.tawseel.utils.GlobalData
 import com.example.sarwan.tawseel.extensions.navigate
 import com.example.sarwan.tawseel.extensions.navigateToBack
 import com.example.sarwan.tawseel.interfaces.Resources
+import com.example.sarwan.tawseel.interfaces.TawseelLayout
+import com.example.sarwan.tawseel.network.NetworkRepository
+import com.example.sarwan.tawseel.repository.BaseRepository
+import com.example.sarwan.tawseel.utils.GlobalData
 import java.io.Serializable
 
 
@@ -36,6 +37,7 @@ abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bActivity = (activity as BaseActivity<T>)
+        NetworkRepository.get(getProfileFromSharedPreference()?.token ?: "")
         createRepoInstance()
         activityCreated(savedInstanceState)
         bundleOnCreated(arguments)

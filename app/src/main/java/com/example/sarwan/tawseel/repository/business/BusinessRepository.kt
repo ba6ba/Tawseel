@@ -8,13 +8,10 @@ import com.example.sarwan.tawseel.entities.enums.GetStoreType
 import com.example.sarwan.tawseel.entities.requests.ItemRequest
 import com.example.sarwan.tawseel.entities.requests.StoreRequest
 import com.example.sarwan.tawseel.entities.responses.*
-import com.example.sarwan.tawseel.modules.business.BusinessItemCategories
 import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.network.NetworkRepository
 import com.example.sarwan.tawseel.network.RetrofitCustomResponse
 import com.example.sarwan.tawseel.repository.BaseRepository
-import retrofit2.Call
-import retrofit2.Response
 
 class BusinessRepository : BaseRepository() {
 
@@ -75,10 +72,6 @@ class BusinessRepository : BaseRepository() {
         MediatorLiveData()
     var getItemListByIdApiInstance: MutableLiveData<ApiResponse<ItemListResponse>> =
         _getItemListByIdApiInstance
-
-    fun getBusinessItemTitles() = BusinessItemCategories.values().toList().map { it.name }
-
-    fun getBusinessItemsList() = com.example.sarwan.tawseel.utils.DummyData.makeVendorDummyData()
 
     fun callCategoriesListApi() {
         _categoriesListApiInstance.addSource(categoriesListApi()) {
@@ -265,13 +258,13 @@ class BusinessRepository : BaseRepository() {
                 }
             }
             GetItemType.BY_ITEM_TYPE -> {
-                _getItemListByIdApiInstance.addSource(getItemByStoreIdApi(id)) {
+                _getItemListByIdApiInstance.addSource(getItemByItemType(id)) {
                     _getItemListByIdApiInstance.value = it
                 }
             }
 
             GetItemType.BY_STORE_ID -> {
-                _getItemListByIdApiInstance.addSource(getItemByItemType(id)) {
+                _getItemListByIdApiInstance.addSource(getItemByStoreIdApi(id)) {
                     _getItemListByIdApiInstance.value = it
                 }
             }
@@ -301,30 +294,3 @@ class BusinessRepository : BaseRepository() {
         return responseLiveData
     }
 }
-
-
-/* val responseLiveData: MutableLiveData<ApiResponse<ItemListResponse>> =
-            MutableLiveData()
-        NetworkRepository.getInstance().findItemByItemType(type)
-            .enqueue(object : retrofit2.Callback<ItemListResponse> {
-                override fun onFailure(call: Call<ItemListResponse>, t: Throwable) {
-                    responseLiveData.postValue(ApiResponse.error(t.localizedMessage))
-                }
-
-                override fun onResponse(
-                    call: Call<ItemListResponse>,
-                    response: Response<ItemListResponse>
-                ) {
-                    if (response.isSuccessful && response.body()?.success == true) {
-                        responseLiveData.postValue(ApiResponse.success(response.body()))
-                    } else {
-                        responseLiveData.postValue(
-                            ApiResponse.error(
-                                response.body()?.error?.msg
-                                    ?: apiErrorBody(response.errorBody()).error.msg
-                            )
-                        )
-                    }
-                }
-            })
-        return responseLiveData*/
