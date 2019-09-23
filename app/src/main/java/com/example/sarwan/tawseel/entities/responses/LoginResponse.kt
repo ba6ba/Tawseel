@@ -6,6 +6,7 @@ data class LoginResponse(var data: Data? = null) : GeneralResponse() {
 
     data class Data(
         var token: String? = "",
-        var user: User? = null
+        var user: User? = null,
+        var store: StoreResponse.Data? = null
     )
 }

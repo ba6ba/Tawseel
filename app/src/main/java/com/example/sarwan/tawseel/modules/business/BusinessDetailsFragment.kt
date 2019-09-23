@@ -77,7 +77,7 @@ class BusinessDetailsFragment :
         repository.createUpdateStoreApiInstance.foreverObserver(Observer {
             when(it){
                 is ApiResponse.Success -> {
-                    navigateTo(R.id.action_business_details_to_business_home)
+//                    navigateTo(R.id.action_business_details_to_business_home)
                 }
 
                 is ApiResponse.Error -> {

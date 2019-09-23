@@ -84,7 +84,7 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout: Int) : Bas
 
     private fun getHeaderTitle(header: String?): String? {
         if (header?.contains(BUSINESS_NAME_PLACEHOLDER) == true) {
-            return getProfileFromSharedPreference()?.business?.businessName
+            return getProfileFromSharedPreference()?.business?.storeName
         }
 
         if (header?.contains(DRIVER_NAME_PLACEHOLDER) == true) {

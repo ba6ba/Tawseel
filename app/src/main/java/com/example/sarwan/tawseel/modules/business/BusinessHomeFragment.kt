@@ -1,15 +1,11 @@
 package com.example.sarwan.tawseel.modules.business
 
 import android.os.Bundle
-import android.text.TextWatcher
 import android.view.View
 import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
-import com.example.sarwan.tawseel.extensions.actionOnClick
-import com.example.sarwan.tawseel.extensions.booleanText
-import com.example.sarwan.tawseel.extensions.textChangeListener
-import com.example.sarwan.tawseel.extensions.visible
+import com.example.sarwan.tawseel.extensions.*
 import com.example.sarwan.tawseel.repository.business.BusinessRepository
 import kotlinx.android.synthetic.main.fragment_business_home.*
 
@@ -19,16 +15,23 @@ class BusinessHomeFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
         repository = getRepository(BusinessRepository::class.java)
     }
 
+    private fun checkIfStoreIsCreatedAlready() {
+        getBaseActivity().getAppRepository().userProfile?.business?.let {
+            navigateTo(R.id.action_business_home_to_business_details)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        checkIfStoreIsCreatedAlready()
         dataToViews()
         viewListeners()
         setObservers()
     }
 
     override fun dataToViews() {
-        business_description?.text = getProfileFromSharedPreference()?.business?.businessDescription
+        business_description?.text = getProfileFromSharedPreference()?.business?.storeDescription
             ?: repository.DEFAULT_BUSINESS_NAME
-        business_name?.text = getProfileFromSharedPreference()?.business?.businessImage
+        business_name?.text = getProfileFromSharedPreference()?.business?.storeName
             ?: repository.DEFAULT_BUSINESS_DESCRIPTION
     }
 

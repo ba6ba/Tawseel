@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/driver_nav_graph.xml"
+    android:id="@+id/business_nav_graph.xml"
     app:startDestination="@id/businessHomeFragment">
 
     <fragment
@@ -27,13 +27,6 @@
         android:label="Business Details"
         tools:layout="@layout/fragment_business_details">
 
-        <action
-            android:id="@+id/action_business_details_to_business_home"
-            app:destination="@id/businessHomeFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
 
     <fragment

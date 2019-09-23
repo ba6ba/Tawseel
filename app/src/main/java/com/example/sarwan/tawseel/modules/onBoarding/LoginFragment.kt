@@ -10,6 +10,7 @@ import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.entities.enums.AuthenticationType
 import com.example.sarwan.tawseel.entities.requests.LoginRequest
 import com.example.sarwan.tawseel.entities.responses.LoginResponse
+import com.example.sarwan.tawseel.entities.responses.StoreResponse
 import com.example.sarwan.tawseel.extensions.hint
 import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.network.ApiResponse
@@ -60,6 +61,7 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
             getAppRepository().userProfile?.token = data?.token
             getAppRepository().userProfile?.user = data?.user
             getAppRepository().userProfile?.isLoggedIn = true
+            getAppRepository().userProfile?.business = data?.store
             saveUserProfile()
             navigateToMainApp()
         }
