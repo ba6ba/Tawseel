@@ -35,6 +35,7 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     private var validationRule: Int = 0
     private var minHeight: Int = 0
     private var validationError: String? = generateError()
+    private var isViewEnabled : Boolean = true
 
     private val upperRule: Boolean by lazy {
         ValidationRule.possibleUpperRuleValues().contains(validationRule) && mValidationType == ValidationType.VALID_PASSWORD
@@ -63,10 +64,15 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
 
     private fun updateAttributes() {
 //        setMinHeight()
+        setIsViewEnabled()
         setHint()
         makeViewCustomised()
         setInputType()
         addTextChangeListener()
+    }
+
+    private fun setIsViewEnabled() {
+        _layout?.editText?.isEnabled = isViewEnabled
     }
 
     private fun setMinHeight() {
@@ -154,6 +160,7 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
                 validationRule =
                     getInt(R.styleable.TawseelTextInputLayoutWithValidation_validation_rule, 0)
                 mValidationRule = ValidationRule.fromId(validationRule)
+                isViewEnabled = getBoolean(R.styleable.TawseelTextInputLayoutWithValidation_is_view_enabled, true)
             } finally {
                 recycle()
             }

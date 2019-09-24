@@ -17,7 +17,11 @@ class BusinessActivity : DrawerActivity<BusinessRepository>(R.layout.activity_bu
 
     override fun activityCreated(savedInstanceState: Bundle?) {
         //
-//        main_container?.findNavController()?
+        getProfileFromSharedPreference()?.business?.let {
+            main_container?.findNavController()?.setGraph(R.navigation.business_nav_graph_details)
+        }?:kotlin.run {
+            main_container?.findNavController()?.setGraph(R.navigation.business_nav_graph_home)
+        }
     }
 
     override fun toolbarTitleChange(text: String?) {

@@ -33,6 +33,7 @@
         <attr name="max_number_of_characters" format="integer"/>
         <attr name="min_number_of_characters" format="integer"/>
         <attr name="min_height" format="integer"/>
+        <attr name="is_view_enabled" format="boolean"/>
     </declare-styleable>
 
 

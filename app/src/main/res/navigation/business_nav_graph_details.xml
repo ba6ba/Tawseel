@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/business_nav_graph.xml"
+    app:startDestination="@id/businessDetailsFragment">
+
+    <fragment
+        android:id="@+id/businessHomeFragment"
+        android:name="com.example.sarwan.tawseel.modules.business.BusinessHomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_business_home">
+
+        <action
+            android:id="@+id/action_business_home_to_business_details"
+            app:destination="@id/businessDetailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/businessDetailsFragment"
+        android:name="com.example.sarwan.tawseel.modules.business.BusinessDetailsFragment"
+        android:label="Business Details"
+        tools:layout="@layout/fragment_business_details">
+        <action
+            android:id="@+id/action_business_details_to_home"
+            app:destination="@id/businessHomeFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/actionAddItem"
+        android:name="com.example.sarwan.tawseel.modules.business.AddItemFragment"
+        android:label="Add item"
+        tools:layout="@layout/fragment_business_add_item">
+
+        <action
+            android:id="@+id/action_add_item_to_items_listing"
+            app:destination="@id/actionItemsList"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/actionItemsList"
+        android:name="com.example.sarwan.tawseel.modules.business.BusinessItemFragment"
+        android:label="[BUSINESS_NAME]"
+        tools:layout="@layout/fragment_business_item_listing">
+
+        <action
+            android:id="@+id/action_business_listing_to_details_fragment"
+            app:destination="@id/businessItemDetails"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/businessItemDetails"
+        android:name="com.example.sarwan.tawseel.modules.business.ItemDetailsFragment"
+        android:label="[BUSINESS_NAME]"
+        tools:layout="@layout/fragment_item_details" />
+
+    <include app:graph="@navigation/profile_navigation_graph" />
+
+    <include app:graph="@navigation/history_navigation_graph" />
+
+    <include app:graph="@navigation/authentication_nav_graph" />
+
+</navigation>

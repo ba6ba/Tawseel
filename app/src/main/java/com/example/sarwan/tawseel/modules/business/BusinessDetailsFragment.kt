@@ -49,7 +49,7 @@ class BusinessDetailsFragment :
     }
 
     private fun setCategory(index: Int) {
-        category_layout?.editText?.setText(categoriesList[index].categoryName)
+        category_layout?.text = categoriesList[index].categoryName
         storeParams.categoryId = categoriesList[index]._id
     }
 
@@ -59,10 +59,6 @@ class BusinessDetailsFragment :
                 categoriesList = it.data?.data!!
                 setupPicker()
             }
-        })
-
-        category_layout?.validationResult?.foreverObserver(Observer {
-            enableButtonLiveData.value = it.result
         })
 
         address_layout?.validationResult?.foreverObserver(Observer {
@@ -77,7 +73,12 @@ class BusinessDetailsFragment :
         repository.createUpdateStoreApiInstance.foreverObserver(Observer {
             when(it){
                 is ApiResponse.Success -> {
-//                    navigateTo(R.id.action_business_details_to_business_home)
+                    getBaseActivity().apply {
+                        getAppRepository().userProfile?.business = it.data?.data
+                        saveUserProfile()
+                    }
+
+                    navigateTo(R.id.action_business_details_to_home)
                 }
 
                 is ApiResponse.Error -> {
