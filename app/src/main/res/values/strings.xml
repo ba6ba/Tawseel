@@ -93,4 +93,5 @@
     <string name="select_category">Select Category</string>
     <string name="category_label">Business Category</string>
     <string name="enter">Enter</string>
+    <string name="item_price">Item Price</string>
 </resources>

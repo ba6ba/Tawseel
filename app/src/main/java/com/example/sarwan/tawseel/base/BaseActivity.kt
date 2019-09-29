@@ -20,7 +20,7 @@ abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getAppRepository().userProfile = getProfileFromSharedPreference()
+        getAppRepository().userProfile = getAppRepository().getFromSharedPreference(GlobalData.PROFILE)
         if (getAppRepository().userProfile == null) {
             getAppRepository().userProfile = UserProfile()
         }

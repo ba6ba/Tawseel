@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.swipe_with_recycler_view.view.*
 
 class SwipeRefreshLayoutHelper(private val view : View?) {
 
-    fun init() {
+    init {
         doLayoutRefresh(true)
     }
 
@@ -17,14 +17,18 @@ class SwipeRefreshLayoutHelper(private val view : View?) {
         }
     }
 
+    fun onRefresh(invoke : () -> Unit) {
+        view?.swipeRefreshLayout?.setOnRefreshListener { invoke() }
+    }
+
     fun stopRefreshLoader() {
         doLayoutRefresh(false)
     }
 
     fun toggleLayouts(show : Boolean) {
         view?.apply {
-            swipeRefreshLayoutEmpty?.visible(!show)
-            swipeRefreshLayout?.visible(show)
+            swipeRefreshLayoutEmpty?.visible(show)
+            swipeRefreshLayout?.visible(!show)
         }
     }
 }

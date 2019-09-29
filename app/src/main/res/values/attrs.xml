@@ -21,6 +21,7 @@
             <enum name="length_constraint" value="3"/>
             <enum name="password" value="4"/>
             <enum name="phone" value="5"/>
+            <enum name="price" value="6"/>
         </attr>
         <attr name="validation_rule" format="flags">
             <flag name="none" value="0"/>

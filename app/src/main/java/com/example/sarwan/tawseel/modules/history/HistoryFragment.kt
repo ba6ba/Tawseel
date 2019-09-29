@@ -48,7 +48,7 @@ class HistoryFragment : BaseFragment<HistoryRepository>(R.layout.fragment_histor
 
     override fun initViews(view: View?) {
         swipeRefreshLayoutHelper = SwipeRefreshLayoutHelper(view).apply {
-            init()
+            onRefresh {  }
         }
 
         recycler_view?.apply {

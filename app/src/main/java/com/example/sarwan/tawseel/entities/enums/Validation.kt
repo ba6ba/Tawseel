@@ -6,7 +6,8 @@ enum class ValidationType(var id: Int) {
     VALID_EMAIL(2),
     LENGTH_CONSTRAINT(3),
     VALID_PASSWORD(4),
-    PHONE(5);
+    PHONE(5),
+    PRICE(6);
 
 
     companion object {

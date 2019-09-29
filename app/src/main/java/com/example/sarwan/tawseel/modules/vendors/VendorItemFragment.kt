@@ -13,7 +13,7 @@ import com.example.sarwan.tawseel.repository.customer.CustomerRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
-class VendorItemFragment : BaseFragment<CustomerRepository>(R.layout.fragment_vendor_items), SwipeRefreshLayout.OnRefreshListener, (Any) -> Unit {
+class VendorItemFragment : BaseFragment<CustomerRepository>(R.layout.fragment_vendor_items), (Any) -> Unit {
 
     override fun createRepoInstance() {
         repository = getRepository(CustomerRepository::class.java)
@@ -30,17 +30,13 @@ class VendorItemFragment : BaseFragment<CustomerRepository>(R.layout.fragment_ve
         fragmentInteraction.onFragmentShift(p1)
     }
 
-    override fun onRefresh() {
-
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews(view)
     }
 
     override fun initViews(view: View?) {
         swipeRefreshLayoutHelper = SwipeRefreshLayoutHelper(view).apply {
-            init()
+            onRefresh {  }
         }
 
         recycler_view?.apply {

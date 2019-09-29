@@ -17,7 +17,7 @@
         app:layout_constraintTop_toBottomOf="@id/cover" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/price"
         style="@style/Tawseel.TextView.Medium.Grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,6 +29,20 @@
         android:textColor="@color/darK_grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name" />
+
+    <TextView
+        android:id="@+id/description"
+        style="@style/Tawseel.TextView.Medium.Grey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:text="@string/description"
+        android:textColor="@color/darK_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/price" />
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/cover"

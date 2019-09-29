@@ -122,6 +122,9 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
             ValidationType.PHONE -> {
                 InputType.TYPE_CLASS_PHONE
             }
+            ValidationType.PRICE -> {
+                InputType.TYPE_CLASS_NUMBER
+            }
             else -> {
                 InputType.TYPE_CLASS_TEXT
             }

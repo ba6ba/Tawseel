@@ -19,6 +19,7 @@ class AddItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_busin
     private var enableButtonLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        addItemParams.storeId = getProfileFromSharedPreference()?.business?._id
         setObservers()
         viewListeners()
     }
@@ -56,7 +57,13 @@ class AddItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_busin
             addItemParams.itemName = it.text
         })
 
-        item_description_layout?.validationResult?.foreverObserver(Observer {
+        item_price_layout?.validationResult?.foreverObserver(Observer {
+            addItemParams.itemPrice = it.text?.toInt()
+            enableButtonLiveData.value = it.result
+        })
+
+        item_description?.validationResult?.foreverObserver(Observer {
+            addItemParams.itemDescription = it.text
             enableButtonLiveData.value = it.result
         })
     }

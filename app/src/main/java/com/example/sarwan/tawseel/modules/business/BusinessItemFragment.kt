@@ -17,8 +17,7 @@ import com.example.sarwan.tawseel.repository.business.BusinessRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import kotlinx.android.synthetic.main.swipe_with_recycler_view.*
 
-class BusinessItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_business_items),
-    SwipeRefreshLayout.OnRefreshListener, (Any) -> Unit {
+class BusinessItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_business_items), (Any) -> Unit {
 
     override fun createRepoInstance() {
         repository = getRepository(BusinessRepository::class.java)
@@ -33,10 +32,6 @@ class BusinessItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
             })
     }
 
-    override fun onRefresh() {
-        //
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews(view)
         setObservers()
@@ -44,7 +39,7 @@ class BusinessItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
     }
 
     override fun setObservers() {
-        repository.getItemListByIdApiInstance.foreverObserver(Observer {
+        repository.getItemListByIdApiInstance.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is ApiResponse.Success -> {
                     attachItemsToList(it.data?.data)
@@ -69,7 +64,7 @@ class BusinessItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
 
     override fun initViews(view: View?) {
         swipeRefreshLayoutHelper = SwipeRefreshLayoutHelper(view).apply {
-            init()
+            onRefresh { hitApi() }
         }
 
         recycler_view?.apply {
@@ -78,9 +73,16 @@ class BusinessItemFragment : BaseFragment<BusinessRepository>(R.layout.fragment_
         }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        repository.callGetItemByIdApi("", GetItemType.BY_STORE_ID)
+    override fun activityCreated(savedInstanceState: Bundle?) {
+        super.activityCreated(savedInstanceState)
+        hitApi()
+    }
+
+    private fun hitApi() {
+        repository.callGetItemByIdApi(
+            getProfileFromSharedPreference()?.business?._id ?: "",
+            GetItemType.BY_STORE_ID
+        )
     }
 
     companion object {

@@ -25,7 +25,8 @@ class ItemDetailsFragment :
 
     override fun dataToViews() {
         description?.applyText(itemDetails.itemDescription)
-        name?.applyText(itemDetails.itemPrice?.toString())
+        name?.applyText(itemDetails.itemName)
+        price?.applyText("Price : ${itemDetails.itemPrice?.toString()}")
         cover?.setImageURI(itemDetails.itemImage)
     }
 
