@@ -43,8 +43,8 @@ interface Apis {
     /**
      * update store
      * */
-    @PUT("store")
-    fun updateStore(@Query("storeId") storeId: String, @Body request: StoreRequest): Call<StoreResponse>
+    @PUT("store/{storeId}")
+    fun updateStore(@Path("storeId") storeId: String, @Body request: StoreRequest): Call<StoreResponse>
 
     /**
      * delete store

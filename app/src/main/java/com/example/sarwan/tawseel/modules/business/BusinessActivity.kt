@@ -16,11 +16,10 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 class BusinessActivity : DrawerActivity<BusinessRepository>(R.layout.activity_business) {
 
     override fun activityCreated(savedInstanceState: Bundle?) {
-        //
-        getProfileFromSharedPreference()?.business?.let {
-            main_container?.findNavController()?.setGraph(R.navigation.business_nav_graph_details)
-        }?:kotlin.run {
+        getProfileFromSharedPreference()?.business?._id?.let {
             main_container?.findNavController()?.setGraph(R.navigation.business_nav_graph_home)
+        }?:kotlin.run {
+            main_container?.findNavController()?.setGraph(R.navigation.business_nav_graph_details)
         }
     }
 

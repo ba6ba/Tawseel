@@ -20,9 +20,6 @@ class BusinessRepository : BaseRepository() {
 
     var onEditLiveData: MutableLiveData<Boolean> = MutableLiveData()
 
-    var businessName: MutableLiveData<String> = MutableLiveData()
-    var businessDescription: MutableLiveData<String> = MutableLiveData()
-
     private var _categoriesListApiInstance: MediatorLiveData<ApiResponse<CategoriesListResponse>> =
         MediatorLiveData()
     var categoriesListApiInstance: MutableLiveData<ApiResponse<CategoriesListResponse>> =

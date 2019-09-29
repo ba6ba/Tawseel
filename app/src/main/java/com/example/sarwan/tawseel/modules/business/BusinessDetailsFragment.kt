@@ -70,7 +70,7 @@ class BusinessDetailsFragment :
             enter?.isEnabled = it
         })
 
-        repository.createUpdateStoreApiInstance.foreverObserver(Observer {
+        repository.createUpdateStoreApiInstance.observe(viewLifecycleOwner, Observer {
             when(it){
                 is ApiResponse.Success -> {
                     getBaseActivity().apply {

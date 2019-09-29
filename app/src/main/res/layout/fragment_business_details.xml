@@ -67,7 +67,11 @@
         android:text="@string/select_category"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        style="@style/Tawseel.TextView.Rounded.Background"
+        android:padding="0dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/t18"
+        android:gravity="center"
+        android:background="@drawable/rounded_stroke_rectangle_white"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/category_label"/>

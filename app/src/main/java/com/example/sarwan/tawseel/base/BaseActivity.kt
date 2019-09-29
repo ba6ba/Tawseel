@@ -9,7 +9,6 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.entities.UserProfile
-import com.example.sarwan.tawseel.extensions.navigate
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.GlobalData
 import com.google.android.gms.maps.model.LatLng
@@ -28,7 +27,7 @@ abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
     }
 
     public fun getProfileFromSharedPreference() =
-        getAppRepository().getFromSharedPreference<UserProfile>(GlobalData.PROFILE)
+        getAppRepository().userProfile
 
     fun saveUserProfile() {
         getAppRepository().saveDataInSharedPreference(
