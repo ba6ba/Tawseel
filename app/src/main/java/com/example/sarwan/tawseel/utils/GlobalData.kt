@@ -8,6 +8,7 @@ object GlobalData {
     const val PREFS_NAME = "CCTaskPrefs"
     const val LATLNG = "LatLng"
     const val PROFILE = "profileType"
+    const val FCM_TOKEN = "fcmToken"
     const val PARAM = "Param"
     const val SPLASH_DELAY = 1500L
     const val LOGIN_WITH_PHONE = 0

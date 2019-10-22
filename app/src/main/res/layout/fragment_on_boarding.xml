@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/x150"
+        android:layout_height="@dimen/x150"
+        android:src="@drawable/logo_round"
+        app:layout_constraintBottom_toTopOf="@+id/login_with_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/back"
@@ -30,36 +40,44 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-    <TextView android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:id="@+id/login_with_email"
-              style="@style/Tawseel.TextView.Rounded.Background"
-              android:text="@string/login_with_email"
-              android:minWidth="250dp"
-              android:textAlignment="center"
-              app:layout_constraintStart_toStartOf="@+id/login_with_phone"
-              app:layout_constraintEnd_toEndOf="@+id/login_with_phone"
-              android:layout_marginBottom="16dp"
-              app:layout_constraintBottom_toTopOf="@+id/sign_up"/>
-    <TextView android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:id="@+id/login_with_phone"
-              style="@style/Tawseel.TextView.Rounded.Background"
-              android:minWidth="250dp"
-              android:textAlignment="center"
-              android:text="@string/login_with_phone"
-              app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
-              app:layout_constraintEnd_toEndOf="parent"
-              android:layout_marginBottom="16dp"
-              app:layout_constraintBottom_toTopOf="@+id/login_with_email"/>
-    <TextView android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:id="@+id/sign_up"
-              android:minWidth="250dp"
-              android:textAlignment="center"
-              style="@style/Tawseel.TextView.Rounded.Background"
-              android:text="@string/signup"
-              app:layout_constraintStart_toStartOf="@+id/login_with_email"
-              app:layout_constraintEnd_toEndOf="@+id/login_with_email"
-              android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/skip"/>
+
+    <TextView
+        android:id="@+id/login_with_email"
+        style="@style/Tawseel.TextView.Rounded.Background"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:minWidth="250dp"
+        android:text="@string/login_with_email"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/sign_up"
+        app:layout_constraintEnd_toEndOf="@+id/login_with_phone"
+        app:layout_constraintStart_toStartOf="@+id/login_with_phone" />
+
+    <TextView
+        android:id="@+id/login_with_phone"
+        style="@style/Tawseel.TextView.Rounded.Background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:minWidth="250dp"
+        android:text="@string/login_with_phone"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/login_with_email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/sign_up"
+        style="@style/Tawseel.TextView.Rounded.Background"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:minWidth="250dp"
+        android:text="@string/signup"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/skip"
+        app:layout_constraintEnd_toEndOf="@+id/login_with_email"
+        app:layout_constraintStart_toStartOf="@+id/login_with_email" />
 </androidx.constraintlayout.widget.ConstraintLayout>

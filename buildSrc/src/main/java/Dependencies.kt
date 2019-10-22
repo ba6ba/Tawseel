@@ -15,6 +15,7 @@ object AndroidVersions{
 
 
 object Versions {
+    const val fireBaseMessaging: String = "20.0.0"
     const val fireBaseAuth: String = "19.0.0"
     const val fireBaseFireStore : String = "21.0.0"
     const val kotlin = "1.3.31"
@@ -95,6 +96,7 @@ object AndroidLibraries {
 object Firebase {
     const val fireBaseAuth = "com.google.firebase:firebase-auth:${Versions.fireBaseAuth}"
     const val fireBaseFireStore = "com.google.firebase:firebase-firestore:${Versions.fireBaseAuth}"
+    const val fireBaseMessaging ="com.google.firebase:firebase-messaging:${Versions.fireBaseMessaging}"
 }
 
 object TestLibraries {

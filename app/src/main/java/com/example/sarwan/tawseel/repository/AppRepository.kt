@@ -10,7 +10,7 @@ import com.example.sarwan.tawseel.utils.GlobalData.PREFS_NAME
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 
-class AppRepository(private val context : Context) {
+open class AppRepository(private val context : Context) {
 
     var preferences : SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     val gson : Gson = Gson()

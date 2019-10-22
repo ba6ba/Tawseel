@@ -18,3 +18,20 @@ fun getProfileTypeForApi(profileType: ProfileType?): String {
         }
     }
 }
+
+fun getProfileTypeForApi(profileType: String?): ProfileType {
+    return when (profileType) {
+        "delivery" -> {
+            ProfileType.DRIVER
+        }
+        "customer" -> {
+            ProfileType.CUSTOMER
+        }
+        "company" -> {
+            ProfileType.BUSINESS
+        }
+        else -> {
+            ProfileType.BUSINESS
+        }
+    }
+}

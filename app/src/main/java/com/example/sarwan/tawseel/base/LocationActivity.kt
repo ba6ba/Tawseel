@@ -56,23 +56,17 @@ import com.example.sarwan.tawseel.repository.BaseRepository
  * (as specified in AndroidManifest.xml).
  */
 @SuppressLint("Registered")
-abstract class LocationActivity : BaseActivity<BaseRepository>() {
+abstract class LocationActivity<T : BaseRepository> : BaseActivity<T>() {
 
     /**
      * call when successfully gets location
     * */
-    abstract fun onSuccess(`object` : Any)
+    abstract fun onSuccess(latLng : LatLng)
 
     /**
      * call back when location gets failure
      * */
-    abstract fun onFailure(error : String)
-
-    /**
-     * trigger to inform whether app has location access permission or not
-     * */
-
-//    abstract fun havePermission(have : Boolean)
+    abstract fun onFailure(vararg error : String)
 
     /**
      * Check If user denies to give an access to device location.

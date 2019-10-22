@@ -11,13 +11,15 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.entities.requests.LocationRequest
 import com.example.sarwan.tawseel.extensions.actionOnClick
 import com.example.sarwan.tawseel.extensions.getConiditonDrawable
 import com.example.sarwan.tawseel.repository.BaseRepository
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.layout_header_nav_menu.view.*
 
-abstract class DrawerActivity<T : BaseRepository>(private val layout: Int) : BaseActivity<T>() {
+abstract class DrawerActivity<T : BaseRepository>(private val layout: Int) : LocationActivity<T>() {
 
     private var navHostFragment: NavHostFragment? = null
     private var drawer_layout: DrawerLayout? = null
@@ -42,6 +44,18 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout: Int) : Bas
         setObserver()
         setupNavigation()
         navigationListener()
+    }
+
+    override fun onSuccess(latLng: LatLng) {
+        getAppRepository().userProfile?.userLocation?.setLocation(latLng) {updated->
+            if (updated) {
+                repo.callLocationApi(LocationRequest(latLng.latitude, latLng.longitude, getAppRepository().userProfile?.user?._id?:""))
+            }
+        }
+    }
+
+    override fun onFailure(vararg error: String) {
+        // show error to location fetch failed
     }
 
     private fun setObserver() {

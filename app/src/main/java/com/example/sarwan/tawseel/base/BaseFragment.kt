@@ -72,7 +72,6 @@ abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
     }
 
     fun navigateToMainApp() {
-        //TODO - change activity as per usertype from api response
         navigateTo(getBaseActivity().repo.getActivityId(getBaseActivity().getAppRepository().userProfile))
         getBaseActivity().finish()
     }

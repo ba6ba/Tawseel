@@ -92,6 +92,7 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
             getAppRepository().userProfile?.token = data?.token
             getAppRepository().userProfile?.user = repo.mapSignupDataToUser(data)
             getAppRepository().userProfile?.isLoggedIn = true
+            getAppRepository().userProfile?.profileType = getProfileTypeForApi(data?.userType)
             saveUserProfile()
         }
         navigateToMainApp()

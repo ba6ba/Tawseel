@@ -1,9 +1,6 @@
 package com.example.sarwan.tawseel.network
 
-import com.example.sarwan.tawseel.entities.requests.ItemRequest
-import com.example.sarwan.tawseel.entities.requests.LoginRequest
-import com.example.sarwan.tawseel.entities.requests.SignupRequest
-import com.example.sarwan.tawseel.entities.requests.StoreRequest
+import com.example.sarwan.tawseel.entities.requests.*
 import com.example.sarwan.tawseel.entities.responses.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -112,5 +109,22 @@ interface Apis {
     @GET("item/type")
     fun findItemByItemType(@Query("type") type: String): Call<ItemListResponse>
 
+    /**
+     * set and update fcm token
+     * */
+    @POST("fcm-token")
+    fun fcmToken(@Body request: FcmRequest): Call<GeneralResponse>
+
+    /**
+     * send notification
+     * */
+    @POST("notification")
+    fun notification(@Body request: NotificationRequest): Call<GeneralResponse>
+
+    /**
+     * set and update location
+     * */
+    @POST("location")
+    fun location(@Body request: LocationRequest): Call<GeneralResponse>
 
 }

@@ -16,6 +16,7 @@ import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.repository.authentication.AuthenticationRepository
 import com.example.sarwan.tawseel.utils.GlobalData
+import com.example.sarwan.tawseel.utils.getProfileTypeForApi
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_login) {
@@ -62,6 +63,7 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
             getAppRepository().userProfile?.user = data?.user
             getAppRepository().userProfile?.isLoggedIn = true
             getAppRepository().userProfile?.business = data?.store
+            getAppRepository().userProfile?.profileType = getProfileTypeForApi(data?.user?.userType)
             saveUserProfile()
             navigateToMainApp()
         }
