@@ -12,10 +12,13 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.example.sarwan.tawseel.entities.requests.FcmRequest
 import com.example.sarwan.tawseel.extensions.navigate
 import com.example.sarwan.tawseel.extensions.navigateToBack
+import com.example.sarwan.tawseel.helper.LocationHelper
 import com.example.sarwan.tawseel.interfaces.Resources
 import com.example.sarwan.tawseel.interfaces.TawseelLayout
+import com.example.sarwan.tawseel.modules.notifications.NotificationHelper
 import com.example.sarwan.tawseel.network.NetworkRepository
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.GlobalData
@@ -38,11 +41,29 @@ abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
         super.onCreate(savedInstanceState)
         bActivity = (activity as BaseActivity<T>)
         NetworkRepository.get(getProfileFromSharedPreference()?.token ?: "")
+        LocationHelper.provides(getProfileFromSharedPreference())
+        updateFCMTokenApi()
         createRepoInstance()
         activityCreated(savedInstanceState)
         bundleOnCreated(arguments)
         singleParamSerializable(arguments?.getSerializable(GlobalData.PARAM))
     }
+
+
+    private fun updateFCMTokenApi() {
+        context?.let {
+            if (getProfileFromSharedPreference()?.isLoggedIn == true) {
+                NotificationHelper(it).fcmTokenApi(
+                    FcmRequest(
+                        getProfileFromSharedPreference()?.user?._id ?: "",
+                        getBaseActivity().getAppRepository().getFromSharedPreference<String>(GlobalData.FCM_TOKEN)
+                            ?: ""
+                    )
+                )
+            }
+        }
+    }
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -106,5 +127,4 @@ abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
         bActivity.showMessage(message, length)
 
     fun getProfileFromSharedPreference() = getBaseActivity().getProfileFromSharedPreference()
-
 }

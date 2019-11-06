@@ -11,10 +11,15 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.entities.requests.FcmRequest
 import com.example.sarwan.tawseel.entities.requests.LocationRequest
 import com.example.sarwan.tawseel.extensions.actionOnClick
 import com.example.sarwan.tawseel.extensions.getConiditonDrawable
+import com.example.sarwan.tawseel.helper.LocationHelper
+import com.example.sarwan.tawseel.interfaces.ProfileProvider
+import com.example.sarwan.tawseel.modules.notifications.NotificationHelper
 import com.example.sarwan.tawseel.repository.BaseRepository
+import com.example.sarwan.tawseel.utils.GlobalData
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.layout_header_nav_menu.view.*
@@ -49,10 +54,12 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout: Int) : Loc
     override fun onSuccess(latLng: LatLng) {
         getAppRepository().userProfile?.userLocation?.setLocation(latLng) {updated->
             if (updated) {
-                repo.callLocationApi(LocationRequest(latLng.latitude, latLng.longitude, getAppRepository().userProfile?.user?._id?:""))
+                repo.callLocationApi(getRequestParams(latLng))
             }
         }
     }
+
+    private fun getRequestParams(latLng: LatLng): LocationRequest? = LocationHelper.makeLocationRequest(latLng.latitude, latLng.longitude)
 
     override fun onFailure(vararg error: String) {
         // show error to location fetch failed

@@ -28,9 +28,11 @@ abstract class BaseRepository() {
         _locationApiInstance
 
 
-    fun callNotificationApi(params: NotificationRequest) {
-        _notificationApiInstance.addSource(notificationApi(params)) {
-            _notificationApiInstance.value = it
+    fun callNotificationApi(locationParams : LocationRequest, params: NotificationRequest) {
+        _notificationApiInstance.addSource(locationApi(locationParams)) {
+            _notificationApiInstance.addSource(notificationApi(params)) {
+                _notificationApiInstance.value = it
+            }
         }
     }
 
@@ -42,9 +44,11 @@ abstract class BaseRepository() {
     }
 
 
-    fun callLocationApi(params: LocationRequest) {
-        _locationApiInstance.addSource(locationApi(params)) {
-            _locationApiInstance.value = it
+    fun callLocationApi(params: LocationRequest?) {
+        params?.let {
+            _locationApiInstance.addSource(locationApi(params)) {
+                _locationApiInstance.value = it
+            }
         }
     }
 

@@ -15,6 +15,7 @@ object AndroidVersions{
 
 
 object Versions {
+    const val stripe: String = "12.2.0"
     const val fireBaseMessaging: String = "20.0.0"
     const val fireBaseAuth: String = "19.0.0"
     const val fireBaseFireStore : String = "21.0.0"
@@ -97,6 +98,10 @@ object Firebase {
     const val fireBaseAuth = "com.google.firebase:firebase-auth:${Versions.fireBaseAuth}"
     const val fireBaseFireStore = "com.google.firebase:firebase-firestore:${Versions.fireBaseAuth}"
     const val fireBaseMessaging ="com.google.firebase:firebase-messaging:${Versions.fireBaseMessaging}"
+}
+
+object Stripe {
+    const val stripe = "com.stripe:stripe-android:${Versions.stripe}"
 }
 
 object TestLibraries {

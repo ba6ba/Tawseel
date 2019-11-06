@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="@dimen/x10"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/title"
+        style="@style/Tawseel.TextView.Medium.Blue"
+        tools:text="@string/payment_status"
+        android:maxLines="1"
+        android:ellipsize="end"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/description"
+        style="@style/Tawseel.TextView.Medium.Grey"
+        tools:text="@string/payment_status"
+        android:textSize="@dimen/t12"
+        android:maxLines="2"
+        android:ellipsize="end"
+        />
+
+</LinearLayout>

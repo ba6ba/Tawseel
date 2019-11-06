@@ -2,9 +2,9 @@ package com.example.sarwan.tawseel.entities
 
 sealed class Validation {
 
-    data class Result(var result: Boolean, var text: String?)
+    data class Result(var result: Boolean = false, var text: String? = null, var data: Any? = null)
 
     companion object {
-        fun result(result: Boolean, text: String?) = Result(result, text)
+        fun result(result: Boolean, text: String? = null, data: Any? = null) = Result(result, text, data)
     }
 }

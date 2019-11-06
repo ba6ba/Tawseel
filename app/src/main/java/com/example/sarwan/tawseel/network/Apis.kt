@@ -127,4 +127,12 @@ interface Apis {
     @POST("location")
     fun location(@Body request: LocationRequest): Call<GeneralResponse>
 
+    /**
+     * google places api
+     * */
+    @GET("textsearch/${NetworkConstants.GOOGLE_PLACES_OUTPUT_TYPE}")
+    fun places(
+        @Query("query") query: String?, @Query("key") key: String = NetworkConstants.GOOGLE_PLACES_API_KEY
+    ): Call<GooglePlacesApiResponse>
+
 }

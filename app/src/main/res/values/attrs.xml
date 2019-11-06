@@ -37,5 +37,12 @@
         <attr name="is_view_enabled" format="boolean"/>
     </declare-styleable>
 
+    <declare-styleable name="TawseelGooglePlacesAutoCompleteLayout">
+        <attr name="hint_text" format="string"/>
+        <attr name="use_google_places_api" format="boolean"/>
+        <attr name="auto_complete_layout" format="reference"/>
+        <attr name="view_enabled" format="boolean"/>
+    </declare-styleable>
+
 
 </resources>

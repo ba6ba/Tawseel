@@ -14,22 +14,16 @@ import com.example.sarwan.tawseel.utils.GlobalData
 
 class NotificationHelper(private val context: Context) {
 
-    fun processToken(token: String) {
-        (context as Tawseel).getRepository().apply {
-            saveDataInSharedPreference(GlobalData.FCM_TOKEN, token)
-            fcmTokenApi(
-                FcmRequest(
-                    getFromSharedPreference<UserProfile>(GlobalData.PROFILE)?.user?._id ?: "",
-                    fcmToken = token
-                )
-            )
-        }
-    }
-
-    private fun fcmTokenApi(params: FcmRequest): LiveData<ApiResponse<GeneralResponse>> {
+    fun fcmTokenApi(params: FcmRequest): LiveData<ApiResponse<GeneralResponse>> {
         val responseLiveData: MutableLiveData<ApiResponse<GeneralResponse>> = MutableLiveData()
         NetworkRepository.getInstance().fcmToken(params)
             .enqueue(object : RetrofitCustomResponse<GeneralResponse>(responseLiveData) {})
         return responseLiveData
+    }
+
+    fun saveTokenInSharedPreference(token: String) {
+        (context as Tawseel).getRepository().apply {
+            saveDataInSharedPreference(GlobalData.FCM_TOKEN, token)
+        }
     }
 }

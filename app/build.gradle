@@ -26,12 +26,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BE_URL", '"http://13.59.196.107:8000/"')
+            buildConfigField("String", "GOOGLE_PLACES", '"https://maps.googleapis.com/maps/api/place/"')
+            buildConfigField("String", "GOOGLE_PLACES_API_KEY", '"AIzaSyA6O6Hta1dl-q_nytwn08B2UINAuZ_jVds"')
         }
 
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BE_URL", '"http://13.59.196.107:8000/"')
+            buildConfigField("String", "GOOGLE_PLACES", '"https://maps.googleapis.com/maps/api/place/"')
+            buildConfigField("String", "GOOGLE_PLACES_API_KEY", '"AIzaSyA6O6Hta1dl-q_nytwn08B2UINAuZ_jVds"')
         }
     }
     dataBinding {
@@ -61,6 +65,7 @@ dependencies {
     implementation Libraries.retrofitGsonConverter
     implementation Libraries.httpLoggingInterceptor
     implementation Firebase.fireBaseAuth
+    implementation Stripe.stripe
     implementation Firebase.fireBaseFireStore
     implementation Firebase.fireBaseMessaging
     implementation ThirdPartyLibraries.ratingBar

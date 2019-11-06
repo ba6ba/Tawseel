@@ -3,7 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph.xml"
-    app:startDestination="@id/actionStores">
+    app:startDestination="@id/actionHomeCustomer">
+
+    <fragment
+        android:id="@+id/actionHomeCustomer"
+        android:name="com.example.sarwan.tawseel.modules.customer.HomeCustomerFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home_customer">
+
+        <action
+            android:id="@+id/action_create_order_fragment"
+            app:destination="@+id/actionOrderCreate"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/actionOrderCreate"
+        android:name="com.example.sarwan.tawseel.modules.customer.OrderCreationFragment"
+        android:label="Create Order"
+        tools:layout="@layout/fragment_order_creation">
+
+        <action
+            android:id="@+id/action_create_order_fragment"
+            app:destination="@+id/actionOrderCreate"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
 
     <fragment
         android:id="@+id/actionStores"

@@ -21,7 +21,7 @@ class MessagingService() : FirebaseMessagingService(){
 
     private fun saveFirebaseTokenLocalOrServer(token: String?) {
         token?.let { fcmToken ->
-            NotificationHelper(applicationContext).processToken(token)
+            NotificationHelper(applicationContext).saveTokenInSharedPreference(token)
         }
     }
 }

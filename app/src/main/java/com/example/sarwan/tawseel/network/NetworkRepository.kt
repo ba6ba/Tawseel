@@ -37,6 +37,30 @@ object NetworkRepository : TokenProvider {
         ).client(httpClient(token)).build().create<Apis>(Apis::class.java)
 
 
+    fun getGooglePlacesApiInstance() =
+        Retrofit.Builder().baseUrl(NetworkConstants.GOOGLE_PLACES_URL).addConverterFactory(
+            GsonConverterFactory.create(
+                gson()
+            )
+        ).client(httpClient()).build().create<Apis>(Apis::class.java)
+
+
+    private fun httpClient() = OkHttpClient.Builder().addInterceptor { chain ->
+        val request = chain.request()
+        val newRequest: Request
+        newRequest = request.newBuilder()
+            .addHeader("Content-Type", "application/json")
+            .build()
+        chain.proceed(newRequest)
+    }
+        .connectTimeout(TIMEOUT.toLong(), TimeUnit.SECONDS)
+        .writeTimeout(TIMEOUT.toLong(), TimeUnit.SECONDS)
+        .readTimeout(TIMEOUT.toLong(), TimeUnit.SECONDS)
+        .addInterceptor(logging)
+        .build()
+
+
+
     private fun httpClient(token: String) = OkHttpClient.Builder().addInterceptor { chain ->
         val request = chain.request()
         val newRequest: Request

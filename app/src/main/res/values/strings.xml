@@ -94,4 +94,13 @@
     <string name="category_label">Business Category</string>
     <string name="enter">Enter</string>
     <string name="item_price">Item Price</string>
+    <string name="create_order">Create Order</string>
+    <string name="order_pickup_location">Order Pickup Location</string>
+    <string name="destination">Destination</string>
+    <string name="order_title">Order Title</string>
+    <string name="order_description">Order Description</string>
+    <string name="order_price">Order Price</string>
+    <string name="payment_status">Payment Status</string>
+    <string name="payment_proof">Payment Proof (if paid by customer)</string>
+    <string name="find_driver">Find Driver</string>
 </resources>

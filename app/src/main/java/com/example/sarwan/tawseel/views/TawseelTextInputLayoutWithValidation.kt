@@ -13,6 +13,7 @@ import com.example.sarwan.tawseel.entities.Validation
 import com.example.sarwan.tawseel.entities.enums.PasswordRegex
 import com.example.sarwan.tawseel.entities.enums.ValidationRule
 import com.example.sarwan.tawseel.entities.enums.ValidationType
+import com.example.sarwan.tawseel.extensions.actionOnClick
 import com.example.sarwan.tawseel.extensions.hint
 import com.example.sarwan.tawseel.extensions.isInRangeOf
 import com.example.sarwan.tawseel.extensions.textChangeListener
@@ -25,9 +26,8 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     context: Context,
     private var attrs: AttributeSet? = null,
     private var defStyleAttr: Int = 0
-) : TextInputLayout(context, attrs, defStyleAttr) {
+) : BaseTawseelInputLayout(context, attrs, defStyleAttr) {
 
-    private var mHint: String? = ""
     private var mValidationType: ValidationType = ValidationType.NO_RULE
     private var mValidationRule: ValidationRule = ValidationRule.NO_RULE
     private var mMaxLimit: Int = Int.MAX_VALUE
@@ -35,7 +35,6 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     private var validationRule: Int = 0
     private var minHeight: Int = 0
     private var validationError: String? = generateError()
-    private var isViewEnabled : Boolean = true
 
     private val upperRule: Boolean by lazy {
         ValidationRule.possibleUpperRuleValues().contains(validationRule) && mValidationType == ValidationType.VALID_PASSWORD
@@ -49,8 +48,6 @@ class TawseelTextInputLayoutWithValidation @JvmOverloads constructor(
     private val specialCharRule: Boolean by lazy {
         ValidationRule.possibleSpecialRuleValues().contains(validationRule) && mValidationType == ValidationType.VALID_PASSWORD
     }
-
-    val validationResult: MutableLiveData<Validation.Result> = MutableLiveData()
 
     init {
         initialize()
