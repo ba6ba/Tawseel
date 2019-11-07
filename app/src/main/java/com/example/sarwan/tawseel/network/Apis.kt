@@ -135,4 +135,10 @@ interface Apis {
         @Query("query") query: String?, @Query("key") key: String = NetworkConstants.GOOGLE_PLACES_API_KEY
     ): Call<GooglePlacesApiResponse>
 
+    /**
+     * forgot password
+     * */
+    @POST("forgot-password")
+    fun forgotPassword(@Body request: ForgotPasswordRequest): Call<GeneralResponse>
+
 }

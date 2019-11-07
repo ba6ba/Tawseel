@@ -7,6 +7,6 @@ data class SignupRequest(
     var password: String? = null,
     var confirmPassword: String? = null,
     var userType: String? = null,
-    var lat: Double? = null,
-    var lng: Double? = null
+    var lat: Double? = 48.42,
+    var lng: Double? = 67.23
 )

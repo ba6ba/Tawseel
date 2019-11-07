@@ -48,6 +48,11 @@ class VerifyOTPDialog : BaseDialog<AuthenticationRepository>(R.layout.dialog_ver
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        isCancelable = false
+    }
+
     override fun dataToViews() {
         number.text = bActivity.getAppRepository().userProfile?.user?.phone
     }

@@ -10,8 +10,10 @@ import com.example.sarwan.tawseel.entities.enums.AuthenticationType
 import com.example.sarwan.tawseel.entities.enums.Irrelevant
 import com.example.sarwan.tawseel.entities.enums.ProfileType
 import com.example.sarwan.tawseel.entities.enums.ValidationType
+import com.example.sarwan.tawseel.entities.requests.ForgotPasswordRequest
 import com.example.sarwan.tawseel.entities.requests.LoginRequest
 import com.example.sarwan.tawseel.entities.requests.SignupRequest
+import com.example.sarwan.tawseel.entities.responses.GeneralResponse
 import com.example.sarwan.tawseel.entities.responses.LoginResponse
 import com.example.sarwan.tawseel.entities.responses.SignupResponse
 import com.example.sarwan.tawseel.network.ApiResponse
@@ -33,6 +35,9 @@ class AuthenticationRepository : BaseRepository() {
     private var _signupApiInstance: MediatorLiveData<ApiResponse<SignupResponse>> =
         MediatorLiveData()
     var signupApiInstance: MutableLiveData<ApiResponse<SignupResponse>> = _signupApiInstance
+    private var _forgotPasswordApiInstance: MediatorLiveData<ApiResponse<GeneralResponse>> =
+        MediatorLiveData()
+    var forgotPasswordApiInstance: MutableLiveData<ApiResponse<GeneralResponse>> = _forgotPasswordApiInstance
 
     private fun isLoggedIn(activity: BaseActivity<*>) =
         activity.getProfileFromSharedPreference()?.isLoggedIn
@@ -83,6 +88,19 @@ class AuthenticationRepository : BaseRepository() {
         val responseLiveData: MutableLiveData<ApiResponse<SignupResponse>> = MutableLiveData()
         NetworkRepository.getInstance().signup(params)
             .enqueue(object : RetrofitCustomResponse<SignupResponse>(responseLiveData){})
+        return responseLiveData
+    }
+
+    fun callForgotPasswordApi(params: ForgotPasswordRequest) {
+        _forgotPasswordApiInstance.addSource(forgotPasswordApi(params)) {
+            _forgotPasswordApiInstance.value = it
+        }
+    }
+
+    private fun forgotPasswordApi(params: ForgotPasswordRequest): LiveData<ApiResponse<GeneralResponse>> {
+        val responseLiveData: MutableLiveData<ApiResponse<GeneralResponse>> = MutableLiveData()
+        NetworkRepository.getInstance().forgotPassword(params)
+            .enqueue(object : RetrofitCustomResponse<GeneralResponse>(responseLiveData){})
         return responseLiveData
     }
 }

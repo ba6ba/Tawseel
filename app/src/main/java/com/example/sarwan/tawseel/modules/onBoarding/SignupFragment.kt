@@ -8,8 +8,10 @@ import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.entities.User
 import com.example.sarwan.tawseel.entities.enums.ProfileType
+import com.example.sarwan.tawseel.entities.enums.SignupStatus
 import com.example.sarwan.tawseel.entities.requests.SignupRequest
 import com.example.sarwan.tawseel.entities.responses.SignupResponse
+import com.example.sarwan.tawseel.extensions.navigate
 import com.example.sarwan.tawseel.extensions.navigateOnClick
 import com.example.sarwan.tawseel.extensions.show
 import com.example.sarwan.tawseel.modules.phoneauth.PhoneAuthProviderCallBack
@@ -91,11 +93,23 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
         getBaseActivity().apply {
             getAppRepository().userProfile?.token = data?.token
             getAppRepository().userProfile?.user = repo.mapSignupDataToUser(data)
-            getAppRepository().userProfile?.isLoggedIn = true
+            getAppRepository().userProfile?.isLoggedIn = SignupStatus.approved.name.toLowerCase().contentEquals(data?.status.toString())
             getAppRepository().userProfile?.profileType = getProfileTypeForApi(data?.userType)
             saveUserProfile()
         }
-        navigateToMainApp()
+        navigateToNextScreen()
+    }
+
+    private fun navigateToNextScreen() {
+        if (getProfileFromSharedPreference()?.isLoggedIn == true) {
+            navigateToMainApp()
+        } else {
+            navigateToDriverDocumentScreen()
+        }
+    }
+
+    private fun navigateToDriverDocumentScreen() {
+        navigateTo(R.id.action_to_DriverDocumentScreen)
     }
 
     override fun viewListeners() {

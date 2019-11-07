@@ -204,6 +204,31 @@
             app:exitAnim="@android:anim/slide_out_right"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/action_to_DriverDocumentScreen"
+            app:destination="@id/actionDriverDocumentScreen"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/actionDriverDocumentScreen"
+        android:name="com.example.sarwan.tawseel.modules.onBoarding.DriverDocumentScreen"
+        android:label="fragment_driver_documentation"
+        tools:layout="@layout/fragment_driver_document_screen">
+
+        <action
+            android:id="@+id/action_DriverDocument_to_LoginFragment"
+            app:destination="@id/actionLogin"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+
     </fragment>
 
 

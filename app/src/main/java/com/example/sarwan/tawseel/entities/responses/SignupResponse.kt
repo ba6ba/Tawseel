@@ -10,6 +10,7 @@ data class SignupResponse(var data: Data) : GeneralResponse() {
         var userType: String,
         var createdAt: String,
         var updatedAt: String,
-        var token: String
+        var token: String,
+        var status : String
     )
 }
