@@ -3,13 +3,13 @@ package com.example.sarwan.tawseel.modules.customer
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.BaseFragment
 import com.example.sarwan.tawseel.entities.enums.PaymentStatus
+import com.example.sarwan.tawseel.entities.requests.NotificationApiRequest
 import com.example.sarwan.tawseel.entities.requests.NotificationRequest
 import com.example.sarwan.tawseel.entities.responses.GooglePlacesApiResponse
 import com.example.sarwan.tawseel.extensions.actionOnClick
@@ -19,8 +19,10 @@ import com.example.sarwan.tawseel.extensions.toTitleCaseWithReplaceText
 import com.example.sarwan.tawseel.helper.LocationHelper
 import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.repository.customer.CustomerRepository
+import com.example.sarwan.tawseel.utils.EncodingUtils
 import kotlinx.android.synthetic.main.fragment_order_creation.*
 
+@ExperimentalStdlibApi
 class OrderCreationFragment : BaseFragment<CustomerRepository>(R.layout.fragment_order_creation) {
 
     private var enableButtonLiveData: MutableLiveData<Void> = MutableLiveData()
@@ -33,8 +35,6 @@ class OrderCreationFragment : BaseFragment<CustomerRepository>(R.layout.fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        notificationRequest.title = "Request for finding driver"
-        notificationRequest.description = "Description"
         setupPaymentStatusPicker()
         viewListeners()
         setObservers()
@@ -60,17 +60,19 @@ class OrderCreationFragment : BaseFragment<CustomerRepository>(R.layout.fragment
 
     override fun setObservers() {
         enableButtonLiveData.foreverObserver(Observer {
-            find_driver?.isEnabled(allFieldsAreValid(
-                order_pickup_location,
-                order_destination,
-                order_description,
-                order_title,
-                order_price
-            ))
+            find_driver?.isEnabled(
+                allFieldsAreValid(
+                    order_pickup_location,
+                    order_destination,
+                    order_description,
+                    order_title,
+                    order_price
+                )
+            )
         })
 
         repository.notificationApiInstance.foreverObserver(Observer {
-            when(it) {
+            when (it) {
                 is ApiResponse.Success -> {
                     showMessage("Request for finding driver has sent, kindly wait for driver to accept your order")
                     navigateBack()
@@ -134,7 +136,16 @@ class OrderCreationFragment : BaseFragment<CustomerRepository>(R.layout.fragment
     }
 
     private fun createOrder() {
-        repository.callNotificationApi(LocationHelper.makeLocationRequest(), notificationRequest)
+        val encodedString = EncodingUtils.encodeObjectToString(notificationRequest.data)
+        repository.callNotificationApi(
+            LocationHelper.makeLocationRequest(),
+            NotificationApiRequest().apply {
+                title = "Request for finding driver"
+                description = "Description"
+                data = NotificationApiRequest.Data().apply {
+                    order = encodedString
+                    user = EncodingUtils.encodeObjectToString(getProfileFromSharedPreference()?.user)
+                }
+            })
     }
-
 }

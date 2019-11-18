@@ -11,7 +11,7 @@ class MessagingService() : FirebaseMessagingService(){
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         Log.d("onMessageReceived",remoteMessage.notification?.title + " " +
                 remoteMessage.notification?.body)
-     //   showInAppNotification(remoteMessage)
+        showInAppNotification(remoteMessage)
     }
 
     override fun onNewToken(token: String) {
@@ -23,5 +23,9 @@ class MessagingService() : FirebaseMessagingService(){
         token?.let { fcmToken ->
             NotificationHelper(applicationContext).saveTokenInSharedPreference(token)
         }
+    }
+
+    private fun showInAppNotification(remoteMessage: RemoteMessage?) {
+        NotificationHelper(applicationContext).makeNotification(remoteMessage, this)
     }
 }

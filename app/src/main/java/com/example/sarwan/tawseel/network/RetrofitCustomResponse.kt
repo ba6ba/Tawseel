@@ -1,5 +1,6 @@
 package com.example.sarwan.tawseel.network
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.sarwan.tawseel.entities.responses.GeneralResponse
 import com.google.gson.Gson
@@ -22,9 +23,17 @@ abstract class RetrofitCustomResponse<T>(private val responseLiveData: MutableLi
         } else {
             responseLiveData.postValue(
                 ApiResponse.error(
-                    generalResponse?.error?.msg ?: apiErrorBody(
-                        response.errorBody()
-                    ).error.msg
+                    generalResponse?.error?.msg ?: try {
+                        apiErrorBody(
+                            response.errorBody()
+                        ).error.msg
+                    } catch (e: Exception) {
+                        Log.e(
+                            RetrofitCustomResponse::class.java.simpleName,
+                            "Api unhandled error exception"
+                        )
+                        "Technical Error"
+                    }
                 )
             )
 

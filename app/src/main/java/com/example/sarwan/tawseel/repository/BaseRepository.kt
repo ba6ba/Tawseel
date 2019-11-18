@@ -6,9 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.entities.UserProfile
 import com.example.sarwan.tawseel.entities.enums.ProfileType
-import com.example.sarwan.tawseel.entities.requests.FcmRequest
 import com.example.sarwan.tawseel.entities.requests.LocationRequest
-import com.example.sarwan.tawseel.entities.requests.NotificationRequest
+import com.example.sarwan.tawseel.entities.requests.NotificationApiRequest
 import com.example.sarwan.tawseel.entities.responses.GeneralResponse
 import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.network.NetworkRepository
@@ -28,17 +27,17 @@ abstract class BaseRepository() {
         _locationApiInstance
 
 
-    fun callNotificationApi(locationParams : LocationRequest, params: NotificationRequest) {
+    fun callNotificationApi(locationParams : LocationRequest, params: NotificationApiRequest) {
         _notificationApiInstance.addSource(locationApi(locationParams)) {
-            _notificationApiInstance.addSource(notificationApi(params)) {
+            _notificationApiInstance.addSource(riderSearchApi(params)) {
                 _notificationApiInstance.value = it
             }
         }
     }
 
-    private fun notificationApi(params: NotificationRequest): LiveData<ApiResponse<GeneralResponse>> {
+    private fun riderSearchApi(params: NotificationApiRequest): LiveData<ApiResponse<GeneralResponse>> {
         val responseLiveData: MutableLiveData<ApiResponse<GeneralResponse>> = MutableLiveData()
-        NetworkRepository.getInstance().notification(params)
+        NetworkRepository.getInstance().riderSearch(params)
             .enqueue(object : RetrofitCustomResponse<GeneralResponse>(responseLiveData) {})
         return responseLiveData
     }

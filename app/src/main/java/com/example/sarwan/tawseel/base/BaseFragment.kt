@@ -116,8 +116,10 @@ abstract class BaseFragment<T : BaseRepository>(private val layoutId: Int) :
         getBaseActivity().getDrawableFromResources(resId)
 
 
-    fun <A> MutableLiveData<A>.foreverObserver(observer: Observer<A>) =
+    fun <A> MutableLiveData<A>.foreverObserver(observer: Observer<A>) {
+        removeObserver(observer)
         observe(viewLifecycleOwner, observer)
+    }
 
     protected fun errorApiCall(message: String?) {
         getBaseActivity().showMessage(message)

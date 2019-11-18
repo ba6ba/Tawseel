@@ -14,6 +14,6 @@ object LocationHelper : ProfileProvider {
     
     fun makeLocationRequest(
         latitude: Double = profile?.userLocation?.lat ?: 0.0,
-        longitude: Double = profile?.userLocation?.lat ?: 0.0
+        longitude: Double = profile?.userLocation?.lng ?: 0.0
     ) = LocationRequest(latitude, longitude, profile?.user?._id ?: "")
 }

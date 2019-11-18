@@ -116,10 +116,10 @@ interface Apis {
     fun fcmToken(@Body request: FcmRequest): Call<GeneralResponse>
 
     /**
-     * send notification
+     * send riderSearch
      * */
-    @POST("notification")
-    fun notification(@Body request: NotificationRequest): Call<GeneralResponse>
+    @POST("rider/searching")
+    fun riderSearch(@Body apiRequest: NotificationApiRequest): Call<GeneralResponse>
 
     /**
      * set and update location
