@@ -14,6 +14,9 @@ import kotlinx.android.synthetic.main.activity_business.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class BusinessActivity : DrawerActivity<BusinessRepository>(R.layout.activity_business) {
+    override fun onPushNotificationReceived() {
+        //
+    }
 
     override fun activityCreated(savedInstanceState: Bundle?) {
         getProfileFromSharedPreference()?.business?._id?.let {

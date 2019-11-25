@@ -35,7 +35,7 @@ class LoginFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_l
     }
 
     override fun callApis() {
-        repository.callLoginApi(loginRequest)
+        repository.callLoginApi(loginRequest, bActivity)
     }
 
     override fun setObservers() {

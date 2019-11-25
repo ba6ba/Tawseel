@@ -1,5 +1,6 @@
 package com.example.sarwan.tawseel.base
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.ImageView
@@ -15,6 +16,7 @@ import com.example.sarwan.tawseel.entities.requests.FcmRequest
 import com.example.sarwan.tawseel.entities.requests.LocationRequest
 import com.example.sarwan.tawseel.extensions.actionOnClick
 import com.example.sarwan.tawseel.extensions.getConiditonDrawable
+import com.example.sarwan.tawseel.helper.FlowData
 import com.example.sarwan.tawseel.helper.LocationHelper
 import com.example.sarwan.tawseel.interfaces.ProfileProvider
 import com.example.sarwan.tawseel.modules.notifications.NotificationHelper
@@ -39,6 +41,7 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout: Int) : Loc
     abstract fun toolbarTitleChange(text: String?)
     abstract fun toolbarIconChange(drawable: Drawable)
     abstract fun getNavigationMenuId(): Int
+    abstract fun onPushNotificationReceived()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +52,25 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout: Int) : Loc
         setObserver()
         setupNavigation()
         navigationListener()
+        handleIntent()
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        handleIntent(intent)
+    }
+
+    private fun handleIntent(intent: Intent? = this.intent) {
+        if (intent?.hasExtra(GlobalData.DATA_OBJECT) == true) {
+            FlowData.setData(intent.extras?.get(GlobalData.DATA_OBJECT))
+            onPushNotificationReceived()
+        }
     }
 
     override fun onSuccess(latLng: LatLng) {
         getAppRepository().userProfile?.userLocation?.setLocation(latLng) {updated->
             if (updated) {
-                repo.callLocationApi(getRequestParams(latLng))
+                repo.callLocationApi(getRequestParams(latLng), this)
             }
         }
     }
@@ -173,6 +189,10 @@ abstract class DrawerActivity<T : BaseRepository>(private val layout: Int) : Loc
             }
             setupWithNavController(findNavController(R.id.main_container))
         }
+    }
+
+    protected fun navigateTo(action : Int) {
+        navHostFragment?.navController?.navigate(action)
     }
 
     private fun navigateToProfileFragment() {

@@ -19,7 +19,9 @@ import com.example.sarwan.tawseel.extensions.toTitleCaseWithReplaceText
 import com.example.sarwan.tawseel.helper.LocationHelper
 import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.repository.customer.CustomerRepository
+import com.example.sarwan.tawseel.utils.DistanceUtils
 import com.example.sarwan.tawseel.utils.EncodingUtils
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.fragment_order_creation.*
 
 @ExperimentalStdlibApi
@@ -55,7 +57,7 @@ class OrderCreationFragment : BaseFragment<CustomerRepository>(R.layout.fragment
 
     private fun onPaymentStatusSelect(position: Int) {
         payment_status?.text = PaymentStatus.values()[position].name.toTitleCaseWithReplaceText()
-        notificationRequest.data.paymentStatus = PaymentStatus.values()[position].ordinal
+        notificationRequest.request.order.paymentStatus = payment_status?.text.toString()
     }
 
     override fun setObservers() {
@@ -92,41 +94,41 @@ class OrderCreationFragment : BaseFragment<CustomerRepository>(R.layout.fragment
 
         order_pickup_location?.validationResult?.observeForever {
             (it.data as? GooglePlacesApiResponse.Candidates)?.let { locationResponse ->
-                notificationRequest.data.orderPickupLocation = NotificationRequest.Location(
-                    locationResponse.formatted_address,
-                    locationResponse.geometry.location.lat,
-                    locationResponse.geometry.location.lng
-                )
+                notificationRequest.request.order.apply {
+                    pickupAddr = locationResponse.formatted_address
+                    pickupLat = locationResponse.geometry.location.lat
+                    pickupLong = locationResponse.geometry.location.lng
+                }
             }
         }
 
         order_destination?.validationResult?.foreverObserver(Observer {
             (it.data as? GooglePlacesApiResponse.Candidates)?.let { locationResponse ->
-                notificationRequest.data.orderDeliverLocation = NotificationRequest.Location(
-                    locationResponse.formatted_address,
-                    locationResponse.geometry.location.lat,
-                    locationResponse.geometry.location.lng
-                )
+                notificationRequest.request.order.apply {
+                    destinationAddr = locationResponse.formatted_address
+                    destinationLat = locationResponse.geometry.location.lat
+                    destinationLong = locationResponse.geometry.location.lng
+                }
             }
         })
 
         order_description?.validationResult?.foreverObserver(Observer {
-            notificationRequest.data.orderDescription = it.text
+            notificationRequest.request.order.orderDescription = it.text.toString()
             enableButtonLiveData.postValue(null)
         })
 
         order_title?.validationResult?.foreverObserver(Observer {
-            notificationRequest.data.orderName = it.text
+            notificationRequest.request.order.orderTitle = it.text.toString()
             enableButtonLiveData.postValue(null)
         })
 
         order_price?.validationResult?.foreverObserver(Observer {
-            notificationRequest.data.orderPrice = it.text
+            notificationRequest.request.order.orderPrice = it.text.toString()
             enableButtonLiveData.postValue(null)
         })
 
         payment_proof.validationResult.foreverObserver(Observer {
-            notificationRequest.data.paymentProof = it.text
+            notificationRequest.request.order.paymentProof = it.text.toString()
         })
 
         find_driver?.actionOnClick {
@@ -136,16 +138,28 @@ class OrderCreationFragment : BaseFragment<CustomerRepository>(R.layout.fragment
     }
 
     private fun createOrder() {
-        val encodedString = EncodingUtils.encodeObjectToString(notificationRequest.data)
+        modifyObject()
         repository.callNotificationApi(
             LocationHelper.makeLocationRequest(),
             NotificationApiRequest().apply {
                 title = "Request for finding driver"
                 description = "Description"
-                data = NotificationApiRequest.Data().apply {
-                    order = encodedString
-                    user = EncodingUtils.encodeObjectToString(getProfileFromSharedPreference()?.user)
-                }
-            })
+                data.dataobject = EncodingUtils.encodeObjectToString(notificationRequest.request)
+            }, bActivity)
+    }
+
+    private fun modifyObject() {
+        notificationRequest.request.user = getProfileFromSharedPreference()?.user
+        notificationRequest.request.distanceFrompickuptoDestination =
+            DistanceUtils.calculateDistanceInMeters(
+                LatLng(
+                    notificationRequest.request.order.pickupLat,
+                    notificationRequest.request.order.pickupLong
+                ),
+                LatLng(
+                    notificationRequest.request.order.destinationLat,
+                    notificationRequest.request.order.destinationLong
+                )
+            )
     }
 }

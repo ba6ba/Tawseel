@@ -66,6 +66,7 @@ dependencies {
     implementation Libraries.httpLoggingInterceptor
     implementation Firebase.fireBaseAuth
     implementation Stripe.stripe
+    implementation Libraries.progressBar
     implementation Firebase.fireBaseFireStore
     implementation Firebase.fireBaseMessaging
     implementation ThirdPartyLibraries.ratingBar

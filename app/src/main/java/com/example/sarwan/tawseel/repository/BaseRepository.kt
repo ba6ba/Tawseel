@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.base.BaseActivity
 import com.example.sarwan.tawseel.entities.UserProfile
 import com.example.sarwan.tawseel.entities.enums.ProfileType
 import com.example.sarwan.tawseel.entities.requests.LocationRequest
@@ -27,34 +28,40 @@ abstract class BaseRepository() {
         _locationApiInstance
 
 
-    fun callNotificationApi(locationParams : LocationRequest, params: NotificationApiRequest) {
-        _notificationApiInstance.addSource(locationApi(locationParams)) {
-            _notificationApiInstance.addSource(riderSearchApi(params)) {
+    fun callNotificationApi(locationParams : LocationRequest, params: NotificationApiRequest, activity: BaseActivity<*>) {
+        _notificationApiInstance.addSource(locationApi(locationParams, activity)) {
+            _notificationApiInstance.addSource(riderSearchApi(params, activity)) {
                 _notificationApiInstance.value = it
             }
         }
     }
 
-    private fun riderSearchApi(params: NotificationApiRequest): LiveData<ApiResponse<GeneralResponse>> {
+    private fun riderSearchApi(
+        params: NotificationApiRequest,
+        activity: BaseActivity<*>
+    ): LiveData<ApiResponse<GeneralResponse>> {
         val responseLiveData: MutableLiveData<ApiResponse<GeneralResponse>> = MutableLiveData()
         NetworkRepository.getInstance().riderSearch(params)
-            .enqueue(object : RetrofitCustomResponse<GeneralResponse>(responseLiveData) {})
+            .enqueue(object : RetrofitCustomResponse<GeneralResponse>(responseLiveData,activity) {})
         return responseLiveData
     }
 
 
-    fun callLocationApi(params: LocationRequest?) {
+    fun callLocationApi(params: LocationRequest?, activity: BaseActivity<*>) {
         params?.let {
-            _locationApiInstance.addSource(locationApi(params)) {
+            _locationApiInstance.addSource(locationApi(params, activity)) {
                 _locationApiInstance.value = it
             }
         }
     }
 
-    private fun locationApi(params: LocationRequest): LiveData<ApiResponse<GeneralResponse>> {
+    private fun locationApi(
+        params: LocationRequest,
+        activity: BaseActivity<*>
+    ): LiveData<ApiResponse<GeneralResponse>> {
         val responseLiveData: MutableLiveData<ApiResponse<GeneralResponse>> = MutableLiveData()
         NetworkRepository.getInstance().location(params)
-            .enqueue(object : RetrofitCustomResponse<GeneralResponse>(responseLiveData) {})
+            .enqueue(object : RetrofitCustomResponse<GeneralResponse>(responseLiveData, null) {})
         return responseLiveData
     }
 

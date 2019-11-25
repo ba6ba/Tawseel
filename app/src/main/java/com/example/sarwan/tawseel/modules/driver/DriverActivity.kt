@@ -1,10 +1,12 @@
 package com.example.sarwan.tawseel.modules.driver
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.base.DrawerActivity
 import com.example.sarwan.tawseel.extensions.applyText
+import com.example.sarwan.tawseel.extensions.navigate
 import com.example.sarwan.tawseel.helper.extras.MapConfiguration
 import com.example.sarwan.tawseel.repository.driver.DriverRepository
 import com.example.sarwan.tawseel.utils.GlobalData
@@ -15,6 +17,10 @@ import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class DriverActivity : DrawerActivity<DriverRepository>(R.layout.activity_driver),
     OnMapReadyCallback {
+
+    override fun onPushNotificationReceived() {
+        navigateTo(R.id.driverNewOrderFragment)
+    }
 
     override fun getNavigationMenuId(): Int = R.menu.driver_side_navigation_menu
 

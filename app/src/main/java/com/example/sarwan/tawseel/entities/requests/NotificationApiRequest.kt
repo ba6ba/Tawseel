@@ -8,7 +8,6 @@ data class NotificationApiRequest(
     var data: Data = Data()
 ) : Serializable {
     data class Data(
-        var order: String = "",
-        var user: String = ""
+        var dataobject : String = ""
     )
 }

@@ -20,8 +20,6 @@ import com.example.sarwan.tawseel.network.ApiResponse
 import com.example.sarwan.tawseel.network.NetworkRepository
 import com.example.sarwan.tawseel.network.RetrofitCustomResponse
 import com.example.sarwan.tawseel.repository.BaseRepository
-import retrofit2.Call
-import retrofit2.Response
 
 class AuthenticationRepository : BaseRepository() {
 
@@ -65,42 +63,51 @@ class AuthenticationRepository : BaseRepository() {
         name = signupResponse?.name
     }
 
-    fun callLoginApi(params: LoginRequest) {
-        _loginApiInstance.addSource(loginApi(params)) {
+    fun callLoginApi(params: LoginRequest, activity: BaseActivity<*>) {
+        _loginApiInstance.addSource(loginApi(params, activity)) {
             _loginApiInstance.value = it
         }
     }
 
-    private fun loginApi(params: LoginRequest): LiveData<ApiResponse<LoginResponse>> {
+    private fun loginApi(
+        params: LoginRequest,
+        activity: BaseActivity<*>
+    ): LiveData<ApiResponse<LoginResponse>> {
         val responseLiveData: MutableLiveData<ApiResponse<LoginResponse>> = MutableLiveData()
         NetworkRepository.getInstance().login(params)
-            .enqueue(object : RetrofitCustomResponse<LoginResponse>(responseLiveData) {})
+            .enqueue(object : RetrofitCustomResponse<LoginResponse>(responseLiveData, activity) {})
         return responseLiveData
     }
 
-    fun callSignupApi(params: SignupRequest) {
-        _signupApiInstance.addSource(signupApi(params)) {
+    fun callSignupApi(params: SignupRequest, activity: BaseActivity<*>) {
+        _signupApiInstance.addSource(signupApi(params, activity)) {
             _signupApiInstance.value = it
         }
     }
 
-    private fun signupApi(params: SignupRequest): LiveData<ApiResponse<SignupResponse>> {
+    private fun signupApi(
+        params: SignupRequest,
+        activity: BaseActivity<*>
+    ): LiveData<ApiResponse<SignupResponse>> {
         val responseLiveData: MutableLiveData<ApiResponse<SignupResponse>> = MutableLiveData()
         NetworkRepository.getInstance().signup(params)
-            .enqueue(object : RetrofitCustomResponse<SignupResponse>(responseLiveData){})
+            .enqueue(object : RetrofitCustomResponse<SignupResponse>(responseLiveData, activity){})
         return responseLiveData
     }
 
-    fun callForgotPasswordApi(params: ForgotPasswordRequest) {
-        _forgotPasswordApiInstance.addSource(forgotPasswordApi(params)) {
+    fun callForgotPasswordApi(params: ForgotPasswordRequest, activity: BaseActivity<*>) {
+        _forgotPasswordApiInstance.addSource(forgotPasswordApi(params, activity)) {
             _forgotPasswordApiInstance.value = it
         }
     }
 
-    private fun forgotPasswordApi(params: ForgotPasswordRequest): LiveData<ApiResponse<GeneralResponse>> {
+    private fun forgotPasswordApi(
+        params: ForgotPasswordRequest,
+        activity: BaseActivity<*>
+    ): LiveData<ApiResponse<GeneralResponse>> {
         val responseLiveData: MutableLiveData<ApiResponse<GeneralResponse>> = MutableLiveData()
         NetworkRepository.getInstance().forgotPassword(params)
-            .enqueue(object : RetrofitCustomResponse<GeneralResponse>(responseLiveData){})
+            .enqueue(object : RetrofitCustomResponse<GeneralResponse>(responseLiveData, activity){})
         return responseLiveData
     }
 }

@@ -15,6 +15,7 @@ object AndroidVersions{
 
 
 object Versions {
+    const val progressBar: String = "1.4.0"
     const val stripe: String = "12.2.0"
     const val fireBaseMessaging: String = "20.0.0"
     const val fireBaseAuth: String = "19.0.0"
@@ -70,6 +71,7 @@ object Libraries {
     // GLIDE
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     const val fresco = "com.facebook.fresco:fresco:${Versions.fresco}"
+    const val progressBar = "com.github.ybq:Android-SpinKit:${Versions.progressBar}"
 
 }
 

@@ -13,7 +13,9 @@ class DriverOrderStatusFragment : BaseFragment<DriverRepository>(R.layout.fragme
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        //
+        if (repository.orderAccepted) {
+
+        }
     }
 
     companion object {

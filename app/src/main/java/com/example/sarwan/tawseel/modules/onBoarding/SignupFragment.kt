@@ -86,7 +86,7 @@ class SignupFragment : BaseFragment<AuthenticationRepository>(R.layout.fragment_
     }
 
     override fun callApis() {
-        repository.callSignupApi(signupRequest)
+        repository.callSignupApi(signupRequest, bActivity)
     }
 
     private fun successApiCall(data: SignupResponse.Data?) {

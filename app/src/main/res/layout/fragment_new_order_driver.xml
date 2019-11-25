@@ -19,6 +19,19 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/details"
+        android:textAppearance="@style/Tawseel.TextView.Medium.Blue"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/accept"
         style="@style/Tawseel.TextView.Rounded.Background"

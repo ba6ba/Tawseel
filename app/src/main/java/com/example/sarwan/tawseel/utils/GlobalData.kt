@@ -11,15 +11,13 @@ object GlobalData {
     const val FCM_TOKEN = "fcmToken"
     const val PARAM = "Param"
     const val SPLASH_DELAY = 1500L
-    const val LOGIN_WITH_PHONE = 0
-    const val LOGIN_WITH_EMAIL = 1
-    const val CUSTOMER = 0
-    const val COMPANY = 1
-    const val DELIVERY = 2
     const val LATITUDE = 24.966863
     const val LONGITUDE = 67.048835
     const val RANDOM_SEED_VALUE = 999999
     const val DELIVERY_CHARGES = 20L
+    const val DATA_OBJECT = "dataobject"
+    const val FROM_CUSTOMER = "FCM.ACTION.CUSTOMER"
+    const val FROM_DRIVER = "FCM.ACTION.DRIVER"
 
 
     fun currentTime() = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().time)

@@ -2,21 +2,26 @@ package com.example.sarwan.tawseel.base
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.example.sarwan.tawseel.R
 import com.example.sarwan.tawseel.entities.UserProfile
 import com.example.sarwan.tawseel.repository.BaseRepository
 import com.example.sarwan.tawseel.utils.GlobalData
+import com.example.sarwan.tawseel.utils.SingleLiveEvent
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.snackbar.Snackbar
 
 abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
 
     lateinit var repo: T
+    private var progressDialog : ProgressDialog ? = null
+    var progressLiveData : SingleLiveEvent<Boolean> = SingleLiveEvent()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +29,14 @@ abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
         if (getAppRepository().userProfile == null) {
             getAppRepository().userProfile = UserProfile()
         }
+
+        progressLiveData.observe(this, Observer {
+            if (it) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
+        })
     }
 
     public fun getProfileFromSharedPreference() =
@@ -92,5 +105,18 @@ abstract class BaseActivity<T : BaseRepository> : AppCompatActivity() {
     fun getFontFromResources(resId: Int) = resources.getFont(resId)
 
     fun getDrawableFromResources(@DrawableRes resId: Int) = resources.getDrawable(resId, theme)
+
+    private fun showProgress() {
+        progressDialog = ProgressDialog()
+        try {
+            progressDialog?.show(supportFragmentManager, this::class.java.simpleName)
+        } catch (e : Exception) {
+            Log.e(this::class.java.simpleName, "Not able to show dialog")
+        }
+    }
+
+    private fun hideProgress() {
+        progressDialog?.dismiss()
+    }
 
 }

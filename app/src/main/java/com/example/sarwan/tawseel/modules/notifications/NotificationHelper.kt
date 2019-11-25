@@ -4,11 +4,13 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.sarwan.tawseel.R
+import com.example.sarwan.tawseel.base.BaseActivity
 import com.example.sarwan.tawseel.base.Tawseel
 import com.example.sarwan.tawseel.entities.UserProfile
 import com.example.sarwan.tawseel.entities.requests.FcmRequest
@@ -40,7 +42,8 @@ class NotificationHelper(private val context: Context) {
     fun makeNotification(remoteMessage: RemoteMessage?, messagingService: MessagingService) {
         remoteMessage?.let {
             val intent = it.toIntent()
-            intent?.action = it.notification?.clickAction
+            intent?.action = if (remoteMessage.notification?.title == "Incoming Order") "DRIVER" else "CUSTOMER"
+            intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             val pendingIntent = PendingIntent.getActivity(messagingService, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT)
 

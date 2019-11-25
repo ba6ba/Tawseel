@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.activity_customer.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class CustomerActivity : DrawerActivity<CustomerRepository>(R.layout.activity_customer) {
+    override fun onPushNotificationReceived() {
+        //
+    }
 
     override fun activityCreated(savedInstanceState: Bundle?) {
         //

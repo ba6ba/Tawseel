@@ -141,4 +141,10 @@ interface Apis {
     @POST("forgot-password")
     fun forgotPassword(@Body request: ForgotPasswordRequest): Call<GeneralResponse>
 
+    /**
+     * rider availability
+     * */
+    @POST("rider/availability")
+    fun riderAvailability(@Body apiRequest: NotificationDriverApiRequest): Call<GeneralResponse>
+
 }

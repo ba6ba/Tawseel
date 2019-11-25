@@ -27,7 +27,7 @@ class ForgotPasswordFragment :
 
     override fun viewListeners() {
         reset?.navigateOnClick {
-            repository.callForgotPasswordApi(forgotPasswordRequest)
+            repository.callForgotPasswordApi(forgotPasswordRequest, bActivity)
         }
 
         back?.navigateOnClick {

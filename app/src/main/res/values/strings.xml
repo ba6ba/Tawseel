@@ -106,4 +106,5 @@
     <string name="ok">Ok</string>
     <string name="driver_documents">Driver Documents</string>
     <string name="document_submission_text">Please send the following documents to abc@gmail.com to complete your registration. \n1. 3 photos\n2. Driving license picture\n3. National Identity Card picture\n4. 3 different angle car pictures\n5. Car Details</string>
+    <string name="details">Details</string>
 </resources>
