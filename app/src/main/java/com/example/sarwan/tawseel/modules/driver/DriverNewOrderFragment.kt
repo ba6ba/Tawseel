@@ -44,7 +44,7 @@ class DriverNewOrderFragment : BaseFragment<DriverRepository>(R.layout.fragment_
         repository.rejectOrderApiInstance.observe(viewLifecycleOwner, Observer {
             when(it) {
                 is ApiResponse.Success -> {
-                    if (repository.orderAccepted) {
+                    if (repository.orderAccepted == true) {
                         handler { navigateToTrackingOrderScreen() }
                     }
                     else {
@@ -142,7 +142,10 @@ class DriverNewOrderFragment : BaseFragment<DriverRepository>(R.layout.fragment_
     }
 
     private fun hitRejectApi() {
-        repository.hitDriverAvailabilityApi(apiRequest, bActivity)
+        if (repository.orderAccepted != false) {
+            repository.orderAccepted = false
+            repository.hitDriverAvailabilityApi(apiRequest, bActivity)
+        }
     }
 
     private fun setTimerText(text: String?) {

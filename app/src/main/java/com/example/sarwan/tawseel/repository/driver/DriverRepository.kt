@@ -15,7 +15,7 @@ import com.example.sarwan.tawseel.utils.CountDownTimer
 
 class DriverRepository() : BaseRepository(){
 
-    var orderAccepted: Boolean = false
+    var orderAccepted: Boolean ? = null
     var orderMutableLiveData : MutableLiveData<Boolean> = MutableLiveData()
     private var _rejectOrderApiInstance: MediatorLiveData<ApiResponse<GeneralResponse>> = MediatorLiveData()
     var rejectOrderApiInstance: MutableLiveData<ApiResponse<GeneralResponse>> = _rejectOrderApiInstance
