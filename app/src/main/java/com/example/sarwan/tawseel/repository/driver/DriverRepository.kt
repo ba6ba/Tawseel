@@ -30,7 +30,7 @@ class DriverRepository() : BaseRepository(){
 
     private val countDownTimer : MutableLiveData<String> = MutableLiveData()
 
-    fun initTimer() = CountDownTimer(15000,1000, countDownTimer).start()
+    fun initTimer() = CountDownTimer(30000,1000, countDownTimer).start()
 
     fun getTimer() = countDownTimer
 
